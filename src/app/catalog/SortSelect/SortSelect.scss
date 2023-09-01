@@ -1,0 +1,18 @@
+.react-select-catalog {
+	&__control {
+		border: 1px solid #d4d4d4 !important;
+	}
+
+	&__single-value {
+		color: #4e4c4c !important;
+	}
+
+	&__indicator {
+		&-separator {
+			display: none !important;
+		}
+		svg {
+			fill: #1c629e !important;
+		}
+	}
+}

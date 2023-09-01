@@ -1,0 +1,81 @@
+.auth {
+	padding: 50px 0;
+	@media (min-width: '768px') {
+		height: 100vh;
+		display: grid;
+		text-align: center;
+		align-content: center;
+	}
+	&__container {
+	}
+
+	&__title {
+		color: #121212;
+		margin-bottom: 30px;
+	}
+
+	&__form {
+		display: grid;
+		margin: 0 auto;
+		gap: 30px;
+		width: 500px;
+		@media (max-width: '768px') {
+			width: 100%;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+	}
+	&__button {
+		width: 50%;
+		padding: 10px 20px;
+		text-align: center;
+		background-color: rgb(163, 3, 3);
+		font-weight: 600;
+		border-radius: 4px;
+		color: #fafbfc;
+
+		&:hover {
+			background-color: rgb(122, 25, 25);
+		}
+		&_register {
+			background-color: rgb(83, 2, 2);
+
+			&:hover {
+				background-color: rgb(43, 1, 1);
+			}
+		}
+	}
+}
+
+.dark {
+	.auth {
+		background-color: #2d2d2d;
+		&__title {
+			color: #fafbfc;
+		}
+
+		&__form {
+		}
+
+		&__buttons {
+		}
+		&__button {
+			color: #fafbfc;
+
+			&:hover {
+				background-color: rgb(122, 25, 25);
+			}
+			&_register {
+				background-color: rgb(83, 2, 2);
+
+				&:hover {
+					background-color: rgb(43, 1, 1);
+				}
+			}
+		}
+	}
+}

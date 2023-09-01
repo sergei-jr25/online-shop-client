@@ -1,0 +1,131 @@
+.cart {
+	position: relative;
+	margin: 0 0 0 auto;
+	@media (max-width: 767px) {
+		grid-area: cart;
+	}
+
+	&__list {
+		display: grid;
+		gap: 20px;
+	}
+	&__body {
+		overflow: hidden;
+		position: absolute;
+		z-index: 4;
+		display: grid;
+		gap: 25px;
+		z-index: 3;
+		top: -200px;
+		right: -400%;
+		opacity: 0;
+		transform: scale(0);
+		transition: all 0.3s;
+		// width: 200px;
+		background-color: #ffffff;
+		border-radius: 4px;
+		padding: 10px 15px;
+		box-shadow: -1 4 30 rgba(0, 0, 0, 0.164);
+		border: 1px solid #212121;
+
+		&_show {
+			top: 45px;
+			overflow: visible;
+			right: 0;
+			transform: scale(1);
+			opacity: 1;
+		}
+
+		svg {
+			position: relative;
+			z-index: 5;
+			fill: #fff;
+			transition: fill 0.3s;
+			&:hover {
+				fill: #ffc540;
+			}
+		}
+	}
+
+	&__visible {
+		text-align: center;
+		display: grid;
+		justify-items: center;
+		cursor: pointer;
+		gap: 4px;
+	}
+
+	&__item {
+		display: grid;
+		gap: 25px;
+	}
+
+	&__info {
+		display: grid;
+		grid-template: 1fr 1fr/1fr 1fr;
+		gap: 30px;
+	}
+
+	&__header {
+		display: flex;
+		justify-content: space-between;
+		gap: 10px;
+	}
+	&__content {
+		display: grid;
+		gap: 15px;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+	}
+
+	span {
+		transition: color 0.3s;
+		color: #1c629e;
+	}
+	svg {
+		fill: #1c629e;
+		transition: color 0.3s;
+	}
+
+	&__delete {
+		svg {
+			fill: red;
+			width: 25px;
+			height: 25px;
+		}
+	}
+
+	&__footer {
+		display: grid;
+		gap: 10px;
+	}
+	&__totalPrice {
+		color: #121212;
+	}
+
+	&__button {
+		color: #fff;
+		background-color: #212121;
+		padding: 8px;
+	}
+}
+.dark {
+	span {
+		color: #fff;
+	}
+
+	svg {
+		fill: #fff;
+	}
+}
+
+.cart__body {
+}
+
+.cart__item {
+}

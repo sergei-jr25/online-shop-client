@@ -1,0 +1,3 @@
+@function percent($height, $width) {
+	@return $height / $width * 100%;
+}

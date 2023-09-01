@@ -1,0 +1,69 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		".next/types/**/*.ts",
+		"src/component/ui/fields/Field.module.scss",
+		"src/component/ui/button/Button.module.scss",
+		"src/app/header/header-icon/profile.js",
+		"src/component/ui/mode/ModeToggler.module.scss",
+		"src/component/ui/mode/Mode.module.scss",
+		"src/app/header/HeaderBottom/Search/Search.module.scss",
+		"src/app/header/HeaderBottom/HeaderBottom.module.scss",
+		"src/app/header/HeaderTop/HeaderTop.module.scss",
+		"src/app/header/HeaderTop/Profile/Profile.module.scss",
+		"src/app/footer/Footer.module.scss",
+		"src/app/header/HeaderBottom/Cart/Car.module.scss",
+		"src/app/dashboard/New/New.module.scss",
+		"src/app/dashboard/Bestsellers/Bestsellers.module.scss",
+		"src/app/dashboard/Dashboard.module.scss",
+		"src/app/catalog/Catalog.module.scss",
+		"src/app/catalog/sortSelect/SortSelect.module.scss",
+		"src/app/catalog/CatalogFilters/CatalogFilters.module.scss",
+		"src/store/bolilerManufacturer/.slcie.ts",
+		"src/app/catalog/CatalogFilters/Acordion/Accordion.module.scss",
+		"src/app/catalog/CatalogFilters/CatalogFltersMobile/CatalogFiltersMobileTop.module.scss",
+		"src/app/catalog/CatalogFilters/RangeFilters/RangeFilters.module.scss",
+		"src/component/ui/counter/Counter.module.scss",
+		"src/app/product/ProductComponent/ProductInfo/ProductInfo.module.scss",
+		"src/component/ui/Slider/Slider.module.scss",
+		"src/app/order/oderPage/OrderPage.module.scss",
+		"src/component/ui/cart/CartItemProp.module.scss",
+		"src/app/delivery/Delivery.module.scss",
+		"src/component/ui/header/Search.module.scss",
+		"src/component/ui/header/CityButton/CutyButton.module.scss",
+		"src/component/ui/spinner/Spinner.module.scss",
+		"src/component/ui/breadbrambs/NewBreadcrumbs.module.scss",
+		"src/component/ui/accardion/AccordionMy.module.scss",
+		"src/app/wholesalebuyers/Wholesalebuyers.module.scss",
+		"src/app/about-us/AboutUs.module.scss",
+		"src/app/catalog/CatalogPage/CatalogItem.module.scss",
+		"src/app/admin/edit/[id]"
+	],
+	"exclude": ["node_modules"]
+}

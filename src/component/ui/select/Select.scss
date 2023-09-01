@@ -1,0 +1,75 @@
+.react-select-container {
+	position: absolute;
+	height: 40px;
+	width: 100%;
+	border: none;
+	z-index: 19 !important;
+
+	@media (min-width: 992px) {
+		// width: 616px / 1466px * 100%;
+		// margin-right: 208px / 1466px * 100%;
+	}
+
+	@media (max-width: 484px) {
+		grid-area: select;
+	}
+}
+.react-select__control {
+	height: 100%;
+	border: none !important;
+	background-color: transparent !important;
+	z-index: 19 !important;
+	border-bottom-left-radius: 0px !important;
+	border-bottom-right-radius: 0px !important;
+	cursor: pointer !important;
+	border: none;
+
+	&--is-focused {
+		border: none !important;
+		box-shadow: none !important;
+	}
+
+	&--menu-is-open {
+		border: none !important;
+		background-color: #fff !important;
+		box-shadow: none !important;
+		.react-select__menu {
+			background-color: #fff !important;
+		}
+		.react-select__menu-list {
+			background-color: #fff !important;
+		}
+		.react-select__option {
+			color: #fff;
+		}
+	}
+}
+.react-select__value-container {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.react-select__indicators {
+	display: none !important;
+}
+
+.react-select__menu {
+	margin: 0 !important;
+	padding: 0 !important;
+	z-index: 20 !important;
+	background-color: #fff !important;
+	border-top-left-radius: 0px !important;
+	border-top-right-radius: 0px !important;
+}
+.react-select__menu-list {
+}
+.react-select__option {
+}
+
+.react-select__indicator {
+	svg {
+		transition: fill 0.3s;
+		fill: #121212 !important;
+	}
+}

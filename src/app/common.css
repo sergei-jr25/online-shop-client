@@ -1,0 +1,36 @@
+.title {
+	font-size: 55px;
+	font-weight: 500;
+	line-height: 61.6px /55px;
+	margin-bottom: 48px;
+}
+
+.subtitle {
+	font-size: 36px;
+	font-weight: 500;
+	line-height: 47px /36px;
+	margin-bottom: 48px;
+	transition: color 0.3s;
+}
+
+@media (max-width: 767px) {
+	.title {
+		font-size: 32px;
+		line-height: 61.6px /30px;
+		margin-bottom: 30px;
+		transition: color 0.3s;
+	}
+}
+@media (max-width: 767px) {
+	.subtitle {
+		font-size: 27px;
+		line-height: 61.6px /30px;
+		margin-bottom: 30px;
+	}
+}
+
+.text-small {
+	font-size: 14px;
+	color: #4e4c4c;
+	line-height: 21/14;
+}

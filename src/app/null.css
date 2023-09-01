@@ -1,0 +1,11 @@
+button {
+	background-color: transparent;
+	border: none;
+	padding: 0;
+	margin: 0;
+	cursor: pointer;
+	color: blue;
+}
+button:disabled {
+	opacity: 0.5;
+}

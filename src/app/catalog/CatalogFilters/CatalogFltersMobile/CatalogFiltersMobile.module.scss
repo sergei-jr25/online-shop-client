@@ -1,0 +1,101 @@
+.mobile {
+	overflow-y: scroll;
+
+	&__body {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		gap: 30px;
+	}
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin: 0 0 15px 0;
+	}
+	&__title {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		text-align: left;
+		gap: 8px;
+		font-weight: 500;
+		font-size: 18px;
+		color: #2d2d2d;
+		max-width: 194px;
+		margin-bottom: 12px;
+		svg {
+			fill: #2d2d2d;
+			padding-top: 5px;
+		}
+	}
+
+	&__button {
+		font-size: 14px;
+		font-weight: 500;
+		background-color: #e0595d;
+		text-align: center;
+		padding: 6px 8px;
+		border-radius: 40px;
+		color: #fafbfc;
+	}
+
+	&__all {
+		color: #1c629e;
+		font-size: 14px;
+		margin: 0 0 12px 0;
+	}
+
+	&__list {
+		display: grid;
+		gap: 14px;
+		height: 256px;
+		overflow-y: auto;
+	}
+
+	&__item {
+	}
+
+	&__footer {
+		margin: auto 0 0 0;
+	}
+}
+
+.arrowOpenClass {
+	position: relative;
+	display: flex;
+	width: 100%;
+	align-items: center;
+	gap: 8px;
+	font-weight: 500;
+	font-size: 18px;
+	padding: 12px 0;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+	color: #2d2d2d;
+	margin: 0 0 12px 0;
+	&:before,
+	&:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 10px;
+		width: 12px;
+		height: 2px;
+		background-color: #2d2d2d;
+		transform: rotate(-215deg);
+	}
+	&:before {
+		top: 17px;
+		right: 10px;
+		transform: rotate(215deg);
+	}
+
+	span {
+		font-weight: 500;
+		font-size: 22px;
+		color: #f1e9e9;
+	}
+}

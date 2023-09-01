@@ -1,0 +1,35 @@
+.accordion {
+	&__children {
+		opacity: 0;
+		overflow: hidden;
+		visibility: hidden;
+		transition: opacity 0.3s, overflow 0.3s, visibility 0.3s;
+		padding: 15px 0 0 0;
+		&_active {
+			opacity: 1;
+			overflow: visible;
+			visibility: visible;
+		}
+	}
+
+	&__title {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+
+		svg {
+			transform: rotate(180deg);
+			transition: transform 0.3s;
+			path {
+				stroke: #fafbfc !important;
+			}
+		}
+
+		&_active {
+			color: orange !important;
+			svg {
+				transform: rotate(0);
+			}
+		}
+	}
+}

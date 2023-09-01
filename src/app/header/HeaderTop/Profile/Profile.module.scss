@@ -1,0 +1,48 @@
+.profile {
+	padding: 10px 20px;
+	background-color: #121212;
+
+	&__list {
+		display: grid;
+		gap: 20px;
+	}
+
+	&__item {
+		display: grid;
+		gap: 5px;
+		font-weight: 500;
+		padding-bottom: 8px;
+		border-bottom: 1px solid #fbfcfc;
+		color: #fbfcfc;
+
+		&:last-child {
+			padding: 0;
+			border: none;
+		}
+	}
+
+	&__name {
+	}
+
+	&__email {
+		color: #585555;
+	}
+
+	&__button {
+		display: flex;
+		align-items: center;
+		gap: 5px;
+		color: inherit;
+		font-weight: 500;
+
+		svg {
+			width: 25px;
+			height: 25px;
+			g {
+				path {
+					stroke: #000;
+				}
+			}
+		}
+	}
+}

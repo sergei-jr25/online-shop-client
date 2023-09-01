@@ -1,0 +1,50 @@
+.admin {
+	&__items {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+		gap: 40px;
+	}
+	&__item {
+		display: grid;
+		gap: 10px;
+		font-size: 16px;
+		font-weight: 500;
+		background-color: #ececec;
+		box-shadow: 0px 8px 8px #00000028;
+		padding: 15px;
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: space-between;
+		gap: 10px;
+
+		svg {
+			&:first-child {
+				stroke: red;
+			}
+		}
+	}
+
+	&__name {
+	}
+
+	&__paginations {
+		display: flex;
+		gap: 20px;
+		justify-content: center;
+		align-items: center;
+		margin: 50px 0 0 0;
+	}
+	&__pagination {
+		padding: 10px;
+		font-weight: 500;
+		background-color: aqua;
+		color: #000;
+
+		&_active {
+			background-color: red;
+			color: #fff;
+		}
+	}
+}

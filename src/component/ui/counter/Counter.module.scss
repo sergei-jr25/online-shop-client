@@ -1,0 +1,51 @@
+.counter {
+	display: flex;
+	align-items: center;
+	gap: 20px;
+	border: 1px solid #66b1f1;
+	padding: 9.5px 10px;
+
+	&__minus {
+		position: relative;
+		width: 20px;
+		height: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		&::after {
+			content: '';
+			// position: absolute;
+			// top: 50%;
+			display: block;
+			width: 12px;
+			height: 2px;
+			background-color: rgb(192, 21, 21);
+		}
+	}
+	&__plus {
+		position: relative;
+		width: 20px;
+		height: 20px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		&::before,
+		&::after {
+			content: '';
+			// position: absolute;
+			display: block;
+			// top: 50%;
+			// right: 0;
+			width: 12px;
+			height: 2px;
+			background-color: rgb(192, 21, 21);
+		}
+
+		&::after {
+			position: relative;
+			right: 10px;
+			transform: rotate(90deg);
+		}
+	}
+}

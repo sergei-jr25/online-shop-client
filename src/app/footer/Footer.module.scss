@@ -1,0 +1,165 @@
+.footer {
+	background-color: #2d2d2d;
+	padding: 48px 0;
+	&__container {
+		display: grid;
+		gap: 50px;
+	}
+
+	&__top {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		justify-content: space-between;
+		gap: 15px;
+
+		@media (max-width: 992px) {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		@media (max-width: 767px) {
+			grid-template-columns: 1fr;
+			gap: 25px;
+		}
+	}
+
+	&__blocks {
+		display: grid;
+		gap: 34px;
+
+		@media (min-width: 992px) {
+			grid-column: span 2;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 15px;
+		}
+	}
+
+	&__logo {
+		span {
+			color: #fafbfc;
+		}
+	}
+
+	&__block {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__title {
+		color: #fafbfc;
+		font-weight: 500;
+		margin-bottom: 16px;
+	}
+
+	&__list {
+		display: grid;
+		gap: 12px;
+
+		@media (max-width: 992px) {
+			margin: 0 0 30px;
+		}
+	}
+	&__item {
+		font-size: 12px;
+		line-height: 14px;
+		color: #cdcbcb;
+		display: grid;
+		gap: 8px;
+		transition: color 0.3s;
+
+		&:hover {
+			color: #ffcf62;
+		}
+
+		span {
+		}
+	}
+
+	&__link {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		font-size: 14px;
+		font-weight: 500;
+		color: #fafbfc;
+		line-height: 16.5px;
+		svg {
+			fill: #fff;
+		}
+		&_email {
+			svg {
+				fill: none;
+			}
+		}
+	}
+
+	&__bottom {
+		display: grid;
+		gap: 16px;
+		@media (min-width: 992px) {
+			display: flex;
+			align-items: center;
+			gap: 161/1466 * 100%;
+		}
+
+		// @media (max-width: 992px) and (min-width: 767px) {
+		// 	display: none;
+		// }
+
+		// @media (min-width: 767px) {
+		// }
+	}
+
+	&__content {
+		@media (min-width: 992px) {
+			display: flex;
+			align-items: center;
+			gap: 48px;
+		}
+		@media (max-width: 992px) {
+			margin-top: auto;
+		}
+	}
+
+	&__subtitle {
+		color: #fafbfc;
+		margin-bottom: 8px;
+		line-height: 16.5px;
+		@media (max-width: 992px) {
+			margin-bottom: 8px;
+		}
+	}
+
+	&__payments {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+	}
+	&__payment {
+		width: 34px;
+		flex: 0 0 34px;
+		height: 24px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fff;
+		border-radius: 4px;
+		border: 1px solid #d9d9d9;
+	}
+
+	&__copy {
+		font-size: 12px;
+		line-height: 18px;
+		color: #ededed;
+	}
+}
+
+.accordion {
+	&__title {
+		font-size: 18px;
+		font-weight: 500;
+		color: #fafbfc;
+
+		:last-child {
+			margin: 0;
+		}
+	}
+}

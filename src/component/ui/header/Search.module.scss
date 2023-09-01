@@ -1,0 +1,22 @@
+.search {
+	position: relative;
+	// display: flex;
+	// align-items: center;
+	gap: 5px;
+	border: 1px solid #9e9e9e;
+	border-radius: 4px;
+	&__button {
+		position: absolute;
+		z-index: 19;
+		right: 10px;
+		top: 5px;
+		svg {
+			fill: #000;
+		}
+	}
+
+	// &__open {
+	// 	border: none;
+	// 	border-radius: 0;
+	// }
+}
