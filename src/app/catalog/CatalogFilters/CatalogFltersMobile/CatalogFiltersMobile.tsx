@@ -22,7 +22,8 @@ const CatalogFiltersMobile: FC<ICatalogFiltersMobile> = ({
 	boiler,
 	manufacturer,
 	changePrice,
-	isAnyCheckboxChecked
+	isAnyCheckboxChecked,
+	applyQueryParams
 }) => {
 	const [isBoiler, setIsBoiler] = useState(false)
 	const [isManufacture, setIsManufacture] = useState(false)
@@ -105,7 +106,6 @@ const CatalogFiltersMobile: FC<ICatalogFiltersMobile> = ({
 											key={item.id}
 											item={item}
 											setIsTouch={setIsTouch}
-											items={boiler}
 											changePrice={changePrice}
 										/>
 									</li>
@@ -129,7 +129,7 @@ const CatalogFiltersMobile: FC<ICatalogFiltersMobile> = ({
 					<button
 						className={`${accordionStyles.accordion__button} ${accordionStyles.accordion__button_show}`}
 						// disabled={isTouch}
-						// onClick={applyQueryParams}
+						onClick={applyQueryParams}
 					>
 						Показать
 					</button>

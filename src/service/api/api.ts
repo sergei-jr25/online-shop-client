@@ -7,7 +7,7 @@ export const api = createApi({
 	reducerPath: 'api',
 	tagTypes: ['Cart'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: 'http://localhost:5000/api',
+		baseUrl: `${process.env.NEXT_PUBLIC_APP_URL}`,
 		prepareHeaders: (headers, { getState }) => {
 			// const token = (getState() as RootState).user.accessToken
 			let token: string | undefined
@@ -21,8 +21,8 @@ export const api = createApi({
 		}
 	}),
 	endpoints: builder => ({
-		getCartProducts: builder.query<ICart[], number>({
-			query: userId => `/shopping-cart/${userId}`,
+		getCartProducts: builder.query<ICart[], number | undefined>({
+			query: userId => `/shopping-cart/${userId || ''} `,
 			providesTags: (result, error, userId) => [{ type: 'Cart', userId }]
 		}),
 		createShopCart: builder.mutation<ICart, ICartDto>({
@@ -51,14 +51,14 @@ export const api = createApi({
 			}),
 			invalidatesTags: ['Cart']
 		}),
-		remove: builder.mutation<any, number>({
+		remove: builder.mutation<ICart, number>({
 			query: id => ({
 				url: `/shopping-cart/remove/${id}`,
 				method: 'DELETE'
 			}),
 			invalidatesTags: ['Cart']
 		}),
-		removeAll: builder.mutation<any, number>({
+		removeAll: builder.mutation<ICart[], number>({
 			query: id => ({
 				url: `/shopping-cart/remove-user-id/:${id}`,
 				method: 'DELETE'

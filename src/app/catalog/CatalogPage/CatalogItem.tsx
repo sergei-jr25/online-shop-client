@@ -8,7 +8,7 @@ import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import CartIconSvg from '../Catalog-icons/CartIconSvg'
 import styles from './CatalogItem.module.scss'
 
@@ -21,7 +21,7 @@ const CatalogItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 		data: cartsProducts = [],
 		isFetching,
 		isLoading
-	} = api.useGetCartProductsQuery(user?.id ?? null)
+	} = api.useGetCartProductsQuery(user?.id, { skip: !user })
 	const [createShop] = api.useCreateShopCartMutation()
 	const isInCart = cartsProducts.some(cart => +cart.partId === +product.id)
 	const { theme } = useMode()
@@ -31,7 +31,6 @@ const CatalogItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 		}
 	}
 
-	useEffect(() => {}, [isInCart])
 	// const image = JSON.parse(product.images)
 
 	return (
@@ -57,19 +56,21 @@ const CatalogItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 			<div className={styles.catalogItem__article}>{product.vendorCode}</div>
 			<div className={styles.catalogItem__footer}>
 				<div className={styles.catalogItem__price}>{product.price} Р</div>
-				<div
-					className={cn(styles.catalogItem__action, {
-						[styles.catalogItem__action_add]: isInCart
-					})}
-				>
-					{isFetching ? (
-						<Skeleton height='100%' />
-					) : (
-						<button onClick={handleCrateComment}>
-							<CartIconSvg />
-						</button>
-					)}
-				</div>
+				{user && (
+					<div
+						className={cn(styles.catalogItem__action, {
+							[styles.catalogItem__action_add]: isInCart
+						})}
+					>
+						{isFetching ? (
+							<Skeleton height='100%' />
+						) : (
+							<button onClick={handleCrateComment}>
+								<CartIconSvg />
+							</button>
+						)}
+					</div>
+				)}
 			</div>
 		</div>
 	)

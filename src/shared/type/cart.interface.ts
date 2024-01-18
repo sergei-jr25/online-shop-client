@@ -19,5 +19,5 @@ export interface ICart {
 export interface ICartDto {
 	userId?: number
 	partId: number
-	username: string
+	username: string | undefined
 }

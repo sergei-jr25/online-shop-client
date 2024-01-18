@@ -3,7 +3,7 @@ import { apiBoilerParts } from '@/service/api/boiderl-parts'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { useRouter } from 'next/navigation'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
-import Select, { components, NoticeProps } from 'react-select'
+import Select, { NoticeProps, components } from 'react-select'
 import './Select.scss'
 import { NoOptionsMessage, NoOptionsSpinner } from './SelectOptions'
 

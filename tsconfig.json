@@ -61,7 +61,7 @@
 		"src/component/ui/breadbrambs/NewBreadcrumbs.module.scss",
 		"src/component/ui/accardion/AccordionMy.module.scss",
 		"src/app/wholesalebuyers/Wholesalebuyers.module.scss",
-		"src/app/about-us/AboutUs.module.scss",
+		"src/app/about/AboutUs.module.scss",
 		"src/app/catalog/CatalogPage/CatalogItem.module.scss",
 		"src/app/admin/edit/[id]"
 	],

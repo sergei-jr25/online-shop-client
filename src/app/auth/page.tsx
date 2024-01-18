@@ -1,12 +1,6 @@
-'use client'
-
 import Auth from './Auth'
+
 const AuthPage = () => {
-	return (
-		<>
-			{/* <ReduxToast /> */}
-			<Auth />
-		</>
-	)
+	return <Auth />
 }
 export default AuthPage

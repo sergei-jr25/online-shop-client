@@ -88,7 +88,6 @@ const CartItemPopup: FC<ICartItemPopupProps> = ({
 					decrementToCart={decreaseCount}
 					incrementToCart={increaseCount}
 					totalCount={item.inStock}
-					isFetching={isFetching}
 				/>
 			</div>
 		</li>

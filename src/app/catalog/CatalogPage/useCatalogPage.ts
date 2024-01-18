@@ -35,9 +35,6 @@ export const useCatalogPage = (existQuery: boolean) => {
 		key: keyof IBoilerPartFilter,
 		value: string | number
 	) => {
-		console.log('key', key)
-		console.log('value', value)
-
 		if (value) {
 			newParams.set(key, String(value))
 		} else {

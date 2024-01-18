@@ -14,13 +14,13 @@ export default function Crumb({
 }) {
 	const [text, setText] = useState(defaultText)
 
-	useEffect(async () => {
+	useEffect(() => {
 		// If `textGenerator` is nonexistent, then don't do anything
 		if (!Boolean(textGenerator)) {
 			return
 		}
 		// Run the text generator and set the text again
-		const finalText = await textGenerator()
+		const finalText = textGenerator()
 		setText(finalText)
 	}, [textGenerator])
 

@@ -1,5 +1,5 @@
 import { errorCath } from '@/api/api.helper'
-import LocationSvg from '@/app/header/header-icon/LocationSvg'
+import LocationSvg from '@/component/Header/header-icon/LocationSvg'
 import { useActions } from '@/hook/useDispatch'
 import { useLocation } from '@/hook/useLocation'
 import { useMode } from '@/hook/useMode'

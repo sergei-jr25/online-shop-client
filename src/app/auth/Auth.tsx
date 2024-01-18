@@ -1,19 +1,18 @@
+'use client'
 import Field from '@/component/ui/fields/Field'
 import { useAuth } from '@/hook/useAuth'
 import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
-import { useRedirectAuthPage } from '@/hook/useRedirectAuthPage'
-import { validateEmail } from '@/shared/regex'
+import { validateEmail } from '@/store/regex'
 import cn from 'clsx'
 import { FC, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from './Auth.module.scss'
-import { useAUthRedirect } from './useAuth'
 
 const Auth: FC = () => {
 	const [type, setType] = useState<'register' | 'login'>('login')
 	const { theme } = useMode()
-	const { shouldLoadContent } = useRedirectAuthPage(true)
+	// const { shouldLoadContent } = useRedirectAuthPage(true)
 
 	const darkModeTheme = theme === 'dark' ? 'dark__mode' : ''
 
@@ -32,9 +31,8 @@ const Auth: FC = () => {
 		if (type === 'register') registerAction(data)
 		else login(data)
 
-		reset()
+		// reset()
 	}
-	useAUthRedirect()
 
 	return (
 		<div className={cn(styles.auth, { [styles.dark]: theme === 'dark' })}>
@@ -43,31 +41,32 @@ const Auth: FC = () => {
 					{user ? 'Авторизация' : 'Регистрация'}
 				</h2>
 				<form className={styles.auth__form} onSubmit={handleSubmit(onSubmit)}>
-					{user && (
-						<Field
-							{...register('email', {
-								required: 'Email is require',
-
-								pattern: {
-									value: validateEmail,
-									message: 'Некорректный email'
-								}
-							})}
-							error={errors.email}
-							type='email'
-							placeholder='Email'
-							mode={theme}
-						/>
-					)}
 					<Field
-						{...register('username', {
-							required: 'Username is require'
+						{...register('email', {
+							required: 'Email is require',
+
+							pattern: {
+								value: validateEmail,
+								message: 'Некорректный email'
+							}
 						})}
-						error={errors.username}
-						placeholder='Username'
+						error={errors.email}
+						type='email'
+						placeholder='Email'
 						mode={theme}
 					/>
 
+					{!user && (
+						<Field
+							{...register('username', {
+								required: 'Username is require'
+							})}
+							error={errors.username}
+							placeholder='Username'
+							type='text'
+							mode={theme}
+						/>
+					)}
 					<Field
 						{...register('password', {
 							required: 'Password is require',

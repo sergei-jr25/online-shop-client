@@ -7,25 +7,25 @@ import styles from './CatalogFilters.module.scss'
 interface ICatalogFilterItem {
 	item: ICkeckFilters
 	setIsTouch: Dispatch<SetStateAction<boolean>>
-	items?: any
+
 	changePrice?: boolean
 }
 
 const CatalogFilterItem: FC<ICatalogFilterItem> = ({
 	item,
 	setIsTouch,
-	items,
+
 	changePrice
 }) => {
 	const { toggleChecked, anyCheckboxChecked } = useActions()
-	const { manufacturerParts, boilerParts, isAnyCheckboxChecked } =
+	const { manufacturerParts, boilerManufacturer, isAnyCheckboxChecked } =
 		useBoilerManufact()
 	// const isAnyCheckboxCheckedItem = !boilerParts.some(item => item.checked)
 
 	const handleChangeTouchedItem = (item: ICkeckFilters) => {
 		toggleChecked(item)
 		setIsTouch(false)
-		anyCheckboxChecked()
+		// anyCheckboxChecked()
 		if (!isAnyCheckboxChecked) {
 			if (!changePrice) {
 				setIsTouch(true)

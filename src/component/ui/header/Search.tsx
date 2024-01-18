@@ -1,4 +1,4 @@
-import SearchSvg from '@/app/header/header-icon/SearchSvg'
+import SearchSvg from '@/component/Header/header-icon/SearchSvg'
 import { FC, useState } from 'react'
 import SelectComponent from '../select/Select'
 import styles from './Search.module.scss'

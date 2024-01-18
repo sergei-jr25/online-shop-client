@@ -17,7 +17,6 @@ const HeaderTop: FC = () => {
 	const { isShow, ref, setIsShow } = useOutside(false)
 	const showToggleHandler = () => setIsShow(!isShow)
 	const tablet = useMediaQuery('(max-width: 992px)')
-	console.log(tablet)
 
 	const refMenuButton = useRef()
 
@@ -53,7 +52,7 @@ const HeaderTop: FC = () => {
 							[styles.profile__content_show]: isShow
 						})}
 					>
-						<Profile />
+						<Profile refP={ref} />
 					</div>
 				</div>
 				<div className={styles.header__actions}>

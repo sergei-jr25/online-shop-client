@@ -2,17 +2,17 @@ import { removeCookie } from '@/service/auth/auth.helper'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import { errorCath, getContentType } from './api.helper'
-const api = process.env.NEXT_PUBLIC_APP_URL
-console.log(api)
+
+console.log(process.env.APP_URL)
 
 export const instance = axios.create({
-	baseURL: 'http://localhost:5000/api',
+	baseURL: `${process.env.NEXT_PUBLIC_APP_URL}`,
 
 	headers: getContentType()
 })
 
 export const http = axios.create({
-	baseURL: 'http://localhost:5000/api',
+	baseURL: `${process.env.NEXT_PUBLIC_APP_URL}`,
 
 	headers: getContentType()
 })

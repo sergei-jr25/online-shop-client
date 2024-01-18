@@ -11,6 +11,7 @@ import { useMode } from '@/hook/useMode'
 import { ICatalogPageProps } from '@/shared/type/catalog.interface'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { setCreateQUery } from '@/utils/setCreateQuery'
+
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import ReactPaginate from 'react-paginate'
 import styles from './CatalogPage.module.scss'
@@ -42,6 +43,8 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 	)
 	const pageCount = Math.ceil(boilerCount / 20)
 
+	console.log(pageCount)
+
 	const { uploadNewParams, setInitOffset, checkQueryParams } =
 		useCatalogPage(existQuery)
 
@@ -53,7 +56,8 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 	}, [])
 
 	const setQueryParams = () => {
-		const boilerQuery = JSON.parse(searchParams.get('boilerParts')!) || null
+		const boilerQuery =
+			JSON.parse(searchParams.get('boilerManufacturer')!) || null
 
 		const manufacturerQuery =
 			JSON.parse(searchParams.get('manufacturerParts')!) || null
@@ -77,14 +81,12 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 			setBoilerQueryParams({ items: boilerQuery })
 			setManufactureQueryParams({ items: manufacturerQuery })
 			setIsTouch(false)
-			console.log('2')
 
 			return
 		}
 		if (boilerQuery?.length) {
 			setBoilerQueryParams({ items: boilerQuery })
 			setIsTouch(false)
-			console.log('boilerQuery')
 
 			return
 		}
@@ -115,6 +117,8 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 	}
 
 	const handleChangePagination = async ({ selected }: { selected: number }) => {
+		console.log(selected)
+
 		if (selected > pageCount) {
 			setCurrentPage(0)
 			setInitOffset()
@@ -163,6 +167,8 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 							renderOnZeroPageCount={null}
 							pageClassName={styles.paginate__item}
 							nextClassName={styles.paginate__next}
+							forcePage={+queryParams.offset}
+
 							// nextPageRel={null}
 						/>
 					)}

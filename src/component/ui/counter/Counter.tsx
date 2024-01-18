@@ -6,15 +6,13 @@ interface ICounter {
 	count: number
 	incrementToCart: () => void
 	decrementToCart: () => void
-	isFetching: boolean
 }
 
 const Counter: FC<ICounter> = ({
 	count,
 	decrementToCart,
 	incrementToCart,
-	totalCount,
-	isFetching
+	totalCount
 }) => {
 	const [isIncrease, setIsIncrease] = useState(false)
 	const [isDecrease, setIsDecrease] = useState(false)

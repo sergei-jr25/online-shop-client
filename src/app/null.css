@@ -9,3 +9,7 @@ button {
 button:disabled {
 	opacity: 0.5;
 }
+
+input {
+	/* background-color: #121212; */
+}

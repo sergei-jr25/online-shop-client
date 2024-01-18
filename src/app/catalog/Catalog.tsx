@@ -33,8 +33,8 @@ const Catalog: FC = () => {
 	const boilerData = (products[0] as IBoilerPartsData[]) || []
 	const boilerCount = (products[1] as number) || 0
 
-	const { boilerParts, manufacturerParts } = useBoilerManufact()
-	const isAnyCheckboxChecked = !boilerParts.some(item => item.checked)
+	const { boilerManufacturer, manufacturerParts } = useBoilerManufact()
+	const isAnyCheckboxChecked = !boilerManufacturer.some(item => item.checked)
 
 	const { updateQueryParams, resetFiltersBoiler } = useActions()
 	const { setBoilerQueryParams, setManufactureQueryParams } = useActions()
@@ -77,7 +77,7 @@ const Catalog: FC = () => {
 		// const encoded = encodeURIComponent()
 		const queryPriceFrom = Math.ceil(rangePrice[0])
 		const queryPriceTo = Math.ceil(rangePrice[1])
-		const boiler = boilerParts
+		const boiler = boilerManufacturer
 			.filter(item => item.checked)
 			.map(item => item.title)
 
@@ -91,16 +91,14 @@ const Catalog: FC = () => {
 		if (boiler.length && manufacturer.length && changePrice) {
 			uploadNewParams('priceFrom', queryPriceFrom)
 			uploadNewParams('priceTo', queryPriceTo)
-			uploadNewParams('boilerParts', queryBoiler)
+			uploadNewParams('boilerManufacturer', queryBoiler)
 			uploadNewParams('manufacturerParts', queryManufacturer)
 		}
 
 		if (boiler.length && changePrice) {
-			console.log('boiler.length && changePrice')
-
 			uploadNewParams('priceFrom', queryPriceFrom)
 			uploadNewParams('priceTo', queryPriceTo)
-			uploadNewParams('boilerParts', queryBoiler)
+			uploadNewParams('boilerManufacturer', queryBoiler)
 
 			return
 		}
@@ -114,20 +112,18 @@ const Catalog: FC = () => {
 		if (boiler.length) {
 			// replace(pathName + `?boiler=${queryBoiler}`)
 			// uploadNewParams('offset', currentPage)
-			uploadNewParams('boilerParts', queryBoiler)
+			uploadNewParams('boilerManufacturer', queryBoiler)
+			console.log(queryBoiler)
 		}
 		if (manufacturer.length) {
 			uploadNewParams('manufacturerParts', queryManufacturer)
+			console.log(manufacturer)
 		}
 		if (queryPriceFrom && queryPriceTo && changePrice) {
-			console.log('queryPriceFrom', queryPriceFrom)
-			console.log('queryPriceTo', queryPriceTo)
-
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
 			uploadNewParams('priceTo', Number(queryPriceTo))
 		}
 	}
-	console.log(theme)
 	return (
 		<div
 			className={`${styles.catalog} ${
@@ -143,7 +139,7 @@ const Catalog: FC = () => {
 						<>
 							<ManufacturesBlock
 								title='Производитель котлов:'
-								items={boilerParts}
+								items={boilerManufacturer}
 								setIsTouch={setIsTouch}
 								setRangePrice={setRangePrice}
 							/>

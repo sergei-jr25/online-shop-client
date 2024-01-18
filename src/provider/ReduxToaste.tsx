@@ -1,6 +1,8 @@
+'use client'
+
 import ReduxToastr from 'react-redux-toastr'
 
-export function ReduxToast({ children }: { children: React.ReactNode }) {
+export function ReduxToast() {
 	return (
 		<>
 			<ReduxToastr
@@ -12,7 +14,6 @@ export function ReduxToast({ children }: { children: React.ReactNode }) {
 				timeOut={4000}
 				progressBar
 			/>
-			{children}
 		</>
 	)
 }

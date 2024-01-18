@@ -22,10 +22,10 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 			}
 		}
 		return (
-			<div className={cn(styles.item, { [styles.dark]: mode === 'dark' })}>
+			<div className={cn(styles.field, { [styles.dark]: mode === 'dark' })}>
 				<label
-					className={`${styles.field} ${
-						type === 'checkbox' ? styles.field_checkbox : ''
+					className={`${styles.field__label} ${
+						type === 'checkbox' ? styles.field__label_checkbox : ''
 					}`}
 				>
 					{type === 'file' ? (
@@ -42,6 +42,7 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 						</>
 					) : (
 						<input
+							className={styles.field__input}
 							{...rest}
 							ref={ref}
 							placeholder={placeholder}
@@ -50,7 +51,7 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 						/>
 					)}
 
-					<span className={styles.value}>{value}</span>
+					<span className={styles.field__Value}>{value}</span>
 				</label>
 				{error && <div className={styles.error}>{error.message}</div>}
 			</div>

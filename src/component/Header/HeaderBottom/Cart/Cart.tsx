@@ -14,28 +14,28 @@ import CartItemPopup from './CartItemPopup'
 const Cart: FC = () => {
 	const { isShow, ref, setIsShow } = useOutside(false)
 	const showToggleHandler = () => setIsShow(!isShow)
-	const { user } = useAuth()
+
 	const { theme } = useMode()
 	const [totalPrice, setTotalPrice] = useState(0)
 
 	const pathName = usePathname()
 	const pathNameOrder = pathName === '/order'
 
-	console.log('user', user)
+	const { user } = useAuth()
 
 	const { data: carts = [] as ICart[], isFetching } =
-		api.useGetCartProductsQuery(user?.id ?? null)
+		api.useGetCartProductsQuery(Number(user?.id), { skip: !user })
+
+	console.log('carts', carts)
 
 	const [removeToCart] = api.useRemoveMutation()
 
 	const handlerRemoveToCart = (item: number) => {
 		removeToCart(item)
-		// refetch()
 	}
 
 	useEffect(() => {
 		setTotalPrice(carts.reduce((acc, item) => (acc += item.totalPrice), 0))
-		// refetch()
 	}, [carts])
 
 	return (

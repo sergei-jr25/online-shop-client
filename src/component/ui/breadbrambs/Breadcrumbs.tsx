@@ -30,7 +30,7 @@ const Breadcrumbs = () => {
 						<li
 							className={`breadcrumb-item${isLastSegment ? ' active' : ''}`}
 							key={index}
-							aria-current={isLastSegment ? 'page' : null}
+							aria-current={isLastSegment ? 'page' : undefined}
 						>
 							{isLastSegment ? (
 								path.label

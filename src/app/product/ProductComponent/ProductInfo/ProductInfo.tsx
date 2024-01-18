@@ -1,4 +1,5 @@
 import CartIconSvg from '@/app/catalog/Catalog-icons/CartIconSvg'
+import { useAuth } from '@/hook/useAuth'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'
 import { FC } from 'react'
@@ -19,6 +20,8 @@ const ProductInfo: FC<{
 	handleAddToCart,
 	handleRemoveToCart
 }) => {
+	const { user } = useAuth()
+
 	return (
 		<div
 			className={cn(styles.content, {
@@ -33,15 +36,19 @@ const ProductInfo: FC<{
 				<div className={styles.content__stock}>Нет на складе</div>
 			)}
 			<div>{item.vendorCode}</div>
-			{!isInCart ? (
-				<button className={styles.content__button} onClick={handleAddToCart}>
-					<CartIconSvg /> Положить в корзину
-				</button>
-			) : (
-				<button className={styles.content__button} onClick={handleRemoveToCart}>
-					<CartIconSvg /> Удалить с корзины
-				</button>
-			)}
+			{user &&
+				(!isInCart ? (
+					<button className={styles.content__button} onClick={handleAddToCart}>
+						<CartIconSvg /> Положить в корзину
+					</button>
+				) : (
+					<button
+						className={styles.content__button}
+						onClick={handleRemoveToCart}
+					>
+						<CartIconSvg /> Удалить с корзины
+					</button>
+				))}
 		</div>
 	)
 }

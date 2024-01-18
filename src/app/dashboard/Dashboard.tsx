@@ -7,6 +7,7 @@ import { useMode } from '@/hook/useMode'
 import { useRedirectAuthPage } from '@/hook/useRedirectAuthPage'
 import { api } from '@/service/api/api'
 import { ICart } from '@/shared/type/cart.interface'
+import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useCallback, useState } from 'react'
 import About from './About/About'
 import Bestsellers from './Bestsellers/Bestsellers'
@@ -15,7 +16,12 @@ import CartAction from './CartAction/CartAction'
 import styles from './Dashboard.module.scss'
 import New from './New/New'
 
-const Dashboard: FC = () => {
+interface IDashboard {
+	bestsellers: IBoilerPartsData[]
+	news: IBoilerPartsData[]
+}
+
+const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
 	const { shouldLoadContent } = useRedirectAuthPage()
 
 	const getDefaultTextGenerator = useCallback(() => '', [])
@@ -25,11 +31,8 @@ const Dashboard: FC = () => {
 
 	const { theme } = useMode()
 
-	const {
-		isLoading,
-		data: carts = [] as ICart[]
-	} = api.useGetCartProductsQuery(user?.id ?? null)
-	const [countCart, setCountCart] = useState(carts.length)
+	const { isLoading, data: carts = [] as ICart[] } =
+		api.useGetCartProductsQuery(user?.id, { skip: !user })
 	const [shouldCartAction, setShouldCartAction] = useState(true)
 
 	const actionCartClose = () => {
@@ -64,8 +67,8 @@ const Dashboard: FC = () => {
 
 				<div className={styles.dashboard__blocks}>
 					<Brands />
-					<Bestsellers />
-					<New />
+					<Bestsellers bestsellers={bestsellers} />
+					<New news={news} />
 					<About />
 				</div>
 			</div>

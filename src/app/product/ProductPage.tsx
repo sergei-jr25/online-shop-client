@@ -23,14 +23,16 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 	const mobile = useMediaQuery('(max-width: 776px)')
 	const { user } = useAuth()
 	const { queryParams } = useFilters()
-	const { data: carts = [] } = api.useGetCartProductsQuery(user?.id ?? null)
+	const { data: carts = [] } = api.useGetCartProductsQuery(user?.id, {
+		skip: !user
+	})
 	const { data: items = [] } =
 		apiBoilerParts.usePaginateAndFilterQuery(queryParams)
 	const [removeToCart] = api.useRemoveMutation()
 	const [addToCart] = api.useCreateShopCartMutation()
 
 	const handleAddToCart = () => {
-		addToCart({ username: user.username, partId: +item.id })
+		addToCart({ username: user?.username, partId: +item.id }) // ?
 	}
 	const handleRemoveToCart = () => {
 		removeToCart(+item.id)

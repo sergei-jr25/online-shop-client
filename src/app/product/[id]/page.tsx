@@ -3,7 +3,7 @@ import ProductPage from '../ProductPage'
 
 async function getStaticParams(id: number) {
 	const data = await instance.get(`/boiler-parts/${id}`)
- 	return data
+	return data
 }
 
 type Props = {

@@ -15,7 +15,7 @@ const RangeFilters: FC<IRangeFilters> = ({
 	const MIN = 100
 	const MAX = 10000
 	const STEP = 0.1
-	const { boilerParts } = useBoilerManufact()
+	const { manufacturerParts } = useBoilerManufact()
 	const handelChangePrice = (values: number[]) => {
 		setIsTouch(false)
 		setChangePrice(true)

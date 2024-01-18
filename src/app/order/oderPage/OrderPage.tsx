@@ -1,11 +1,11 @@
 'use client'
 
-import CartSvg from '@/app/header/header-icon/CartSvg'
 import CheckSvg from '@/component/ui/IconsSvg/CheckSvg'
 import EditSvg from '@/component/ui/IconsSvg/EditSvg'
 import { useAuth } from '@/hook/useAuth'
 import { api } from '@/service/api/api'
 
+import CartSvg from '@/component/Header/header-icon/CartSvg'
 import { FC, useEffect, useState } from 'react'
 import OrderItems from './OrderItems'
 import styles from './OrderPage.module.scss'
@@ -13,7 +13,7 @@ import styles from './OrderPage.module.scss'
 const OrderPage: FC = () => {
 	const { user } = useAuth()
 
-	const { data = [] } = api.useGetCartProductsQuery(user?.id ?? null)
+	const { data = [] } = api.useGetCartProductsQuery(user?.id, { skip: !user })
 
 	const [removeToCart] = api.useRemoveMutation()
 

@@ -26,10 +26,10 @@ const CatalogFilters: FC<ICatalogFilters> = ({
 	refFilter
 }) => {
 	const mobile = useMediaQuery('(max-width: 776px)')
-	const { manufacturerParts, boilerParts, isAnyCheckboxChecked } =
+	const { manufacturerParts, boilerManufacturer, isAnyCheckboxChecked } =
 		useBoilerManufact()
 
-	const newBoilerBarts = boilerParts.map(item => item.checked)
+	const newBoilerBarts = boilerManufacturer.map(item => item.checked)
 	const { theme } = useMode()
 
 	const setTouchedChange = () => {
@@ -52,7 +52,7 @@ const CatalogFilters: FC<ICatalogFilters> = ({
 							<CatalogFiltersMobile
 								isShow={isShow}
 								setIsShow={setIsShow}
-								boiler={boilerParts}
+								boiler={boilerManufacturer}
 								manufacturer={manufacturerParts}
 								setIsTouch={setIsTouch}
 								mobile={mobile}
@@ -65,6 +65,7 @@ const CatalogFilters: FC<ICatalogFilters> = ({
 								setTouchedChange={setTouchedChange}
 								changePrice={changePrice}
 								isAnyCheckboxChecked={isAnyCheckboxChecked}
+								applyQueryParams={applyQueryParams}
 							/>
 						</div>
 					)}
@@ -79,7 +80,7 @@ const CatalogFilters: FC<ICatalogFilters> = ({
 						setIsTouch={setIsTouch}
 						changePrice={changePrice}
 						setChangePrice={setChangePrice}
-						boiler={boilerParts}
+						boiler={boilerManufacturer}
 						manufacture={manufacturerParts}
 						addTouchedAll={addTouchedAll}
 						applyQueryParams={applyQueryParams}

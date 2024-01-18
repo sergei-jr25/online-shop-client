@@ -1,11 +1,6 @@
-'use client'
 import DashboardPage from './dashboard/page'
-import styles from './page.module.css'
 
-export default function Home() {
-	return (
-		<main className={styles.main}>
-			<DashboardPage />
-		</main>
-	)
+const page = () => {
+	return <DashboardPage />
 }
+export default page

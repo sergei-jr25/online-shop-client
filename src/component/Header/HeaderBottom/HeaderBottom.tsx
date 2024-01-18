@@ -10,7 +10,6 @@ import Logo from './Logo'
 
 const HeaderBottom: FC = () => {
 	const { theme } = useMode()
-	// const {} = usePopup()
 
 	return (
 		<div

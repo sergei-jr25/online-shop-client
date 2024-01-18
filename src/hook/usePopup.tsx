@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 export const usePopup = () => {
 	const [open, setOpen] = useState(false)
 
-	const ref = useRef<any>(null)
+	const ref = useRef<HTMLInputElement>(null)
 
 	const handleEvent = (event: any) => {
 		if (ref.current && !ref.current.contains(event.target)) {

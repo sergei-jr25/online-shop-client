@@ -45,7 +45,6 @@ const CatalogFiltersDesktop: FC<ICatalogDesktop> = ({
 								<CatalogFilterItem
 									item={item}
 									setIsTouch={setIsTouch}
-									items={boiler}
 									changePrice={changePrice}
 								/>
 							</li>

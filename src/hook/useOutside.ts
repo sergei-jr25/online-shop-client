@@ -13,11 +13,10 @@ export const useOutside = (initialIsVisible: boolean): TypeOut => {
 	const ref = useRef<HTMLElement>(null)
 
 	useEffect(() => {
-		const handleClickOutside = (event: any) => {
-			if (!ref.current || ref.current.contains(event.target as Node)) {
-				return
+		const handleClickOutside = (event: MouseEvent) => {
+			if (ref.current && !ref.current.contains(event.target as Node)) {
+				setIsShow(false)
 			}
-			setIsShow(false)
 		}
 		document.addEventListener('click', handleClickOutside)
 		return () => document.removeEventListener('click', handleClickOutside)

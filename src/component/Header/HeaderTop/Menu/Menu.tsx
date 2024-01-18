@@ -32,7 +32,7 @@ const Menu: FC = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className={styles.menu__link} href={'/about'}>
+							<Link className={styles.menu__link} href={'/about-us'}>
 								О компании
 							</Link>
 						</li>
@@ -42,7 +42,7 @@ const Menu: FC = () => {
 							</Link>
 						</li>
 						<li>
-							<Link className={styles.menu__link} href={'/info'}>
+							<Link className={styles.menu__link} href={'/wholesalebuyers'}>
 								Оптовым покупателям
 							</Link>
 						</li>

@@ -11,9 +11,9 @@ export interface IInitState {
 	user: {
 		id: number
 		email: string
-		username: string
+		username?: string
 		isAdmin?: boolean
-	}
+	} | null
 	isLoading: boolean
 	accessToken: string
 }

@@ -1,6 +1,10 @@
 import AboutUs from './AboutUs'
 
 const PageAbout = () => {
-	return <AboutUs />
+	return (
+		<div>
+			<AboutUs />
+		</div>
+	)
 }
 export default PageAbout

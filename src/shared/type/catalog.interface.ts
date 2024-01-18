@@ -83,6 +83,7 @@ export interface ICatalogFiltersMobile {
 	resetFilters: () => void
 	addTouchedAll: () => void
 	isAnyCheckboxChecked: boolean
+	applyQueryParams: () => void
 }
 
 export interface ICatalogPage

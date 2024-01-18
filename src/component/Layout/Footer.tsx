@@ -4,10 +4,11 @@ import useMediaQuery from '@/hook/useMediaQuery'
 import { paymentsImages, socialImages } from '@/utils/imagesPaths/footer'
 import Image from 'next/image'
 import { FC } from 'react'
-import Logo from '../header/HeaderBottom/Logo'
-import EmailSvg from '../header/header-icon/EmailSvg'
-import LocationSvg from '../header/header-icon/LocationSvg'
-import PhoneSvg from '../header/header-icon/PhoneSvg'
+
+import Logo from '../Header/HeaderBottom/Logo'
+import EmailSvg from '../Header/header-icon/EmailSvg'
+import LocationSvg from '../Header/header-icon/LocationSvg'
+import PhoneSvg from '../Header/header-icon/PhoneSvg'
 import styles from './Footer.module.scss'
 
 const Footer: FC = () => {

@@ -1,5 +1,5 @@
 'use client'
-import { validateEmail } from '@/shared/regex'
+import { validateEmail } from '@/store/regex'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import Field from '../fields/Field'

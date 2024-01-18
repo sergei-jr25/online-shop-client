@@ -20,7 +20,7 @@ export const register = createAsyncThunk<IAuthResponse, IAuthFields>(
 			if (data.accessToken) {
 				saveTokenStorage(data)
 			}
-
+			toastr.success('Вход', 'выполнен успешно')
 			return data
 		} catch (error) {
 			toastError(error)
@@ -41,6 +41,7 @@ export const login = createAsyncThunk<IAuthResponse, IAuthFields>(
 			if (data.accessToken) {
 				saveTokenStorage(data)
 			}
+			toastr.success('Вход', 'выполнен успешно')
 
 			return data
 		} catch (error) {
@@ -53,6 +54,7 @@ export const login = createAsyncThunk<IAuthResponse, IAuthFields>(
 export const logout = createAsyncThunk('auth/logout', (_, thunkApi) => {
 	removeCookie()
 	localStorage.removeItem('user')
+	toastr.success('Вы вышли', '')
 })
 
 export const checkAuth = createAsyncThunk('check/auth', async (_, thunkApi) => {
@@ -63,7 +65,7 @@ export const checkAuth = createAsyncThunk('check/auth', async (_, thunkApi) => {
 			{ refreshToken },
 			{ headers: getContentType() }
 		)
-		toastr.success('Login', 'Completed successfufly')
+
 		return data
 	} catch (error) {
 		toastError(error)

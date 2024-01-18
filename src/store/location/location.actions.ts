@@ -6,9 +6,11 @@ import axios from 'axios'
 export const getLocation = createAsyncThunk<any, IGeoLocation>(
 	'get-location',
 	async ({ latitude, longitude }, thankAPi) => {
+		console.log(process.env.NEXT_PUBLIC_GEOAPI_KEY)
+
 		try {
 			const { data } = await axios.get(
-				`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&lang=ru&apiKey=b7ff5a6907584978b9dd118be3c7dd75`,
+				`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&lang=ru&apiKey=${process.env.NEXT_PUBLIC_GEOAPI_KEY}`,
 				{ withCredentials: false }
 			)
 			// console.log('data', data)

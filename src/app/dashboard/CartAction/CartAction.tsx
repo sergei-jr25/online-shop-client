@@ -1,4 +1,4 @@
-import CloseSvg from '@/app/header/header-icon/CloseSvg'
+import CloseSvg from '@/component/Header/header-icon/CloseSvg'
 import { useMode } from '@/hook/useMode'
 import { FC } from 'react'
 import styles from './CartAction.module.scss'

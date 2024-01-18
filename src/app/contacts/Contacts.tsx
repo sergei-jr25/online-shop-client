@@ -1,7 +1,7 @@
 'use client'
 
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import Feedback from '@/component/ui/Feedback/Feedback'
+import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import emailjs from '@emailjs/browser'
 import { FC, useState } from 'react'
 import styles from './Contacts.module.scss'
