@@ -1,20 +1,16 @@
-Онлайн Кинотеатр на Next.js
+Technology stack
 
-Проект представляет собой онлайн кинотеатр, разработанный с использованием фреймворка Next.js. Он предоставляет пользователям возможность просмотра фильмов, выставления оценок, 
-добавление в избранное а также получения персонализированных рекомендаций. 
-
-Для администраторов предусмотрены функции управления контентом, такие как добавление, редактирование и удаление фильмов, жанров и информации об актерах и пользователей.
-
-Технологический Стек:
-
+React
 Next.js
 Redux Toolkit
 React Query
 React Hook Form
 Sass Modules
-Material Icons и React Icons:
-React Transition Group:
-TypeScript
+React Range
+React Paginate
+React Slider Swiper
+React Select:
+Swiper
 
 # Getting Started
 
