@@ -1,16 +1,26 @@
-Technology stack
+Сервраная часть: https://github.com/sergei-jr25/online-shop-server
 
-React
-Next.js
-Redux Toolkit
-React Query
-React Hook Form
-Sass Modules
-React Range
-React Paginate
-React Slider Swiper
-React Select:
-Swiper
+Technology stack
+- React
+- Next.js
+- Redux Toolkit
+- React Query
+- React Hook Form
+- Sass Modules
+- React Range
+- React Paginate
+- React Slider Swiper
+- React Select:
+- Swiper
+
+
+
+## Installation
+
+```bash
+$ npm install
+```
+
 
 # Getting Started
 
