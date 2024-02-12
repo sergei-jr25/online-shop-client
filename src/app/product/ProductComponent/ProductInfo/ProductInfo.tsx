@@ -1,4 +1,4 @@
-import CartIconSvg from '@/app/catalog/Catalog-icons/CartIconSvg'
+import CartIconSvg from '@/component/Screens/Catalog/Catalog-icons/CartIconSvg'
 import { useAuth } from '@/hook/useAuth'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'

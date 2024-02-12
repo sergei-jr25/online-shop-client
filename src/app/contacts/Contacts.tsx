@@ -1,6 +1,6 @@
 'use client'
 
-import Feedback from '@/component/ui/Feedback/Feedback'
+import Feedback from '@/component/Screens/Feedback/Feedback'
 import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import emailjs from '@emailjs/browser'
 import { FC, useState } from 'react'

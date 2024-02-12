@@ -1,10 +1,10 @@
 import { errorCath } from '@/api/api.helper'
-import LocationSvg from '@/component/Header/header-icon/LocationSvg'
 import { useActions } from '@/hook/useDispatch'
 import { useLocation } from '@/hook/useLocation'
 import { useMode } from '@/hook/useMode'
 import cn from 'clsx'
 import { FC } from 'react'
+import LocationSvg from '../../IconsSvg/header-icons/LocationSvg'
 import Skeleton from '../../spinner/Spinner'
 import styles from './CityButton.module.scss'
 

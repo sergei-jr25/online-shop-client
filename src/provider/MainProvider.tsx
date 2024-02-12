@@ -14,7 +14,7 @@ export function MainProviders({ children }: { children: React.ReactNode }) {
 					position='top-left'
 					transitionIn='fadeIn'
 					transitionOut='fadeOut'
-					timeOut={4000}
+					timeOut={400}
 					progressBar
 				/>
 				{children}

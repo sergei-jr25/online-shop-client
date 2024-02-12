@@ -1,51 +1,32 @@
 .counter {
-	display: flex;
-	align-items: center;
-	gap: 20px;
-	border: 1px solid #66b1f1;
-	padding: 9.5px 10px;
+	font-family: Arial, sans-serif;
+	text-align: center;
 
-	&__minus {
-		position: relative;
-		width: 20px;
-		height: 20px;
+	&__container {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-
-		&::after {
-			content: '';
-			// position: absolute;
-			// top: 50%;
-			display: block;
-			width: 12px;
-			height: 2px;
-			background-color: rgb(192, 21, 21);
-		}
+		gap: 10px;
 	}
-	&__plus {
-		position: relative;
-		width: 20px;
-		height: 20px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		&::before,
-		&::after {
-			content: '';
-			// position: absolute;
-			display: block;
-			// top: 50%;
-			// right: 0;
-			width: 12px;
-			height: 2px;
-			background-color: rgb(192, 21, 21);
-		}
 
-		&::after {
-			position: relative;
-			right: 10px;
-			transform: rotate(90deg);
-		}
+	&__button {
+		background-color: #d19a01;
+		color: #fff;
+		border: none;
+		padding: 5px;
+		flex: 0 0 20px;
+
+		font-size: 1.2rem;
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+
+	&__button:hover {
+		background-color: #0056b3;
+	}
+
+	&__value {
+		font-size: 2rem;
+		margin: 0 15px;
 	}
 }

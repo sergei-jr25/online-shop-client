@@ -1,8 +1,15 @@
 export interface IInitState {
-	items: IItem[]
+	items: IItemCart[]
+	isCartOpen: boolean
+	totalPrice: number
+	totalCount: number
 }
 
-interface IItem {
+export interface IItemCart {
+	id: string
 	name: string
+	count: number
 	price: number
+	image: string
+	totalPrice: number
 }

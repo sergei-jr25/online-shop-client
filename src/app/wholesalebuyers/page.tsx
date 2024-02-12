@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Wholesalebuyers from './Wholesalebuyers'
+import Wholesalebuyers from '../../component/Screens/Wholesalebuyers/Wholesalebuyers'
 
 const page: FC = () => {
 	return <Wholesalebuyers />

@@ -48,8 +48,8 @@ export const api = createApi({
 				url: `/shopping-cart/count/${partId}`,
 				method: 'PUT',
 				body: { count }
-			}),
-			invalidatesTags: ['Cart']
+			})
+			// invalidatesTags: ['Cart']
 		}),
 		remove: builder.mutation<ICart, number>({
 			query: id => ({

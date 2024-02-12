@@ -13,7 +13,6 @@ const CreateAdmin: FC = () => {
 		const formDataImage = new FormData()
 
 		formData.append('file', data.file[0])
-		console.log(formData.get('file'))
 		data.file = data.file[0].name
 
 		try {

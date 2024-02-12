@@ -1,5 +1,4 @@
-import Header from '@/component/Header/Header'
-import Footer from '@/component/Layout/Footer'
+import LayoutWrapper from '@/component/Layout/LayoutWrapper'
 import { MainProviders } from '@/provider/MainProvider'
 import { Inter } from 'next/font/google'
 import './globals.css'
@@ -20,9 +19,7 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={inter.className}>
 				<MainProviders>
-					<Header />
-					{children}
-					<Footer />
+					<LayoutWrapper>{children}</LayoutWrapper>
 				</MainProviders>
 			</body>
 		</html>

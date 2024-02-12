@@ -6,17 +6,16 @@ import { FC, ReactNode, useEffect } from 'react'
 
 const AuthProvides: FC<{ children: ReactNode }> = ({ children }) => {
 	const { checkAuth, logout } = useActions()
-	const { replace } = useRouter()
+	const { replace, push } = useRouter()
 	const pathname = usePathname()
 	const { user } = useAuth()
 
+	console.log(user)
+
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
-		console.log('checkAuthToken')
 
-		if (accessToken) {
-			checkAuth()
-		}
+		if (accessToken) checkAuth()
 	}, [])
 	useEffect(() => {
 		const refreshToken = Cookies.get('refreshToken')

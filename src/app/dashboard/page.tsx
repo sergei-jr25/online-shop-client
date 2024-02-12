@@ -1,4 +1,4 @@
-import Dashboard from './Dashboard'
+import Dashboard from '../../component/Screens/Dashboard/Dashboard'
 
 async function getData() {
 	const bestsellersJson = await fetch(

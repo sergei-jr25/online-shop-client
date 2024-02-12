@@ -3,8 +3,6 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { errorCath, getContentType } from './api.helper'
 
-console.log(process.env.APP_URL)
-
 export const instance = axios.create({
 	baseURL: `${process.env.NEXT_PUBLIC_APP_URL}`,
 

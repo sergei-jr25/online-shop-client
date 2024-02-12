@@ -21,7 +21,6 @@ const EditPage: FC = () => {
 	const { data: boilderParts = {} } = apiBoilerParts.useGetOneQuery(id)
 
 	const onSubmit = (data: any) => {
-		console.log(data)
 		data.file = data.file[0].name
 		editBoiler({ data, id })
 	}

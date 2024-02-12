@@ -34,3 +34,7 @@
 	color: #4e4c4c;
 	line-height: 21/14;
 }
+
+button:disabled {
+	opacity: 0.5;
+}

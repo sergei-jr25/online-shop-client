@@ -15,6 +15,10 @@ export interface ICart {
 	count: number
 	totalPrice: number
 }
+export interface ICartAll {
+	data: ICart[]
+	totalSum: number
+}
 
 export interface ICartDto {
 	userId?: number

@@ -7,13 +7,11 @@ import styles from './EditAdmin.module.scss'
 
 const EditAdmin: FC = () => {
 	const [pagination, setPagination] = useState({ offset: 1 })
-	console.log(pagination)
 
 	const { data = [] } = apiBoilerParts.usePaginateAndFilterQuery(pagination)
 
 	const coutns = data[1] || 0
 	const items = data[0] || []
-	console.log(data)
 
 	const hadnleRemove = () => {}
 
