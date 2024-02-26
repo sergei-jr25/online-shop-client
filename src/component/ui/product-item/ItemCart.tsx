@@ -1,5 +1,4 @@
 import CartIconSvg from '@/component/Screens/Catalog/Catalog-icons/CartIconSvg'
-import { useAuth } from '@/hook/useAuth'
 import { useCart } from '@/hook/useCart'
 import cn from 'clsx'
 import dynamic from 'next/dynamic'
@@ -12,25 +11,20 @@ interface IItemCart {
 }
 
 const ItemCart: FC<IItemCart> = ({ handleCrateComment, productId }) => {
-	const { user } = useAuth()
 	const { items } = useCart()
 
 	const isInCart = items.some(cart => +cart.id === +productId)
 
 	return (
-		<>
-			{user && (
-				<div
-					className={cn(styles.catalogItem__action, {
-						[styles.catalogItem__action_add]: isInCart
-					})}
-				>
-					<button onClick={handleCrateComment}>
-						<CartIconSvg />
-					</button>
-				</div>
-			)}
-		</>
+		<div
+			className={cn(styles.catalogItem__action, {
+				[styles.catalogItem__action_add]: isInCart
+			})}
+		>
+			<button onClick={handleCrateComment}>
+				<CartIconSvg />
+			</button>
+		</div>
 	)
 }
 export default ItemCart

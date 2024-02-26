@@ -1,9 +1,9 @@
-import { FC, useState } from 'react'
+import React, { FC, useState } from 'react'
 import ArrowSvg from '../IconsSvg/ArrowSvg'
 import styles from './AccordionMy.module.scss'
 
 const AccordionMy: FC<{
-	children: any
+	children: React.ReactNode
 	title: string
 	titleClass?: string
 }> = ({ children, title, titleClass }) => {

@@ -1,7 +1,7 @@
 import cn from 'clsx'
 import Image from 'next/image'
 import { ChangeEvent, forwardRef, useState } from 'react'
-import { IFiled } from '../form-elemtns.interface'
+import { IFiled } from '../form-elements.interface'
 import styles from './Field.module.scss'
 
 // stvsco@mail.ru:89217338264

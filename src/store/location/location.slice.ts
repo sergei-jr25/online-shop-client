@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getLocation } from './location.actions'
 
 interface IInitState {
-	pos:any
+	pos: any
 	isLoading: boolean
 }
 const initialState: IInitState = {

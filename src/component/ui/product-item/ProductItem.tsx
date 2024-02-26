@@ -1,7 +1,6 @@
 import { useAuth } from '@/hook/useAuth'
 import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
-import { api } from '@/service/api/api'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -12,21 +11,16 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 	const { user } = useAuth()
 	const { addToCart } = useActions()
 
-	const [createShop] = api.useCreateShopCartMutation()
-
 	const { theme } = useMode()
 	const handleCrateComment = () => {
-		if (user) {
-			createShop({ username: user.username, partId: +product.id })
-			addToCart({
-				id: product.id,
-				count: 1,
-				name: product.name,
-				price: product.price,
-				image: product.images,
-				totalPrice: product.price
-			})
-		}
+		addToCart({
+			id: product.id,
+			count: 1,
+			name: product.name,
+			price: product.price,
+			image: product.images,
+			totalPrice: product.price
+		})
 	}
 
 	return (
@@ -52,11 +46,12 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 			<div className={styles.catalogItem__article}>{product.vendorCode}</div>
 			<div className={styles.catalogItem__footer}>
 				<div className={styles.catalogItem__price}>{product.price} Р</div>
-
-				<ItemCartDynamic
-					handleCrateComment={handleCrateComment}
-					productId={product.id}
-				/>
+				{user && (
+					<ItemCartDynamic
+						handleCrateComment={handleCrateComment}
+						productId={product.id}
+					/>
+				)}
 			</div>
 		</div>
 	)

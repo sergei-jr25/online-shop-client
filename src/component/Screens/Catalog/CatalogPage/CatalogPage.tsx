@@ -17,11 +17,6 @@ import ReactPaginate from 'react-paginate'
 import styles from './CatalogPage.module.scss'
 import { useCatalogPage } from './useCatalogPage'
 
-// const ProductItemDynamic = dynamic(
-// 	() => import('@/component/ui/product-item/ProductItem'),
-// 	{ ssr: false }
-// )
-
 const CatalogPage: FC<ICatalogPageProps> = ({
 	boilerCount,
 	boilerData,

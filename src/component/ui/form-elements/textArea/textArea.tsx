@@ -1,6 +1,6 @@
 import cn from 'clsx'
 import { forwardRef } from 'react'
-import { ITextArea } from '../form-elemtns.interface'
+import { ITextArea } from '../form-elements.interface'
 import styles from './textArea.module.scss'
 
 const textArea = forwardRef<HTMLTextAreaElement, ITextArea>(
