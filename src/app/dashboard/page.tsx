@@ -1,20 +1,23 @@
 import Dashboard from '../../component/Screens/Dashboard/Dashboard'
 
-async function getData() {
-	const bestsellersJson = await fetch(
-		`${process.env.NEXT_PUBLIC_APP_URL}/boiler-parts/bestsellers`
-	)
-	const newsJson = await fetch(
-		`${process.env.NEXT_PUBLIC_APP_URL}/boiler-parts/new`
-	)
-
-	return { bestsellersJson, newsJson }
+async function fetchData(url: any) {
+	try {
+		const response = await fetch(url)
+		if (!response.ok) {
+			throw new Error(`Request failed with status ${response.status}`)
+		}
+		return await response.json()
+	} catch (error) {
+		console.error('Error fetching data:', error)
+		return []
+	}
 }
 
 const DashboardPage = async () => {
-	const { bestsellersJson, newsJson } = await getData()
-	const bestsellers = await bestsellersJson.json()
-	const news = await newsJson.json()
+	const [bestsellers, news] = await Promise.all([
+		fetchData(`${process.env.NEXT_PUBLIC_APP_URL}/boiler-parts/bestsellers`),
+		fetchData(`${process.env.NEXT_PUBLIC_APP_URL}/boiler-parts/new`)
+	])
 
 	return (
 		<div>
@@ -22,4 +25,5 @@ const DashboardPage = async () => {
 		</div>
 	)
 }
+
 export default DashboardPage

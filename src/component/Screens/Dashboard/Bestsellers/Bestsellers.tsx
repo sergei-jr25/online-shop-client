@@ -10,6 +10,7 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 }) => {
 	// const { data: bestsellers = [], isFetching } =
 	// 	apiBoilerParts.useGetBestsellersQuery()
+	console.log(bestsellers, 'bestsellers')
 
 	return (
 		<div className={styles.dashboard__block}>
@@ -27,11 +28,12 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 					scrollbar={{ draggable: true }}
 					className='dashboard__slider'
 				>
-					{bestsellers.map((item, idx) => (
-						<SwiperSlide key={item.id}>
-							<ProductItem product={item} />
-						</SwiperSlide>
-					))}
+					{!!bestsellers.length &&
+						bestsellers.map((item, idx) => (
+							<SwiperSlide key={item.id}>
+								<ProductItem product={item} />
+							</SwiperSlide>
+						))}
 				</Swiper>
 			</div>
 		</div>

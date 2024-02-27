@@ -37,11 +37,12 @@ const New: FC<{ news: IBoilerPartsData[] }> = ({ news }) => {
 					scrollbar={{ draggable: true }}
 					className='dashboard__slider'
 				>
-					{news.map((item, idx) => (
-						<SwiperSlide key={item.id}>
-							<ProductItem product={item} />
-						</SwiperSlide>
-					))}
+					{!!news.length &&
+						news.map((item, idx) => (
+							<SwiperSlide key={item.id}>
+								<ProductItem product={item} />
+							</SwiperSlide>
+						))}
 				</Swiper>
 			</div>
 		</div>
