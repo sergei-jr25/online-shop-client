@@ -19,8 +19,6 @@ const CatalogFiltersMobileTop: FC<ICatalogFiltersMobileTop> = ({
 	resetBoiler,
 	disabled
 }) => {
-	console.log('disabled', disabled)
-
 	return (
 		<div className={styles.mobile__header}>
 			<button onClick={closeFilter} className={styles.mobile__title}>

@@ -37,8 +37,6 @@ const Auth: FC = () => {
 	}, [user])
 
 	const onSubmit = (data: any) => {
-		console.log()
-
 		if (type === 'register') registerAction(data)
 		else login(data)
 

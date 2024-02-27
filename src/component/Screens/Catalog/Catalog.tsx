@@ -47,8 +47,6 @@ const Catalog: FC = () => {
 	const { isShow, ref, ref: refFilter, setIsShow } = useOutside(false)
 	const { theme } = useMode()
 
-	console.log('catalog')
-
 	useEffect(() => {
 		if (isShow) {
 			document.body.classList.add('open-filter')
@@ -115,11 +113,9 @@ const Catalog: FC = () => {
 			// replace(pathName + `?boiler=${queryBoiler}`)
 			// uploadNewParams('offset', currentPage)
 			uploadNewParams('boilerManufacturer', queryBoiler)
-			console.log(queryBoiler)
 		}
 		if (manufacturer.length) {
 			uploadNewParams('manufacturerParts', queryManufacturer)
-			console.log(manufacturer)
 		}
 		if (queryPriceFrom && queryPriceTo && changePrice) {
 			uploadNewParams('priceFrom', Number(queryPriceFrom))

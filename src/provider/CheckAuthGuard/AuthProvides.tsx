@@ -10,8 +10,6 @@ const AuthProvides: FC<{ children: ReactNode }> = ({ children }) => {
 	const pathname = usePathname()
 	const { user } = useAuth()
 
-	console.log(user)
-
 	useEffect(() => {
 		const accessToken = Cookies.get('accessToken')
 

@@ -15,8 +15,6 @@ export const useOutside = (initialIsVisible: boolean): TypeOut => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (ref.current && !ref.current.contains(event.target as Node)) {
 				setIsShow(false)
-				// console.log(ref.current)
-				// console.log(ref.current.contains(event.target))
 			}
 		}
 		document.addEventListener('click', handleClickOutside)

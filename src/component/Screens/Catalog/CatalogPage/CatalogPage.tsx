@@ -115,8 +115,6 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 	}
 
 	const handleChangePagination = async ({ selected }: { selected: number }) => {
-		console.log(selected)
-
 		if (selected > pageCount) {
 			setCurrentPage(0)
 			setInitOffset()

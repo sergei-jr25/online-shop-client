@@ -21,15 +21,11 @@ export const boilerManufacturer = createSlice({
 			})
 		},
 		anyCheckboxChecked: state => {
-			console.log('isAnyCheckboxChecked', state.isAnyCheckboxChecked)
-
 			state.isAnyCheckboxChecked = !state.boilerManufacturer.some(
 				item => item.checked
 			)
 		},
 		resetCheckbox: state => {
-			console.log('state.isAnyCheckboxChecked ', state.isAnyCheckboxChecked)
-
 			state.isAnyCheckboxChecked = true
 		},
 
