@@ -1,5 +1,5 @@
+import LocationSvg from '@/component/ui/IconsSvg/header-icons/LocationSvg'
 import { FC } from 'react'
-import LocationSvg from '../../Layout/header-icon/LocationSvg'
 import styles from './HeaderTop.module.scss'
 
 const Location: FC = () => {

@@ -11,7 +11,6 @@ export const getLocation = createAsyncThunk<any, IGeoLocation>(
 				`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&lang=ru&apiKey=${process.env.NEXT_PUBLIC_GEOAPI_KEY}`,
 				{ withCredentials: false }
 			)
-			// console.log('data', data)
 
 			return data.features[0].properties.city
 		} catch (error) {

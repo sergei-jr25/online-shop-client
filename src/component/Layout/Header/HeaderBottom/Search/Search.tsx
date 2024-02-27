@@ -1,5 +1,5 @@
+import SearchSvg from '@/component/ui/IconsSvg/header-icons/SearchSvg'
 import { FC } from 'react'
-import SearchSvg from '../../../Layout/header-icon/SearchSvg'
 import styles from '../HeaderBottom.module.scss'
 
 const Search: FC = () => {

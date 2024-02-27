@@ -1,6 +1,6 @@
 'use client'
 
-import Field from '@/component/ui/form-elemtns/fields/Field'
+import Field from '@/component/ui/form-elements/fields/Field'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 import styles from './Admin.module.scss'

@@ -1,5 +1,6 @@
 'use client'
-import Field from '@/component/ui/form-elemetns/fields/Field'
+
+import Field from '@/component/ui/form-elements/fields/Field'
 import { useAuth } from '@/hook/useAuth'
 import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
@@ -36,8 +37,8 @@ const Auth: FC = () => {
 	}, [user])
 
 	const onSubmit = (data: any) => {
-		console.log();
-		
+		console.log()
+
 		if (type === 'register') registerAction(data)
 		else login(data)
 

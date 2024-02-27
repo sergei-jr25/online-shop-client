@@ -2,8 +2,9 @@
 import { validateEmail } from '@/utils/regex'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
-import Field from '../../ui/form-elemtns/fields/Field'
-import TextArea from '../../ui/form-elemtns/textArea/textArea'
+
+import Field from '@/component/ui/form-elements/fields/Field'
+import TextArea from '@/component/ui/form-elements/textArea/textArea'
 import styles from './Feedback.module.scss'
 
 const Feedback: FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {
