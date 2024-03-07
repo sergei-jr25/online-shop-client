@@ -1,9 +1,9 @@
-import CartIconSvg from '@/component/Screens/Catalog/Catalog-icons/CartIconSvg'
 import { useAuth } from '@/hook/useAuth'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'
 import { FC } from 'react'
 import styles from './ProductInfo.module.scss'
+import { DynamicProductionAction } from './ProductInfoAction'
 
 const ProductInfo: FC<{
 	item: IBoilerPartsData
@@ -28,7 +28,7 @@ const ProductInfo: FC<{
 				[styles.content__content_mobile]: mobile
 			})}
 		>
-			<div>{item.price} 'Р'</div>
+			<div>{item.price} '₽'</div>
 
 			{!!isInStock ? (
 				<div className={styles.content__stock}>Есть на складе</div>
@@ -36,19 +36,13 @@ const ProductInfo: FC<{
 				<div className={styles.content__stock}>Нет на складе</div>
 			)}
 			<div>{item.vendorCode}</div>
-			{user &&
-				(!isInCart ? (
-					<button className={styles.content__button} onClick={handleAddToCart}>
-						<CartIconSvg /> Положить в корзину
-					</button>
-				) : (
-					<button
-						className={styles.content__button}
-						onClick={handleRemoveToCart}
-					>
-						<CartIconSvg /> Удалить с корзины
-					</button>
-				))}
+			{user && (
+				<DynamicProductionAction
+					handleAddToCart={handleAddToCart}
+					handleRemoveToCart={handleRemoveToCart}
+					isInCart={isInCart}
+				/>
+			)}
 		</div>
 	)
 }

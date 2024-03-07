@@ -31,9 +31,11 @@ const cartSlice = createSlice({
 				if (payload.type === 'plus') {
 					item.count++
 					item.totalPrice += item.price
-				} else if (payload.type === 'minus') {
+					localStorage.setItem('cart', JSON.stringify(state.items))
+				} else if (payload.type === 'minus' && item.count >= 2) {
 					item.count--
 					item.totalPrice -= item.price
+					localStorage.setItem('cart', JSON.stringify(state.items))
 				}
 			}
 		},

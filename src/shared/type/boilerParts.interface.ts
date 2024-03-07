@@ -1,15 +1,3 @@
-export interface IBoilerPartFilter {
-	offset: string | number
-	first?: string | number
-	boilerManufacturer?: string | number
-	manufacturerParts?: string | number
-	priceFrom?: string | number
-	priceTo?: string | number
-	expensive?: string | undefined | number
-	cheap?: string | undefined | number
-	popular?: string | undefined | number
-	sort?: string | number
-}
 export interface IBoilerPartDto {
 	boilerManufacturer: string
 

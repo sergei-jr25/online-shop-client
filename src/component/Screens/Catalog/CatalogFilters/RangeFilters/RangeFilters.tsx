@@ -1,92 +1,121 @@
-import { useBoilerManufact } from '@/hook/useBoilerMunfuctParts'
-import { IRangeFilters } from '@/shared/type/catalog.interface'
-import { FC } from 'react'
-import { getTrackBackground, Range } from 'react-range'
+import { useActions } from '@/hook/useDispatch'
+import { useFilters } from '@/hook/useFilters'
+import { MAXPRICE, MINPRICE } from '@/shared/consts/prive-value'
+import { FC, useEffect, useState } from 'react'
+import { Range, getTrackBackground } from 'react-range'
 import styles from './RangeFilters.module.scss'
 
-const RangeFilters: FC<IRangeFilters> = ({
-	rangePrice,
-	setRangePrice,
-	setTouchedChange,
-	setIsTouch,
+interface IRangeFilters {}
 
-	setChangePrice
-}) => {
-	const MIN = 100
-	const MAX = 10000
+const RangeFilters: FC<IRangeFilters> = () => {
 	const STEP = 0.1
-	const { manufacturerParts } = useBoilerManufact()
+	const [rangePrice, setRangePrice] = useState<number[]>([MINPRICE, MAXPRICE])
+
+	const { setChangePrice, setTouchFilter, setIsRessitng } = useActions()
+	const { isResettingFilter } = useFilters()
+
 	const handelChangePrice = (values: number[]) => {
-		setIsTouch(false)
-		setChangePrice(true)
 		setRangePrice(values)
+		setTouchFilter({ flag: true })
+		setChangePrice({ flag: true })
+		localStorage.setItem('range-price', JSON.stringify(values))
 	}
+
+	useEffect(() => {
+		if (isResettingFilter) {
+			setRangePrice([MINPRICE, MAXPRICE])
+			setIsRessitng({ flag: false })
+		}
+	}, [isResettingFilter])
 
 	return (
 		<>
 			<div className={styles.range}>
 				<label className={styles.range__label}>
 					<input
-						readOnly
-						type='text'
-						placeholder='from 1000'
-						value={rangePrice[0]}
+						// type='numnber'
+						placeholder={`from ${rangePrice[0]}`}
 						className={styles.range__input}
+						value={rangePrice[0]}
+						onChange={e => {
+							const newValue = +e.target.value
+							const updatedValue = newValue > MAXPRICE ? MAXPRICE : newValue
+							setRangePrice([updatedValue, rangePrice[1]])
+							setChangePrice({ flag: true })
+						}}
+						min={MINPRICE}
+						maxLength={5}
+						max={MAXPRICE}
 					/>
 					<span>/</span>
 					<input
-						readOnly
-						type='text'
-						placeholder='to 10000'
 						value={rangePrice[1]}
+						onChange={e => {
+							const newValue = +e.target.value
+							const updatedValue = newValue > MAXPRICE ? MAXPRICE : newValue
+							setRangePrice([rangePrice[0], updatedValue])
+							setChangePrice({ flag: true })
+						}}
 						className={styles.range__input}
+						max={MAXPRICE}
+						maxLength={5}
 					/>
 				</label>
 			</div>
-			<Range
-				step={STEP}
-				min={MIN}
-				max={MAX}
-				values={rangePrice}
-				onChange={handelChangePrice}
-				renderTrack={({ props, children }) => (
-					<div
-						key='track'
-						{...props}
-						style={{
-							...props.style,
-							height: '5px',
-							width: '100%',
-							padding: '0 15px',
-							background: getTrackBackground({
-								values: rangePrice,
-								colors: ['#B1CEFA', '#247CC8', '#B1CEFA'],
-								min: MIN,
-								max: MAX
-							})
-						}}
-					>
-						{children}
-					</div>
-				)}
-				renderThumb={({ props, index }) => {
-					const { key, ...restProps } = props // Удаляем свойство key из props
-					return (
+			<div className={styles.range__wrapper}>
+				<Range
+					step={STEP}
+					min={MINPRICE}
+					max={MAXPRICE}
+					values={rangePrice}
+					onChange={handelChangePrice}
+					renderTrack={({ props, children }) => (
 						<div
-							key={key}
-							{...restProps} // Используем оставшиеся props
+							key='track'
+							{...props}
 							style={{
 								...props.style,
-								height: '20px',
-								width: '20px',
-								backgroundColor: '#fff',
-								border: '3px solid #1C629E',
-								borderRadius: '100%'
+								height: '5px',
+								width: '100%',
+								padding: '0 15px',
+								background: getTrackBackground({
+									values: rangePrice,
+									colors: ['#B1CEFA', '#247CC8', '#B1CEFA'],
+									min: MINPRICE,
+									max: MAXPRICE
+								})
 							}}
-						/>
-					)
-				}}
-			/>
+						>
+							{children}
+						</div>
+					)}
+					renderThumb={({ props, index }) => {
+						const { key, ...restProps } = props // Удаляем свойство key из props
+						const thumbStyle = {
+							...props.style,
+							height: '20px',
+							width: '20px',
+							backgroundColor: '#fff',
+							border: '3px solid #1C629E',
+							borderRadius: '100%'
+						}
+						// if (index === 0) {
+						// 	// Левый ползунок
+						// 	thumbStyle.left = '24px'
+						// } else {
+						// 	// Правый ползунок
+						// 	thumbStyle.left = '2px'
+						// }
+						return (
+							<div
+								key={key}
+								{...restProps} // Используем оставшиеся props
+								style={thumbStyle}
+							/>
+						)
+					}}
+				/>
+			</div>
 		</>
 	)
 }

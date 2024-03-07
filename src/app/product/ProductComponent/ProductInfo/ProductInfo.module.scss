@@ -20,5 +20,11 @@
 		padding: 10px 32px;
 		background-color: #ffcf62;
 		color: #4e4c4c;
+		transition: background-color 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #eeb738;
+			}
+		}
 	}
 }

@@ -1,3 +1,4 @@
+import Button from '@/component/ui/button/Button'
 import CartItemPopupProps from '@/component/ui/cart/CartItem'
 import { useCart } from '@/hook/useCart'
 import { useActions } from '@/hook/useDispatch'
@@ -10,12 +11,10 @@ import CartSvg from '../../../../ui/IconsSvg/header-icons/CartSvg'
 import styles from './Cart.module.scss'
 
 const Cart: FC = () => {
+	const { removeToCart, setTotalPrice } = useActions()
 	const { items, isCartOpen, totalPrice } = useCart()
 	const { isShow, ref, setIsShow } = useOutside(false)
-
 	const { theme } = useMode()
-	const { removeToCart, setTotalPrice } = useActions()
-
 	const pathName = usePathname()
 	const { push } = useRouter()
 
@@ -64,12 +63,14 @@ const Cart: FC = () => {
 					{!!totalPrice && (
 						<div className={styles.cart__footer}>
 							<div className={styles.cart__totalPrice}>
-								Общая сумма: {totalPrice}
+								Общая сумма: {totalPrice} ₽
 							</div>
-							<button className={styles.cart__button} onClick={changePageOrder}>
-								Перейти в корзину
-							</button>
 						</div>
+					)}
+					{!!items.length && (
+						<Button className={styles.cart__button} onClick={changePageOrder}>
+							Перейти в корзину
+						</Button>
 					)}
 				</div>
 			</div>

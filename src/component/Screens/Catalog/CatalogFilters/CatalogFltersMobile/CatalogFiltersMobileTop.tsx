@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import CataloArrowSvg from '../../CatalogIcons/CataloArrowSvg'
+import CataloArrowSvg from '../../../../ui/IconsSvg/catalog-icons/CatalogArrowSvg'
 import styles from './CatalogFiltersMobile.module.scss'
 
 interface ICatalogFiltersMobileTop {
@@ -7,7 +7,7 @@ interface ICatalogFiltersMobileTop {
 	titleBtnReset?: string
 	closeFilter: () => void
 	resetFilters: () => void
-	resetBoiler(): () => void
+
 	disabled: boolean
 }
 
@@ -16,9 +16,11 @@ const CatalogFiltersMobileTop: FC<ICatalogFiltersMobileTop> = ({
 	title,
 	titleBtnReset,
 	resetFilters,
-	resetBoiler,
+
 	disabled
 }) => {
+	console.log('disabled', disabled)
+
 	return (
 		<div className={styles.mobile__header}>
 			<button onClick={closeFilter} className={styles.mobile__title}>

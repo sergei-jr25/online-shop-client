@@ -1,5 +1,5 @@
 import { useActions } from '@/hook/useDispatch'
-import { IBoilerPartFilter } from '@/shared/type/boilerParts.interface'
+import { IQueryParams } from '@/shared/type/query.interface'
 import {
 	useParams,
 	usePathname,
@@ -7,7 +7,7 @@ import {
 	useSearchParams
 } from 'next/navigation'
 
-export const useCatalogPage = (existQuery: boolean) => {
+export const useCatalogPage = () => {
 	const { replace, push } = useRouter()
 	const pathName = usePathname()
 	const searchParams = useSearchParams()!
@@ -15,26 +15,19 @@ export const useCatalogPage = (existQuery: boolean) => {
 	const { updateQueryParams, resetFilterUpdate } = useActions()
 	const newParams = new URLSearchParams(searchParams.toString())
 
-	// if (!searchParams.get('offset')) {
-	// 	updateQueryParams({ key: 'offset', value: '0' })
-	// }
-
 	const setInitOffset = (value: string | number = 0) => {
 		return updateQueryParams({ key: 'offset', value })
 	}
 
 	const checkQueryParams = () => {
 		searchParams.forEach((value, key) => {
-			updateQueryParams({ key: key as keyof IBoilerPartFilter, value })
+			updateQueryParams({ key: key as keyof IQueryParams, value })
 		})
 
 		// updateQueryParams({ key: 'offset', value: '0' })
 	}
 
-	const uploadNewParams = (
-		key: keyof IBoilerPartFilter,
-		value: string | number
-	) => {
+	const uploadNewParams = (key: keyof IQueryParams, value: string | number) => {
 		if (value) {
 			newParams.set(key, String(value))
 		} else {
@@ -45,40 +38,20 @@ export const useCatalogPage = (existQuery: boolean) => {
 		updateQueryParams({ key, value })
 	}
 
+	const resetQueryParams = () => {
+		searchParams.forEach((value, key) => {
+			if (key) {
+				newParams.delete(key)
+			}
+			replace(pathName + '?' + newParams.toString())
+			updateQueryParams({ key: 'offset', value: '0' })
+		})
+	}
+
 	return {
 		uploadNewParams,
 		setInitOffset,
-		checkQueryParams
+		checkQueryParams,
+		resetQueryParams
 	}
 }
-
-// const loadBoilerParts = () => {
-// 	const createQueryString = (name: string, value: string) => {
-// 		const params = new URLSearchParams(searchParams.toString())
-// 		params.set(name, value)
-// 		return params.toString()
-// 	}
-
-// 	if (queryParams.offset) {
-// 		if (+queryParams.offset > Math.ceil(productsLength / 20)) {
-// 			push(pathName + '?' + newParams.toString())
-// 			updateQueryParams({'offset', 0})
-
-// 			return
-// 		}
-
-// 		console.log('queryParams.offset')
-// 	}
-
-// 	if (isValidOffset) {
-// 		const newOffset = +queryParams.offset - 1
-// 		console.log('newOffset', newOffset)
-// 		console.log('queryParams.offset', queryParams.offset)
-
-// 		// replace(pathName + '?' + createQueryString('offset', String(newOffset)))
-
-// 		setInitOffset(newOffset)
-// 	}
-
-// 	updateQueryParams({ key: 'offset', value: newOffset })
-// }

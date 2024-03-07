@@ -1,7 +1,6 @@
 'use client'
 
 import Feedback from '@/component/Screens/Feedback/Feedback'
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import emailjs from '@emailjs/browser'
 import { FC, useState } from 'react'
 import styles from './Contacts.module.scss'
@@ -24,7 +23,6 @@ const Contacts: FC = () => {
 	return (
 		<div className={styles.contacts}>
 			<div className={`container ${styles.contacts__container}`}>
-				<BreadcrumbsNew />
 				<h2 className={`subtitle ${styles.contacts__title}`}>Контакты</h2>
 				<div className={styles.contacts__wrapper}>
 					<div className={styles.contacts__content}>

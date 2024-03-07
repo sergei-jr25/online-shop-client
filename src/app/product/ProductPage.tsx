@@ -1,41 +1,44 @@
 'use client'
 import Slider from '@/component/ui/Slider/Slider'
-import { useAuth } from '@/hook/useAuth'
+import slidersImages from '@/data/slidersImages.json'
+import { useCart } from '@/hook/useCart'
+import { useActions } from '@/hook/useDispatch'
 import { useFilters } from '@/hook/useFilters'
 import useMediaQuery from '@/hook/useMediaQuery'
-import { api } from '@/service/api/api'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'
 import Image from 'next/image'
 import { FC, useState } from 'react'
-import Accordion from '../../component/Screens/Catalog/CatalogFilters/Acordion/Accordion'
+import Accordion from '../../component/shared/components/Acordion/Accordion'
 import ProductInfo from './ProductComponent/ProductInfo/ProductInfo'
 import ProductMobileSlide from './ProductMobileSlide'
 import styles from './ProductPage.module.scss'
 
 const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
-	// const image = JSON.parse(item.images)
-
 	const [isTabOne, setIsTabOne] = useState(true)
 	const [isTabTwo, setIsTaTwo] = useState(false)
 	const [slidesTo, setSlidesTo] = useState(item.images)
 	const mobile = useMediaQuery('(max-width: 776px)')
-	const { user } = useAuth()
+
 	const { queryParams } = useFilters()
-	const { data: carts = [] } = api.useGetCartProductsQuery(user?.id, {
-		skip: !user
-	})
-	const { data: items = [] } =
-		apiBoilerParts.usePaginateAndFilterQuery(queryParams)
-	const [removeToCart] = api.useRemoveMutation()
-	const [addToCart] = api.useCreateShopCartMutation()
+	const { items } = useCart()
+	const { addToCart, removeToCart } = useActions()
+
+	const { data = [] } = apiBoilerParts.usePaginateAndFilterQuery(queryParams)
 
 	const handleAddToCart = () => {
-		addToCart({ username: user?.username, partId: +item.id }) // ?
+		addToCart({
+			id: item.id,
+			count: 1,
+			name: item.name,
+			price: item.price,
+			image: item.images,
+			totalPrice: item.price
+		})
 	}
 	const handleRemoveToCart = () => {
-		removeToCart(+item.id)
+		removeToCart({ productId: item.id })
 	}
 
 	const handleChangeTabOne = () => {
@@ -53,8 +56,7 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 		setIsTaTwo(!isTabTwo)
 	}
 
-	const isInCart = carts.some(cart => +cart.partId === +item.id)
-	const isInStock = item.inStock
+	const isInCart = items?.some(cart => +cart.id === +item.id)
 
 	return (
 		<div className={`container ${styles.product}`}>
@@ -72,33 +74,32 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 								<img src={slidesTo || item.images} alt={item.name} />
 							</div>
 							<div className={styles.slides__items}>
-								{[...Array(8)].map((_, idx) => (
-									<div
-										onClick={() =>
-											setSlidesTo(
-												'https://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-ile-paradisique-15.jpg'
-											)
-										}
+								{slidersImages.map((img, idx) => (
+									<button
+										className={styles.slides__minImage}
+										onClick={() => setSlidesTo(img.image)}
+										key={idx}
 									>
-										<Image src={item.images} width={150} height={150} alt='' />
-									</div>
+										<Image
+											src={img.image}
+											fill
+											alt={item.name}
+											loading='lazy'
+										/>
+									</button>
 								))}
 							</div>
 						</div>
 					) : (
 						<div className={styles.product__mobile}>
 							<ProductMobileSlide
-								items={[...Array(8)]}
+								items={[...Array(4)]}
 								src={item.images}
-								handleChangeTabOne={handleChangeTabOneMobile}
-								handleChangeTabTwo={handleChangeTabTwoMobile}
-								isTabOne={isTabOne}
-								isTabTwo={isTabTwo}
 								item={item}
 							/>
 							<ProductInfo
 								isInCart={isInCart}
-								isInStock={isInStock}
+								isInStock={item.inStock}
 								item={item}
 								mobile={mobile}
 								handleRemoveToCart={handleRemoveToCart}
@@ -159,7 +160,7 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 						<>
 							<ProductInfo
 								isInCart={isInCart}
-								isInStock={isInStock}
+								isInStock={item.inStock}
 								item={item}
 								mobile={mobile}
 								handleRemoveToCart={handleRemoveToCart}
@@ -167,23 +168,23 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 							/>
 							<div className={cn(styles.tab, { [styles.tab_mobile]: mobile })}>
 								<div className={styles.tab__heading}>
-									<div
+									<button
 										className={cn(styles.tab__title, {
 											[styles.tab__title_active]: isTabOne
 										})}
 										onClick={handleChangeTabOne}
 									>
 										Описание
-									</div>
+									</button>
 
-									<div
+									<button
 										className={cn(styles.tab__title, {
 											[styles.tab__title_active]: isTabTwo
 										})}
 										onClick={handleChangeTabTwo}
 									>
 										Совместимость
-									</div>
+									</button>
 								</div>
 								{isTabOne && (
 									<div className={styles.tab__item}>
@@ -205,7 +206,7 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 					)}
 				</div>
 			</div>
-			<Slider title='Вам понравится' items={items[0] || []} />
+			<Slider title='Вам понравится' items={data[0] || []} />
 		</div>
 	)
 }

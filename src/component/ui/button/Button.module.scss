@@ -1,0 +1,12 @@
+.button {
+	padding: 8px 32px;
+	font-size: 14px;
+	color: #fafbfc;
+	background-color: #1c629e;
+	transition: background-color 0.3s ease 0s;
+	@media (any-hover: hover) {
+		&:hover {
+			background-color: #0a4980;
+		}
+	}
+}

@@ -1,6 +1,7 @@
 export interface IOptionProps {
-	label: string
+	id?: string
 	value: string
+	label: string
 }
 
 export interface IAccordionProps {

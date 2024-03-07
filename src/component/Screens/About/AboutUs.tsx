@@ -1,6 +1,5 @@
 import about1 from '@/assets/image/about/about-1.jpg'
 import about2 from '@/assets/image/about/about-2.jpg'
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import Image from 'next/image'
 import { FC } from 'react'
 import styles from './AboutUs.module.scss'
@@ -9,7 +8,6 @@ const AboutUs: FC = () => {
 	return (
 		<div className={styles.about}>
 			<div className={`container ${styles.about__container}`}>
-				<BreadcrumbsNew />
 				<div className={`subtitle ${styles.about__title}`}>О компании</div>
 				<div className={styles.about__wrapper}>
 					<div className={styles.about__content}>

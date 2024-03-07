@@ -7,27 +7,21 @@ import {
 	default as Spinner
 } from '@/component/ui/spinner/Spinner'
 import { useMode } from '@/hook/useMode'
-import { ICatalogPageProps } from '@/shared/type/catalog.interface'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { setCreateQUery } from '@/utils/setCreateQuery'
 
-import ProductItem from '@/component/ui/product-item/ProductItem'
+import ProductItem from '@/component/shared/components/product-item/ProductItem'
+import { useActions } from '@/hook/useDispatch'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import ReactPaginate from 'react-paginate'
 import styles from './CatalogPage.module.scss'
+import { ICatalogPage } from './catalog-page.interface'
 import { useCatalogPage } from './useCatalogPage'
 
-const CatalogPage: FC<ICatalogPageProps> = ({
+const CatalogPage: FC<ICatalogPage> = ({
 	boilerCount,
 	boilerData,
-	existQuery,
 	queryParams,
-	rangePrice,
-	setIsTouch,
-	setBoilerQueryParams,
-	setManufactureQueryParams,
-	changePrice,
-	setRangePrice,
 	isFetching
 }) => {
 	const { push } = useRouter()
@@ -43,8 +37,13 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 	)
 	const pageCount = Math.ceil(boilerCount / 20)
 
-	const { uploadNewParams, setInitOffset, checkQueryParams } =
-		useCatalogPage(existQuery)
+	const {
+		setBoilerQueryParams,
+		setPartsQueryParams,
+		setTouchFilter,
+		setRangePrice
+	} = useActions()
+	const { uploadNewParams, setInitOffset, checkQueryParams } = useCatalogPage()
 
 	useEffect(() => {
 		checkQueryParams()
@@ -69,48 +68,48 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 			queryPriceTo
 		) {
 			setBoilerQueryParams({ items: boilerQuery })
-			setManufactureQueryParams({ items: manufacturerQuery })
-			setRangePrice([+queryPriceFrom, +queryPriceTo])
-			setIsTouch(false)
+			setPartsQueryParams({ items: manufacturerQuery })
+			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
+			setTouchFilter({ flag: false })
 
 			return
 		}
 		if (boilerQuery?.length && manufacturerQuery?.length) {
 			setBoilerQueryParams({ items: boilerQuery })
-			setManufactureQueryParams({ items: manufacturerQuery })
-			setIsTouch(false)
+			setPartsQueryParams({ items: manufacturerQuery })
+			setTouchFilter({ flag: false })
 
 			return
 		}
 		if (boilerQuery?.length) {
 			setBoilerQueryParams({ items: boilerQuery })
-			setIsTouch(false)
+			setTouchFilter({ flag: false })
 
 			return
 		}
 		if (manufacturerQuery?.length) {
-			setManufactureQueryParams({ items: manufacturerQuery })
-			setIsTouch(false)
+			setPartsQueryParams({ items: manufacturerQuery })
+			setTouchFilter({ flag: false })
 
 			return
 		}
 
 		if (boilerQuery?.length && queryPriceFrom && queryPriceTo) {
 			setBoilerQueryParams({ items: boilerQuery })
-			setRangePrice([+queryPriceFrom, +queryPriceTo])
-			setIsTouch(false)
+			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
+			setTouchFilter({ flag: false })
 			return
 		}
 		if (manufacturerQuery?.length && queryPriceFrom && queryPriceTo) {
-			setManufactureQueryParams({ items: manufacturerQuery })
-			setRangePrice([+queryPriceFrom, +queryPriceTo])
-			setIsTouch(false)
+			setPartsQueryParams({ items: manufacturerQuery })
+			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
+			setTouchFilter({ flag: false })
 			return
 		}
 
 		if (queryPriceFrom && queryPriceTo) {
-			setIsTouch(false)
-			setRangePrice([+queryPriceFrom, +queryPriceTo])
+			setTouchFilter({ flag: false })
+			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
 		}
 	}
 
@@ -138,9 +137,9 @@ const CatalogPage: FC<ICatalogPageProps> = ({
 		>
 			<div>
 				<div className={styles.cataloPage__items}>
-					{isFetching
-						? [...Array(20)].map((_, idx) => (
-								<Spinner key={idx} width='257px' height='411px' />
+					{!!!boilerData
+						? [...Array(10)].map((_, idx) => (
+								<Spinner key={idx} height='411px' width='400px' />
 						  ))
 						: boilerData.map((product: IBoilerPartsData) => (
 								<ProductItem key={product.id} product={product} />

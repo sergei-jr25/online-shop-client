@@ -1,7 +1,7 @@
 import { IBoilerPartsData } from '@/shared/type/user.interface'
-import Link from 'next/link'
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import ProductItem from '../../shared/components/product-item/ProductItem'
 import styles from './Slider.module.scss'
 
 interface ISlider {
@@ -21,7 +21,7 @@ const Slider: FC<ISlider> = ({ items, title }) => {
 			>
 				{items.map((item, idx) => (
 					<SwiperSlide key={item.id}>
-						<div className={styles.slider__item}>
+						{/* <div className={styles.slider__item}>
 							<Link
 								href={`/product/${item.id}`}
 								className={styles.slider__image}
@@ -31,7 +31,8 @@ const Slider: FC<ISlider> = ({ items, title }) => {
 							<div className={styles.slider__name}>{item.name}</div>
 							<div className={styles.slider__article}>{item.vendorCode}</div>
 							<div className={styles.slider__price}>{item.price}Р</div>
-						</div>
+						</div> */}
+						<ProductItem product={item} />
 					</SwiperSlide>
 				))}
 			</Swiper>

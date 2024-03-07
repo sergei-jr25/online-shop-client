@@ -1,0 +1,106 @@
+.react-select-container {
+	position: relative;
+	z-index: 19 !important;
+
+	@media (min-width: 992px) {
+		// width: 616px / 1466px * 100%;
+		// margin-right: 208px / 1466px * 100%;
+	}
+
+	@media (max-width: 484px) {
+		grid-area: select;
+	}
+}
+.react-select-search {
+	&__control {
+		// height: 100%;
+		// border: none !important;
+		// background-color: transparent !important;
+		// z-index: 19 !important;
+		// border-bottom-left-radius: 0px !important;
+		// border-bottom-right-radius: 0px !important;
+		cursor: pointer !important;
+		// border: none;
+
+		&--is-focused {
+			&__control {
+				border-color: transparent;
+			}
+		}
+
+		&--menu-is-open {
+		}
+	}
+
+	&__menu {
+		// margin: 0 !important;
+		// padding: 0 !important;
+		// z-index: 20 !important;
+		// background-color: #fff !important;
+		// border-top-left-radius: 0px !important;
+		// border-top-right-radius: 0px !important;
+	}
+
+	&__option {
+		cursor: pointer !important;
+	}
+
+	&__indicators {
+		display: none !important;
+	}
+}
+
+.search-select {
+	position: relative;
+	border: 1px solid #9e9e9e;
+	border-radius: 4px;
+	&__icon {
+		position: absolute;
+		z-index: 19;
+		right: 10px;
+		top: 10px;
+		svg {
+			fill: #000;
+		}
+	}
+
+	&_dark {
+		.react-select-search {
+			&__control {
+				background-color: #232323;
+			}
+			&__menu {
+			}
+			&__option {
+				color: #fbfafc;
+				background-color: #232323;
+
+				@media (any-hover: hover) {
+					&:hover {
+						background-color: #ccc;
+						color: #232323;
+					}
+				}
+
+				&--is-selected {
+					background-color: #fbfafc;
+					color: #232323;
+				}
+			}
+
+			&__input-container {
+				color: #fbfafc;
+			}
+
+			&__single-value {
+				color: #ccc;
+			}
+		}
+	}
+
+	&__icon {
+		svg {
+			fill: #ccc;
+		}
+	}
+}

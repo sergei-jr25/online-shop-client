@@ -1,11 +1,15 @@
-import { IBoilerPartFilter } from '@/shared/type/boilerParts.interface'
+import { IQueryParams } from '@/shared/type/query.interface'
 
 export interface IInitState {
 	isFilterUpdate: boolean
-	queryParams: IBoilerPartFilter
+	queryParams: IQueryParams
+	rangePrice: number[]
+	isTouchFilter: boolean
+	isChangePrice: boolean
+	isResettingFilter: boolean
 }
 
 export interface IActionsBoilerPartsFilter {
-	key: keyof IBoilerPartFilter
+	key: keyof IQueryParams
 	value: string | number
 }

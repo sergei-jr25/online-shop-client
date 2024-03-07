@@ -1,11 +1,8 @@
 'use client'
 import 'swiper/css'
 
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
-import { api } from '@/service/api/api'
-import { ICart } from '@/shared/type/cart.interface'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useState } from 'react'
 import About from './About/About'
@@ -25,34 +22,21 @@ const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
 
 	const { theme } = useMode()
 
-	const { isLoading, data: carts = [] as ICart[] } =
-		api.useGetCartProductsQuery(user?.id, { skip: !user })
 	const [shouldCartAction, setShouldCartAction] = useState(true)
 
 	const actionCartClose = () => {
 		setShouldCartAction(false)
 	}
 
-	const sumProductCart = carts.reduce((acc, cart) => {
-		acc += cart.price
-		return acc
-	}, 0)
-
 	return (
 		<div
 			className={`${styles.dashboard} ${theme === 'dark' ? styles.dark : ''}`}
 		>
 			<div className={`container ${styles.dashboard__container}`}>
-				<div>
-					<BreadcrumbsNew />
-				</div>
+				<div></div>
 				{shouldCartAction && (
 					<div className={styles.dashboard__info}>
-						<CartAction
-							count={carts.length}
-							handleClick={actionCartClose}
-							price={sumProductCart}
-						/>
+						<CartAction handleClick={actionCartClose} />
 					</div>
 				)}
 				<h1 className={`title ${styles.dashboard__title}`}>

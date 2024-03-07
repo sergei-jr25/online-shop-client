@@ -10,35 +10,6 @@
 	height: 40px;
 	border-radius: 30px;
 	background-color: #121212;
-
-	// &:before {
-	// 	content: '';
-	// 	position: absolute;
-	// 	transform: translate(0, -50%);
-
-	// 	top: 50%;
-	// 	right: 0;
-	// 	z-index: 2;
-	// 	width: 30px;
-	// 	height: 30px;
-	// 	border-radius: 100%;
-
-	// 	background-color: rgb(23, 0, 107);
-	// 	border-radius: 20px;
-	// }
-	// &:after {
-	// 	content: '';
-	// 	position: absolute;
-	// 	top: 50%;
-	// 	transform: translate(0, -50%);
-	// 	left: 0;
-	// 	z-index: 2;
-	// 	width: 30px;
-	// 	height: 30px;
-	// 	border-radius: 100%;
-	// 	background-color: #e2ff60;
-	// 	transition: all 0.3s ease-out;
-	// }
 }
 
 .input {
@@ -53,5 +24,18 @@
 	svg {
 		width: 35px;
 		height: 35px;
+		fill: #fff;
+		transition: fill 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				fill: #ffc540;
+			}
+		}
+	}
+
+	&_dark {
+		svg {
+			fill: #121212;
+		}
 	}
 }

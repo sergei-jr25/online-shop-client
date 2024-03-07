@@ -50,7 +50,7 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 						/>
 					)}
 
-					<span className={styles.field__Value}>{value}</span>
+					<span className={styles.field__value}>{value}</span>
 				</label>
 				{error && <div className={styles.error}>{error.message}</div>}
 			</div>

@@ -2,13 +2,20 @@
 
 import { useAuth } from '@/hook/useAuth'
 import { usePathname, useRouter } from 'next/navigation'
-import { FC } from 'react'
+import { FC, useLayoutEffect } from 'react'
 import styles from './Admin.module.scss'
 
 const Admin: FC = () => {
 	const pathName = usePathname()
-	const { push } = useRouter()
+	const { push, replace } = useRouter()
 	const { user } = useAuth()
+
+	useLayoutEffect(() => {
+		if (!user) {
+			replace('/')
+			return
+		}
+	}, [user, replace])
 
 	return (
 		<div className={styles.admin}>

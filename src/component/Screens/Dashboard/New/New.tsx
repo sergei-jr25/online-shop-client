@@ -1,4 +1,4 @@
-import ProductItem from '@/component/ui/product-item/ProductItem'
+import ProductItem from '@/component/shared/components/product-item/ProductItem'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
 import { FC, useEffect } from 'react'

@@ -96,26 +96,25 @@
 			transform: rotate(-45deg);
 		}
 	}
-}
 
-.dark {
-	color: #ededed;
-	background-color: #2d2d2d;
-	&__value {
+	&_dark {
 		color: #ededed;
-	}
-	&__button {
-		&_show {
-			color: #fafbfc;
-			background: #1c629e;
-			border-radius: 4px;
-		}
-
-		&_reset {
+		background-color: #2d2d2d;
+		.cart__value {
 			color: #ededed;
-			border: 1px solid #ededed;
+		}
+		.cart__button {
+			color: #fafbfc;
+			&_show {
+				background: #1c629e;
+				border-radius: 4px;
+			}
 
-			background-color: #4949493a;
+			&_reset {
+				border: 1px solid #ededed;
+
+				background-color: #4949493a;
+			}
 		}
 	}
 }

@@ -2,45 +2,37 @@
 
 import { useBoilerManufact } from '@/hook/useBoilerMunfuctParts'
 import { useActions } from '@/hook/useDispatch'
+import { useFilters } from '@/hook/useFilters'
 import useMediaQuery from '@/hook/useMediaQuery'
 import { useMode } from '@/hook/useMode'
-import { ICatalogFilters } from '@/shared/type/catalog.interface'
 import { FC } from 'react'
 import styles from './CatalogFilters.module.scss'
-import CatalogFiltersDesktop from './CatalogFiltersDesktop'
+import CatalogFiltersDesktop from './CatalogFiltersDesktop/CatalogFiltersDesktop'
 import CatalogFiltersMobile from './CatalogFltersMobile/CatalogFiltersMobile'
+import { ICatalogFilter } from './catalog-filter.interface'
 
-const CatalogFilters: FC<ICatalogFilters> = ({
-	isTouch,
-	rangePrice,
-	setIsTouch,
-	setRangePrice,
-	changePrice,
-	setChangePrice,
-	setExistQuery,
+const CatalogFilters: FC<ICatalogFilter> = ({
 	resetFilters,
 	applyQueryParams,
-	isFetching,
+	isDisabled,
 	isShow,
 	setIsShow,
-	refFilter
+	refFilter,
+	setValue,
+	value,
+	isCheckedItem
 }) => {
 	const mobile = useMediaQuery('(max-width: 776px)')
 	const { manufacturerParts, boilerManufacturer, isAnyCheckboxChecked } =
 		useBoilerManufact()
+	const { isChangePrice, isTouchFilter } = useFilters()
 
-	const newBoilerBarts = boilerManufacturer.map(item => item.checked)
 	const { theme } = useMode()
 
-	const setTouchedChange = () => {
-		setIsTouch(false)
-	}
+	const { setAllChecked } = useActions()
 
-	const { toggleChecked, chooseAllToggle } = useActions()
-
-	const addTouchedAll = () => {
-		chooseAllToggle()
-		setTouchedChange()
+	const handleAllChecked = (type: 'boiler' | 'parts') => {
+		setAllChecked({ type })
 	}
 
 	return (
@@ -52,41 +44,35 @@ const CatalogFilters: FC<ICatalogFilters> = ({
 							<CatalogFiltersMobile
 								isShow={isShow}
 								setIsShow={setIsShow}
-								boiler={boilerManufacturer}
-								manufacturer={manufacturerParts}
-								setIsTouch={setIsTouch}
 								mobile={mobile}
-								resetFilters={resetFilters}
-								addTouchedAll={addTouchedAll}
-								isTouch={isTouch}
-								rangePrice={rangePrice}
-								setChangePrice={setChangePrice}
-								setRangePrice={setRangePrice}
-								setTouchedChange={setTouchedChange}
-								changePrice={changePrice}
-								isAnyCheckboxChecked={isAnyCheckboxChecked}
+								boilersChecked={boilerManufacturer}
+								partsChecked={manufacturerParts}
+								setAllChecked={handleAllChecked}
 								applyQueryParams={applyQueryParams}
+								resetFilters={resetFilters}
+								isChangePrice={isChangePrice}
+								isAnyCheckboxChecked={isAnyCheckboxChecked}
+								isDisabled={isDisabled}
+								setValue={setValue}
+								value={value}
+								isCheckedItem={isCheckedItem}
 							/>
 						</div>
 					)}
 				</div>
 			) : (
-				<>
-					<CatalogFiltersDesktop
-						rangePrice={rangePrice}
-						setRangePrice={setRangePrice}
-						isTouch={isTouch}
-						setTouchedChange={setTouchedChange}
-						setIsTouch={setIsTouch}
-						changePrice={changePrice}
-						setChangePrice={setChangePrice}
-						boiler={boilerManufacturer}
-						manufacture={manufacturerParts}
-						addTouchedAll={addTouchedAll}
-						applyQueryParams={applyQueryParams}
-						resetFilters={resetFilters}
-					/>
-				</>
+				<CatalogFiltersDesktop
+					boilersChecked={boilerManufacturer}
+					partsChecked={manufacturerParts}
+					setAllChecked={handleAllChecked}
+					applyQueryParams={applyQueryParams}
+					resetFilters={resetFilters}
+					isChangePrice={isChangePrice}
+					isDisabled={isDisabled}
+					setValue={setValue}
+					value={value}
+					isCheckedItem={isCheckedItem}
+				/>
 			)}
 		</div>
 	)

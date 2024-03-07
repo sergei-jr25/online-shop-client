@@ -3,6 +3,7 @@ import { validateEmail } from '@/utils/regex'
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 
+import Button from '@/component/ui/button/Button'
 import Field from '@/component/ui/form-elements/fields/Field'
 import TextArea from '@/component/ui/form-elements/textArea/textArea'
 import styles from './Feedback.module.scss'
@@ -68,7 +69,7 @@ const Feedback: FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {
 					placeholder='Введите ваше сообщение'
 				/>
 
-				<button className={styles.feedback__button}>Отправить сообщение</button>
+				<Button className={styles.feedback__button}>Отправить сообщение</Button>
 			</form>
 		</div>
 	)

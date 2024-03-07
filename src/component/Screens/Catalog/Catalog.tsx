@@ -1,5 +1,4 @@
 'use client'
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import { useBoilerManufact } from '@/hook/useBoilerMunfuctParts'
 import { useActions } from '@/hook/useDispatch'
 import { useFilters } from '@/hook/useFilters'
@@ -7,43 +6,46 @@ import useMediaQuery from '@/hook/useMediaQuery'
 import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
+
+import { queryParamsInit } from '@/shared/query-params'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { FC, useEffect, useState } from 'react'
-import CatalogFilterSvg from './Catalog-icons/CatalogFilterSvg'
+import { FC, useEffect } from 'react'
+import SortSelect from '../../shared/components/SortSelect/SortSelect'
+import CatalogFilterSvg from '../../ui/IconsSvg/catalog-icons/CatalogFilterSvg'
 import styles from './Catalog.module.scss'
 import CatalogFilters from './CatalogFilters/CatalogFilters'
+import CatalogHeader from './CatalogHeader/CatalogHeader'
 import CatalogPage from './CatalogPage/CatalogPage'
-import ManufacturesBlock from './CatalogPage/ManufacturesBlock'
 import { useCatalogPage } from './CatalogPage/useCatalogPage'
-import SortSelect from './SortSelect/SortSelect'
 
-const Catalog: FC = () => {
-	const [rangePrice, setRangePrice] = useState<number[]>([100, 10000])
-	const [isTouch, setIsTouch] = useState(true)
-	const [changePrice, setChangePrice] = useState(false)
-	const [existQuery, setExistQuery] = useState(false)
-	const { isFilterUpdate, queryParams } = useFilters()
+const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 	const {
-		data: products = [],
-		isLoading,
-		isFetching
-	} = apiBoilerParts.usePaginateAndFilterQuery(queryParams)
+		isFilterUpdate,
+		queryParams,
+		rangePrice,
+		isChangePrice,
+		isTouchFilter
+	} = useFilters()
+	const { data = [], isFetching } =
+		apiBoilerParts.usePaginateAndFilterQuery(queryParamsInit)
+	const {
+		resetFiltersBoilerParts,
+		setChangePrice,
+		setTouchFilter,
+		setRangePrice,
+		setIsRessitng
+	} = useActions()
 
-	const boilerData = (products[0] as IBoilerPartsData[]) || []
-	const boilerCount = (products[1] as number) || 0
+	const boilerData = (data[0] as IBoilerPartsData[]) || initialData
+	const boilerCount = (data[1] as number) || 0
 
 	const { boilerManufacturer, manufacturerParts } = useBoilerManufact()
-	const isAnyCheckboxChecked = !boilerManufacturer.some(item => item.checked)
+	const allProducts = [...boilerManufacturer, ...manufacturerParts]
+	const isCheckedItem = allProducts.some(item => item.checked)
+	const isDisabled = !isTouchFilter && !isCheckedItem && !isChangePrice
 
-	const { updateQueryParams, resetFiltersBoiler } = useActions()
-	const { setBoilerQueryParams, setManufactureQueryParams } = useActions()
-	const path = usePathname()
-	const { replace, push, prefetch } = useRouter()
-	const searchParams = useSearchParams()
 	const mobile = useMediaQuery('(max-width: 767px')
-	const table = useMediaQuery('(min-width: 992px')
-	const { uploadNewParams } = useCatalogPage(existQuery)
+	const { uploadNewParams, resetQueryParams } = useCatalogPage()
 	const { isShow, ref, ref: refFilter, setIsShow } = useOutside(false)
 	const { theme } = useMode()
 
@@ -56,96 +58,87 @@ const Catalog: FC = () => {
 	}, [isShow])
 
 	const resetFilters = () => {
-		const params = new URLSearchParams(searchParams.toString())
-
-		resetFiltersBoiler()
-		setRangePrice([100, 10000])
-		setIsTouch(true)
-		setChangePrice(false)
-
-		searchParams.forEach((value, key) => {
-			if (key) {
-				params.delete(key)
-			}
-		})
-		push(path + '?' + params.toString())
-		setExistQuery(true)
-		updateQueryParams({ key: 'offset', value: '0' })
+		resetQueryParams()
+		resetFiltersBoilerParts()
+		setChangePrice({ flag: false })
+		setTouchFilter({ flag: false })
+		setIsRessitng({ flag: true })
 	}
 
 	const applyQueryParams = () => {
 		// const encoded = encodeURIComponent()
-		const queryPriceFrom = Math.ceil(rangePrice[0])
-		const queryPriceTo = Math.ceil(rangePrice[1])
-		const boiler = boilerManufacturer
-			.filter(item => item.checked)
-			.map(item => item.title)
+		setTimeout(() => {
+			const queryPriceFrom = Math.ceil(
+				JSON.parse(localStorage.getItem('range-price')!)[0]
+			)
+			const queryPriceTo = Math.ceil(
+				JSON.parse(localStorage.getItem('range-price')!)[1]
+			)
 
-		const manufacturer = manufacturerParts
-			.filter(item => item.checked)
-			.map(item => item.title)
+			const boiler = boilerManufacturer
+				.filter(item => item.checked)
+				.map(item => item.title)
 
-		const queryBoiler = JSON.stringify(boiler)
-		const queryManufacturer = encodeURIComponent(JSON.stringify(manufacturer))
+			const manufacturer = manufacturerParts
+				.filter(item => item.checked)
+				.map(item => item.title)
 
-		if (boiler.length && manufacturer.length && changePrice) {
-			uploadNewParams('priceFrom', queryPriceFrom)
-			uploadNewParams('priceTo', queryPriceTo)
-			uploadNewParams('boilerManufacturer', queryBoiler)
-			uploadNewParams('manufacturerParts', queryManufacturer)
-		}
+			const queryBoiler = JSON.stringify(boiler)
+			const queryManufacturer = encodeURIComponent(JSON.stringify(manufacturer))
 
-		if (boiler.length && changePrice) {
-			uploadNewParams('priceFrom', queryPriceFrom)
-			uploadNewParams('priceTo', queryPriceTo)
-			uploadNewParams('boilerManufacturer', queryBoiler)
+			if (boiler.length && manufacturer.length && isChangePrice) {
+				uploadNewParams('priceFrom', queryPriceFrom)
+				uploadNewParams('priceTo', queryPriceTo)
+				uploadNewParams('boilerManufacturer', queryBoiler)
+				uploadNewParams('manufacturerParts', queryManufacturer)
+			}
 
-			return
-		}
-		if (manufacturer.length && changePrice) {
-			uploadNewParams('manufacturerParts', queryManufacturer)
-			uploadNewParams('priceFrom', Number(queryPriceFrom))
-			uploadNewParams('priceTo', Number(queryPriceTo))
-			return
-		}
+			if (boiler.length && isChangePrice) {
+				uploadNewParams('priceFrom', queryPriceFrom)
+				uploadNewParams('priceTo', queryPriceTo)
+				uploadNewParams('boilerManufacturer', queryBoiler)
 
-		if (boiler.length) {
-			// replace(pathName + `?boiler=${queryBoiler}`)
-			// uploadNewParams('offset', currentPage)
-			uploadNewParams('boilerManufacturer', queryBoiler)
-		}
-		if (manufacturer.length) {
-			uploadNewParams('manufacturerParts', queryManufacturer)
-		}
-		if (queryPriceFrom && queryPriceTo && changePrice) {
-			uploadNewParams('priceFrom', Number(queryPriceFrom))
-			uploadNewParams('priceTo', Number(queryPriceTo))
-		}
+				return
+			}
+			if (manufacturer.length && isChangePrice) {
+				uploadNewParams('manufacturerParts', queryManufacturer)
+				uploadNewParams('priceFrom', Number(queryPriceFrom))
+				uploadNewParams('priceTo', Number(queryPriceTo))
+				return
+			}
+
+			if (boiler.length) {
+				uploadNewParams('boilerManufacturer', queryBoiler)
+			}
+			if (manufacturer.length) {
+				uploadNewParams('manufacturerParts', queryManufacturer)
+			}
+			if (queryPriceFrom && queryPriceTo && isChangePrice) {
+				uploadNewParams('priceFrom', Number(queryPriceFrom))
+				uploadNewParams('priceTo', Number(queryPriceTo))
+			}
+		}, 200)
 	}
+
 	return (
 		<div
 			className={`${styles.catalog} ${
 				theme === 'dark' ? styles.catalog_dark : ''
 			}`}
 		>
-			<div className={`container ${styles.catalog__container}`}>
+			<div className={`${styles.catalog__container}`}>
 				<h1 className={styles.catalog__title}>Каталог товаров</h1>
 
-				<BreadcrumbsNew />
 				<div className={styles.catalog__header}>
 					{!mobile && (
 						<>
-							<ManufacturesBlock
+							<CatalogHeader
 								title='Производитель котлов:'
 								items={boilerManufacturer}
-								setIsTouch={setIsTouch}
-								setRangePrice={setRangePrice}
 							/>
-							<ManufacturesBlock
+							<CatalogHeader
 								title='Производитель запчастей:'
 								items={manufacturerParts}
-								setIsTouch={setIsTouch}
-								setRangePrice={setRangePrice}
 							/>
 						</>
 					)}
@@ -155,7 +148,7 @@ const Catalog: FC = () => {
 							<button
 								onClick={resetFilters}
 								className={styles.catalog__button}
-								disabled={isTouch && isAnyCheckboxChecked}
+								disabled={isDisabled}
 							>
 								Сбросить фильтры
 							</button>
@@ -180,32 +173,19 @@ const Catalog: FC = () => {
 				</div>
 				<div className={styles.catalog__wrapper}>
 					<CatalogFilters
-						isTouch={isTouch}
-						rangePrice={rangePrice}
-						setIsTouch={setIsTouch}
-						setRangePrice={setRangePrice}
-						changePrice={changePrice}
-						setChangePrice={setChangePrice}
-						existQuery={existQuery}
-						setExistQuery={setExistQuery}
-						resetFilters={resetFilters}
 						applyQueryParams={applyQueryParams}
-						isFetching={isFetching}
+						// isFetching={isFetching}
 						isShow={isShow}
 						refFilter={refFilter}
 						setIsShow={setIsShow}
+						resetFilters={resetFilters}
+						isDisabled={isDisabled}
+						isCheckedItem={isCheckedItem}
 					/>
 					<CatalogPage
 						boilerCount={boilerCount}
 						boilerData={boilerData}
-						existQuery={existQuery}
 						queryParams={queryParams}
-						rangePrice={rangePrice}
-						setIsTouch={setIsTouch}
-						setBoilerQueryParams={setBoilerQueryParams}
-						setManufactureQueryParams={setManufactureQueryParams}
-						changePrice={changePrice}
-						setRangePrice={setRangePrice}
 						isFetching={isFetching}
 					/>
 				</div>

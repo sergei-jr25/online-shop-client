@@ -1,5 +1,4 @@
 'use client'
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import { tabText1, tabText2, tabText3, tabText4 } from '@/utils/delivery'
 import { FC, useState } from 'react'
 import styles from './Delivery.module.scss'
@@ -37,7 +36,6 @@ const Delivery: FC = () => {
 	return (
 		<div className={styles.tab}>
 			<div className={`container ${styles.tab__container}`}>
-				<BreadcrumbsNew />
 				<h1 className={styles.title}>Доставка и оплата</h1>
 				<div className={styles.tab__wrapper}>
 					<div className={styles.tab__control}>

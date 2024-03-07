@@ -1,7 +1,6 @@
 'use client'
 
 import Feedback from '@/component/Screens/Feedback/Feedback'
-import BreadcrumbsNew from '@/component/ui/breadbrambs/NewBreadcrumbs'
 import emailjs from '@emailjs/browser'
 import { FC, useState } from 'react'
 import styles from './Wholesalebuyers.module.scss'
@@ -25,7 +24,6 @@ const Wholesalebuyers: FC = () => {
 	return (
 		<div className={styles.buyers}>
 			<div className={`container ${styles.buyers__container}`}>
-				<BreadcrumbsNew />
 				<h2 className={`subtitle ${styles.buyers__title}`}>
 					Оптовым покупателям
 				</h2>

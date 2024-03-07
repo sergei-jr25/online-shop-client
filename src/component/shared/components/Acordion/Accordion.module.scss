@@ -1,0 +1,57 @@
+.titleClass {
+	position: relative;
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 20px;
+	color: inherit;
+	width: 100%;
+	text-align: left;
+	cursor: pointer;
+	&::after,
+	&::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		right: 16px;
+		width: 2px;
+		height: 12px;
+		background-color: #121212;
+
+		transform: translate(0, -50%) rotate(45deg);
+		transition: transform 0.3s;
+	}
+	&::before {
+		right: 24px;
+		transform: translate(0, -50%) rotate(-45deg);
+	}
+
+	&_open {
+		&::after {
+			transform: rotate(135deg);
+		}
+		&::before {
+			transform: rotate(-135deg);
+		}
+	}
+}
+
+.accordion {
+	opacity: 0;
+	visibility: hidden;
+	overflow: hidden;
+	transition: opacity 0.3s, visibility 0.3s;
+	&_active {
+		opacity: 1;
+		visibility: visible;
+		overflow: visible;
+	}
+}
+
+.dark {
+	.titleClass {
+		&::before,
+		&::after {
+			background-color: #ededed;
+		}
+	}
+}

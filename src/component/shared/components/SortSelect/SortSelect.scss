@@ -1,0 +1,58 @@
+.select-container-filters {
+	.select-filters {
+		cursor: pointer;
+		&__control {
+			border: 1px solid #d4d4d4 !important;
+			cursor: pointer;
+		}
+
+		&__menu {
+			cursor: pointer !important;
+		}
+
+		&__option {
+			cursor: pointer !important;
+		}
+
+		&__indicator {
+			&-separator {
+				display: none !important;
+			}
+			svg {
+				fill: #1c629e !important;
+			}
+		}
+	}
+}
+.react-select__dropdown-indicator {
+	cursor: pointer !important;
+}
+.select {
+	&_dark {
+		.select-filters {
+			&__single-value {
+				color: #fbfafc;
+			}
+			&__control {
+				border: 1px solid #d4d4d4 !important;
+				background-color: #232323;
+				cursor: pointer;
+			}
+
+			&__option {
+				background-color: #232323;
+				@media (any-hover: hover) {
+					&:hover {
+						background-color: #fbfafc;
+						color: #232323;
+					}
+				}
+
+				&--is-selected {
+					background-color: #fbfafc;
+					color: #232323;
+				}
+			}
+		}
+	}
+}

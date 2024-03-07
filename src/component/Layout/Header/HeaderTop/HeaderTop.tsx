@@ -5,10 +5,11 @@ import useMediaQuery from '@/hook/useMediaQuery'
 import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
 import cn from 'clsx'
-import { FC, useRef } from 'react'
+import { FC } from 'react'
 
 import dyamyc from 'next/dynamic'
 
+import Link from 'next/link'
 import PhoneSvg from '../../../ui/IconsSvg/header-icons/PhoneSvg'
 import ProfileSvg from '../../../ui/IconsSvg/header-icons/ProfileSvg'
 import styles from './HeaderTop.module.scss'
@@ -21,8 +22,6 @@ const HeaderTop: FC = () => {
 	const { isShow, ref, setIsShow } = useOutside(false)
 	const showToggleHandler = () => setIsShow(!isShow)
 	const tablet = useMediaQuery('(max-width: 992px)')
-
-	const refMenuButton = useRef()
 
 	return (
 		<div
@@ -61,10 +60,10 @@ const HeaderTop: FC = () => {
 				</div>
 				<div className={styles.header__actions}>
 					<div className={`${styles.header__phone} ${styles.phone}`}>
-						<a className={styles.phone__action} href='to:+780955555555'>
+						<Link className={styles.phone__action} href='to:+780955555555'>
 							<PhoneSvg />
 							<span>+7(8095) 555-55-55</span>
-						</a>
+						</Link>
 					</div>
 					{!tablet && (
 						<div className={styles.header__toggler}>

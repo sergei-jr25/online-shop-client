@@ -30,7 +30,11 @@ const ModeToggler: FC = () => {
 					className={styles.input}
 					onChange={handleToggleMode}
 				/>
-				<div className={styles.toggler}>
+				<div
+					className={`${styles.toggler} ${
+						theme === 'dark' ? styles.toggler_dark : ''
+					}`}
+				>
 					{theme === 'dark' ? <NightSvg /> : <LightSvg />}
 				</div>
 			</label>

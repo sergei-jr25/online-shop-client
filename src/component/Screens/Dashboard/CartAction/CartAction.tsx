@@ -1,23 +1,28 @@
 import CloseSvg from '@/component/ui/IconsSvg/header-icons/CloseSvg'
+import { useCart } from '@/hook/useCart'
 import { useMode } from '@/hook/useMode'
 import { useRouter } from 'next/navigation'
 import { FC } from 'react'
 import styles from './CartAction.module.scss'
+import { CartActionsItemsDynamic } from './CartActionsQuantity'
 
 interface ICartAction {
-	count: number
 	handleClick: () => void
-	price?: number
 }
 
-const CartAction: FC<ICartAction> = ({ count, handleClick, price }) => {
+const CartAction: FC<ICartAction> = ({ handleClick }) => {
 	const { theme } = useMode()
 	const { push } = useRouter()
+	const { items, totalPrice } = useCart()
 	return (
-		<div className={`${styles.cart} ${theme === 'dark' ? styles.dark : ''}`}>
+		<div
+			className={`${styles.cart} ${theme === 'dark' ? styles.cart_dark : ''}`}
+		>
 			<div className={styles.cart__content}>
-				<div className={styles.cart__value}>В корзине {count} товаров</div>
-				<div className={styles.cart__value}>на сумму {price}</div>
+				<CartActionsItemsDynamic length={items.length} />
+				<div className={styles.cart__value}>
+					на сумму <strong>{totalPrice} ₽</strong>{' '}
+				</div>
 			</div>
 			<div className={styles.cart__actions}>
 				<div className={styles.cart__buttons}>

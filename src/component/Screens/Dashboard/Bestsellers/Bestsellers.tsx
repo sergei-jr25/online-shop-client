@@ -1,4 +1,4 @@
-import ProductItem from '@/component/ui/product-item/ProductItem'
+import ProductItem from '@/component/shared/components/product-item/ProductItem'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
 import { FC } from 'react'
@@ -10,7 +10,6 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 }) => {
 	// const { data: bestsellers = [], isFetching } =
 	// 	apiBoilerParts.useGetBestsellersQuery()
-	console.log(bestsellers, 'bestsellers')
 
 	return (
 		<div className={styles.dashboard__block}>

@@ -24,6 +24,12 @@
 		color: #fafbfc;
 		background-color: #1c629e;
 		margin-left: auto;
+		transition: background-color 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #0a4980;
+			}
+		}
 	}
 	&__form {
 		padding: 22px 0;

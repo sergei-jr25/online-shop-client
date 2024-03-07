@@ -14,7 +14,7 @@
 	}
 
 	&__body {
-		background-color: #ffffff;
+		// background-color: #ccc;
 		padding: 16px;
 		margin-bottom: 16px;
 	}
@@ -79,10 +79,6 @@
 		color: #4e4c4c;
 	}
 
-	&__totalPrice {
-		font-size: 24px;
-		color: #205684;
-	}
 	&__button {
 		display: flex;
 		align-items: center;
@@ -92,10 +88,15 @@
 		padding: 8px 0;
 		width: 100%;
 		border-radius: 4px;
+		transition: background-color 0.3s ease 0s;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #054175;
+			}
+		}
 	}
 
 	&__footer {
-		background-color: #fff;
 		padding: 16px;
 	}
 
@@ -136,51 +137,52 @@
 		&_ready {
 			color: #4e4c4c;
 			background-color: #ffcf62;
+			transition: background-color 0.3s ease 0s;
+			@media (any-hover: hover) {
+				&:hover {
+					background-color: #e9a507;
+				}
+			}
 		}
 	}
 
-	&__label {
-		span {
-			position: relative;
-			display: flex;
-			align-items: flex-start;
-			color: #191919;
-			font-size: 14px;
-			gap: 10px;
-			&::before {
-				content: '';
-				width: 18px;
-				height: 18px;
-				flex: 0 0 18px;
-				border: 2px solid #f0f0f0;
-				border-radius: 6px;
-			}
-
-			&:after {
-				content: '';
-				position: absolute;
-				top: 4px;
-				left: 4px;
-				width: 14px;
-				height: 14px;
-				background-color: #0d75cf;
-				border-radius: 3px;
-				opacity: 0;
-				visibility: hidden;
-				overflow: hidden;
-				transition: visibility 0.3s, overflow 0.3s, opacity 0.3s;
+	&_dark {
+		.order__title {
+			color: #fbfafc;
+		}
+		.order__text {
+			color: #ccc;
+		}
+		.order__cart {
+			color: #ccc;
+			svg {
+				fill: #ccc;
 			}
 		}
+		.order__totalPrice {
+			color: #ccc;
+		}
 
-		input {
-			overflow: hidden;
-			opacity: 0;
-			visibility: hidden;
-			&:checked + .order__agreement:after {
-				opacity: 1;
-				visibility: visible;
-				overflow: visible;
+		.order__value {
+			color: #fbfafc;
+		}
+		.order__submit {
+			color: #121212;
+			background-color: #fbfafc;
+
+			&_ready {
+				color: #121212;
+				background-color: #ffcf62;
+				transition: background-color 0.3s ease 0s;
+				@media (any-hover: hover) {
+					&:hover {
+						background-color: #e9a507;
+					}
+				}
 			}
+		}
+		.order__agreement {
+			color: #ccc;
 		}
 	}
 }

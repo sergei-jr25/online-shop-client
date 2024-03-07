@@ -118,6 +118,10 @@
 		box-shadow: 0 2 8 rgba(0, 0, 0, 0.103);
 		padding: 24px 16px;
 		color: #2d2d2d;
+
+		@media (max-width: 480px) {
+			width: 100%;
+		}
 	}
 
 	&__body {
@@ -134,6 +138,7 @@
 	}
 	&__label {
 		position: relative;
+		cursor: pointer;
 
 		input {
 			overflow: hidden;
@@ -155,7 +160,7 @@
 		display: flex;
 		align-items: flex-start;
 		gap: 10px;
-
+		transition: color 0.3s ease 0s;
 		&::before {
 			content: '';
 			width: 18px;
@@ -178,6 +183,12 @@
 			visibility: hidden;
 			overflow: hidden;
 			transition: visibility 0.3s, overflow 0.3s, opacity 0.3s;
+		}
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: #e0595d;
+			}
 		}
 	}
 

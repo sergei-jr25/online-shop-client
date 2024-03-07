@@ -16,8 +16,6 @@ const Auth: FC = () => {
 	const { theme } = useMode()
 	const { replace, push } = useRouter()
 
-	const darkModeTheme = theme === 'dark' ? 'dark__mode' : ''
-
 	const {
 		register,
 		control,
@@ -46,23 +44,42 @@ const Auth: FC = () => {
 	return (
 		<div className={cn(styles.auth, { [styles.dark]: theme === 'dark' })}>
 			<div className={`container ${styles.container}`}>
-				<h2 className={`subtitle ${styles.auth__title}`}> Вход/Регистрация</h2>
+				<div className={styles.auth__head}>
+					<button
+						onClick={() => setType('login')}
+						className={`${styles.auth__title} ${
+							type === 'login' ? styles.auth__title_active : ''
+						} `}
+					>
+						Вход
+					</button>
+					<span>/</span>
+					<button
+						onClick={() => setType('register')}
+						className={`${styles.auth__title} ${
+							type === 'register' ? styles.auth__title_active : ''
+						} `}
+					>
+						Регистрация
+					</button>
+				</div>
 				<form className={styles.auth__form} onSubmit={handleSubmit(onSubmit)}>
-					<Field
-						{...register('email', {
-							required: 'Email is require',
+					{type === 'register' && (
+						<Field
+							{...register('email', {
+								required: 'Email is require',
 
-							pattern: {
-								value: validateEmail,
-								message: 'Некорректный email'
-							}
-						})}
-						error={errors.email}
-						type='email'
-						placeholder='Email'
-						mode={theme}
-					/>
-
+								pattern: {
+									value: validateEmail,
+									message: 'Некорректный email'
+								}
+							})}
+							error={errors.email}
+							type='email'
+							placeholder='Email'
+							mode={theme}
+						/>
+					)}
 					<Field
 						{...register('username', {
 							required: 'Username is require'
@@ -87,21 +104,7 @@ const Auth: FC = () => {
 						mode={theme}
 					/>
 
-					<div className={styles.auth__buttons}>
-						<button
-							onClick={() => setType('login')}
-							className={styles.auth__button}
-						>
-							Вход
-						</button>
-
-						<button
-							onClick={() => setType('register')}
-							className={`${styles.auth__button} ${styles.auth__button_register}`}
-						>
-							Регистрация
-						</button>
-					</div>
+					<button className={`${styles.auth__button}  `}>Отправить</button>
 				</form>
 			</div>
 		</div>

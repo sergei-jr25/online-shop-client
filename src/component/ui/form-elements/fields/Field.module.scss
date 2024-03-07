@@ -4,15 +4,15 @@
 
 	&__value {
 		font-size: 14px;
+		color: #121212;
+		margin: 15px 0px 0px 0px;
+		display: inline-block;
 	}
 
-	&__value {
-		color: #121212;
-	}
 	&__input {
 		width: 100%;
 		padding: 10px;
-		background-color: #232323 !important;
+		// background-color: #232323 !important;
 		::placeholder {
 			color: #fff;
 		}

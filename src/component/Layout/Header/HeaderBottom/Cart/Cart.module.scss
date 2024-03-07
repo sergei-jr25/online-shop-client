@@ -5,37 +5,33 @@
 		grid-area: cart;
 	}
 
-	&__list {
-		display: grid;
-		gap: 20px;
-	}
 	&__body {
-		overflow: hidden;
 		position: absolute;
 		z-index: 4;
 		display: grid;
+		max-height: 300px;
+		min-height: 200px;
+
 		gap: 25px;
 		z-index: 3;
-		top: -200px;
-		right: -400%;
+		top: 0;
+		right: 0;
 		opacity: 0;
 		transform: scale(0);
 		transition: all 0.3s;
-		// width: 200px;
+
 		background-color: #ffffff;
 		border-radius: 4px;
 		padding: 10px 15px;
 		box-shadow: -1 4 30 rgba(0, 0, 0, 0.164);
 		border: 1px solid #212121;
-
+		overflow: hidden;
 		&_show {
 			top: 45px;
-			overflow: visible;
+			overflow: auto;
 			right: 0;
 			transform: scale(1);
 			opacity: 1;
-			height: 400px;
-			overflow-y: scroll;
 		}
 
 		svg {
@@ -47,6 +43,11 @@
 				fill: #ffc540;
 			}
 		}
+	}
+
+	&__list {
+		display: grid;
+		gap: 20px;
 	}
 
 	&__visible {
@@ -94,11 +95,10 @@
 	}
 }
 .dark {
-	span {
-		color: #fff;
+	.cart__body {
+		background-color: #101010;
 	}
-
-	svg {
-		fill: #fff;
+	.cart__totalPrice {
+		color: #eee;
 	}
 }

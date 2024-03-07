@@ -1,6 +1,7 @@
 'use client'
 
 import { useActions } from '@/hook/useDispatch'
+import { useMode } from '@/hook/useMode'
 import { IItemCart } from '@/store/cart/cart.interface'
 import Image from 'next/image'
 import { FC } from 'react'
@@ -13,6 +14,7 @@ export interface ICartItem {
 
 const CartItem: FC<ICartItem> = ({ item }) => {
 	const { changePrice, removeToCart } = useActions()
+	const { theme } = useMode()
 
 	const increaseCount = () => {
 		changePrice({ id: item.id, type: 'plus' })
@@ -23,7 +25,10 @@ const CartItem: FC<ICartItem> = ({ item }) => {
 	}
 
 	return (
-		<div key={item.id} className={styles.cart__item}>
+		<div
+			key={item.id}
+			className={`${styles.cart} ${theme === 'dark' ? styles.cart_dark : ''}`}
+		>
 			<div className={styles.cart__info}>
 				<Image
 					src={item.image}
@@ -45,11 +50,12 @@ const CartItem: FC<ICartItem> = ({ item }) => {
 					<Counter
 						decrement={decreaseCount}
 						increment={increaseCount}
+						theme={theme}
 					></Counter>
 				</div>
 
-				<div className={styles.cart__count}>{item.count}</div>
-				<div className={styles.cart__price}>{item.totalPrice}</div>
+				<div className={styles.cart__count}>{item.count} </div>
+				<div className={styles.cart__price}>{item.totalPrice} ₽</div>
 			</div>
 		</div>
 	)
