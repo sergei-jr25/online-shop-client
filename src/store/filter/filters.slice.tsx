@@ -23,8 +23,6 @@ const filtersSlice = createSlice({
 			state,
 			{ payload }: PayloadAction<IActionsBoilerPartsFilter>
 		) => {
-			console.log(state.queryParams)
-
 			state.queryParams[payload.key] = payload.value
 			state.isFilterUpdate = true
 		},

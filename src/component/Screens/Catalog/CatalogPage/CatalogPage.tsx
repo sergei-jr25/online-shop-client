@@ -13,7 +13,6 @@ import { setCreateQUery } from '@/utils/setCreateQuery'
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
 import { useActions } from '@/hook/useDispatch'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import ReactPaginate from 'react-paginate'
 import styles from './CatalogPage.module.scss'
 import './CatalogPage.scss'
 import { ICatalogPage } from './catalog-page.interface'
@@ -37,8 +36,6 @@ const CatalogPage: FC<ICatalogPage> = ({
 		isValidOffset ? +queryParams.offset - 1 : 0
 	)
 	const pageCount = Math.ceil(boilerCount / 20)
-
-	console.log(boilerCount)
 
 	const {
 		setBoilerQueryParams,
@@ -134,6 +131,12 @@ const CatalogPage: FC<ICatalogPage> = ({
 		setInitOffset(selected)
 	}
 
+	const changePageCount = (idx: number) => {
+		console.log()
+
+		uploadNewParams('offset', idx)
+	}
+
 	return (
 		<div
 			className={`${styles.cataloPage}  ${theme === 'dark' ? styles.dark : ''}`}
@@ -152,21 +155,36 @@ const CatalogPage: FC<ICatalogPage> = ({
 					{isFetching ? (
 						<Skeleton />
 					) : (
-						<ReactPaginate
-							breakLabel='...'
-							nextLabel={false}
-							pageLinkClassName={'paginate__link'}
-							containerClassName={'paginate__container'}
-							activeClassName={'paginate__active'}
-							onPageChange={handleChangePagination}
-							pageRangeDisplayed={7}
-							pageCount={pageCount}
-							previousLabel={false}
-							renderOnZeroPageCount={null}
-							pageClassName={'paginate__item'}
-							nextClassName={'paginate__next'}
-							forcePage={+queryParams.offset}
-						/>
+						// <ReactPaginate
+						// 	breakLabel='...'
+						// 	nextLabel={false}
+						// 	pageLinkClassName='paginate__link'
+						// 	containerClassName='paginate__container'
+						// 	activeClassName='paginate__active'
+						// 	onPageChange={handleChangePagination}
+						// 	pageRangeDisplayed={7}
+						// 	pageCount={pageCount}
+						// 	previousLabel={false}
+						// 	renderOnZeroPageCount={null}
+						// 	pageClassName='paginate__item'
+						// 	nextClassName='paginate__next'
+						// 	forcePage={+queryParams.offset}
+						// />
+						<div className={styles.pagination}>
+							{' '}
+							{Array.from({ length: pageCount }).map((el, idx) => (
+								<button
+									className={`${styles.pagination__item} ${
+										+queryParams.offset === idx
+											? styles.pagination__item_active
+											: ''
+									}`}
+									onClick={() => changePageCount(idx)}
+								>
+									{idx + 1}
+								</button>
+							))}
+						</div>
 					)}
 				</div>
 			</div>

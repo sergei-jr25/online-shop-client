@@ -64,11 +64,6 @@
 		color: #cdcbcb;
 		display: grid;
 		gap: 8px;
-		transition: color 0.3s;
-
-		&:hover {
-			color: #ffcf62;
-		}
 
 		span {
 		}
@@ -85,12 +80,20 @@
 		font-weight: 500;
 		color: #fafbfc;
 		line-height: 16.5px;
+		transition: color 0.3s;
+
 		svg {
 			fill: #fff;
 		}
 		&_email {
 			svg {
 				fill: none;
+			}
+		}
+
+		@media (any-hover: hover) {
+			&:hover {
+				color: #ffcf62;
 			}
 		}
 	}

@@ -1,7 +1,8 @@
+import { getStoreLocal } from '@/utils/local-storage'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	theme: 'light'
+	theme: getStoreLocal('mode')
 }
 
 const modeSLice = createSlice({
@@ -9,12 +10,10 @@ const modeSLice = createSlice({
 	initialState,
 	reducers: {
 		toggleTheme: state => {
-			const localTheme = JSON.parse(localStorage.getItem('mode') as string)
+			// const localTheme = JSON.parse(localStorage.getItem('mode') as string)
 
 			if (state.theme === 'light') {
-				if (localTheme) {
-				}
-				localStorage.setItem('mode', JSON.stringify('light'))
+				localStorage.setItem('mode', JSON.stringify('dark'))
 				state.theme = 'dark'
 			} else if (state.theme === 'dark') {
 				localStorage.setItem('mode', JSON.stringify('dark'))

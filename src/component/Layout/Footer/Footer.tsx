@@ -3,6 +3,7 @@ import AccordionMy from '@/component/ui/accardion/AccordionMy'
 import useMediaQuery from '@/hook/useMediaQuery'
 import { paymentsImages, socialImages } from '@/utils/imagesPaths/footer'
 import Image from 'next/image'
+import Link from 'next/link'
 import { FC } from 'react'
 import EmailSvg from '../../ui/IconsSvg/header-icons/EmailSvg'
 import LocationSvg from '../../ui/IconsSvg/header-icons/LocationSvg'
@@ -90,26 +91,27 @@ const Footer: FC = () => {
 							<ul className={styles.footer__list}>
 								<li className={styles.footer__item}>
 									<span>Наш адрес:</span>
-									<a className={styles.footer__link}>
+									<Link href='#' className={styles.footer__link}>
 										<LocationSvg />
 										г. Москва, ул. ... д....
-									</a>
+									</Link>
 								</li>
 								<li className={styles.footer__item}>
 									<span>Наш контактный телефон:</span>
-									<a className={styles.footer__link}>
+									<Link href='tel:+78095555555' className={styles.footer__link}>
 										<PhoneSvg />
-										+7(8095) 555-55-55E-mail:
-									</a>
+										+7(8095) 555-55-55
+									</Link>
 								</li>
 								<li className={styles.footer__item}>
 									<span>E-mail:</span>
-									<a
+									<Link
+										href='mailto:info@zapchasti.com.ru'
 										className={`${styles.footer__link} ${styles.footer__link_email} `}
 									>
 										<EmailSvg />
 										info@zapchasti.com.ru
-									</a>
+									</Link>
 								</li>
 							</ul>
 							{bigMobile && (

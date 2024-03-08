@@ -22,8 +22,6 @@ const LayoutWrapper: FC<PropsWithChildren> = async ({ children }) => {
 		data = []
 	}
 
-	console.log(data)
-
 	return (
 		<div>
 			<Header initData={data[0]} />
