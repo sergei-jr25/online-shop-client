@@ -15,6 +15,7 @@ import { useActions } from '@/hook/useDispatch'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import ReactPaginate from 'react-paginate'
 import styles from './CatalogPage.module.scss'
+import './CatalogPage.scss'
 import { ICatalogPage } from './catalog-page.interface'
 import { useCatalogPage } from './useCatalogPage'
 
@@ -154,16 +155,16 @@ const CatalogPage: FC<ICatalogPage> = ({
 						<ReactPaginate
 							breakLabel='...'
 							nextLabel={false}
-							pageLinkClassName={styles.paginate__link}
-							containerClassName={styles.paginate__container}
-							activeClassName={styles.paginate__active}
+							pageLinkClassName={'paginate__link'}
+							containerClassName={'paginate__container'}
+							activeClassName={'paginate__active'}
 							onPageChange={handleChangePagination}
 							pageRangeDisplayed={7}
 							pageCount={pageCount}
 							previousLabel={false}
 							renderOnZeroPageCount={null}
-							pageClassName={styles.paginate__item}
-							nextClassName={styles.paginate__next}
+							pageClassName={'paginate__item'}
+							nextClassName={'paginate__next'}
 							forcePage={+queryParams.offset}
 						/>
 					)}
