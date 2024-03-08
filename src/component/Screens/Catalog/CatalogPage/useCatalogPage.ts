@@ -12,7 +12,7 @@ export const useCatalogPage = () => {
 	const pathName = usePathname()
 	const searchParams = useSearchParams()!
 	const params = useParams()
-	const { updateQueryParams, resetFilterUpdate } = useActions()
+	const { updateQueryParams, resetFilters } = useActions()
 	const newParams = new URLSearchParams(searchParams.toString())
 
 	const setInitOffset = (value: string | number = 0) => {
@@ -43,9 +43,9 @@ export const useCatalogPage = () => {
 			if (key) {
 				newParams.delete(key)
 			}
-			replace(pathName + '?' + newParams.toString())
-			updateQueryParams({ key: 'offset', value: '0' })
 		})
+		resetFilters()
+		replace(pathName + '?' + newParams.toString())
 	}
 
 	return {

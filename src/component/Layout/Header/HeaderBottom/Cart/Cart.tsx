@@ -44,6 +44,9 @@ const Cart: FC = () => {
 			>
 				<CartSvg />
 				<span>Корзина</span>
+				{!!items.length && (
+					<div className={styles.cart__quantity}>{items.length}</div>
+				)}
 			</button>
 			<div>
 				<div

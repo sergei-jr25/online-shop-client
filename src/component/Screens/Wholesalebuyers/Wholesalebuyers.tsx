@@ -1,8 +1,10 @@
 'use client'
 
 import Feedback from '@/component/Screens/Feedback/Feedback'
+import { useMode } from '@/hook/useMode'
 import emailjs from '@emailjs/browser'
 import { FC, useState } from 'react'
+import { toastr } from 'react-redux-toastr'
 import styles from './Wholesalebuyers.module.scss'
 
 const Wholesalebuyers: FC = () => {
@@ -14,15 +16,23 @@ const Wholesalebuyers: FC = () => {
 			.send('service_ufi0q5q', 'template_oifpizw', data, 'v3gsfTXl7BX89OAVk')
 			.then(response => {
 				setLoading(false)
+
 				console.log('SUCCESS!', response.status, response.text)
+				toastr.success('Сообщение', 'Успешно отправленно')
 			})
 			.catch(e => {
 				console.log(e)
 			})
 	}
 
+	const { theme } = useMode()
+
 	return (
-		<div className={styles.buyers}>
+		<div
+			className={`${styles.buyers} ${
+				theme === 'dark' ? styles.buyers_dark : ''
+			}`}
+		>
 			<div className={`container ${styles.buyers__container}`}>
 				<h2 className={`subtitle ${styles.buyers__title}`}>
 					Оптовым покупателям
@@ -39,7 +49,7 @@ const Wholesalebuyers: FC = () => {
 						</p>
 					</div>
 
-					<Feedback onSubmit={handleSubmit} />
+					<Feedback onSubmit={handleSubmit} loading={loading} />
 				</div>
 			</div>
 		</div>

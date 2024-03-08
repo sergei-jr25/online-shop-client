@@ -1,8 +1,16 @@
 .cataloPage {
 	&__items {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		// grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+		grid-template-columns: repeat(3, 1fr);
 		gap: 16px;
+
+		@media (max-width: 1224px) {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media (max-width: 998px) {
+			grid-template-columns: 1fr;
+		}
 	}
 }
 
@@ -109,6 +117,7 @@
 		align-items: center;
 		justify-content: center;
 		gap: 8px;
+		flex-wrap: wrap;
 	}
 
 	&__item {
@@ -130,6 +139,7 @@
 		border-radius: 4px;
 		color: #5e5e5e;
 		font-weight: 500;
+		font-size: 18px;
 		transition: background-color 0.3s, color 0.3s;
 
 		&:hover {

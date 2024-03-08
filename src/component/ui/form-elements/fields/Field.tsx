@@ -1,3 +1,4 @@
+import { useMode } from '@/hook/useMode'
 import cn from 'clsx'
 import Image from 'next/image'
 import { ChangeEvent, forwardRef, useState } from 'react'
@@ -20,8 +21,11 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 				setPreviewUrl(fileUrl)
 			}
 		}
+		const { theme } = useMode()
 		return (
-			<div className={cn(styles.field, { [styles.dark]: mode === 'dark' })}>
+			<div
+				className={cn(styles.field, { [styles.field_dark]: theme === 'dark' })}
+			>
 				<label
 					className={`${styles.field__label} ${
 						type === 'checkbox' ? styles.field__label_checkbox : ''

@@ -92,6 +92,9 @@
 		background-color: #2d2d2d;
 		&__title {
 			color: #fafbfc;
+			&::before {
+				background-color: #fafbfc;
+			}
 		}
 
 		&__form {

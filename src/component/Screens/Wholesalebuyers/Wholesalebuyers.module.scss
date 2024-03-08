@@ -33,4 +33,22 @@
 			color: #4e4c4c;
 		}
 	}
+
+	// input {
+	// 	color: #121212;
+	// }
+
+	&_dark {
+		background-color: #121212;
+
+		.buyers__content {
+			background-color: #232323;
+			a {
+				color: #fbfafc;
+			}
+			p {
+				color: #ccc;
+			}
+		}
+	}
 }

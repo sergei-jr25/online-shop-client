@@ -12,9 +12,11 @@
 	&__input {
 		width: 100%;
 		padding: 10px;
-		// background-color: #232323 !important;
+		color: #fafbfc;
+		background-color: #323232;
+
 		::placeholder {
-			color: #fff;
+			color: #ffff;
 		}
 	}
 
@@ -66,10 +68,15 @@
 			}
 		}
 	}
-}
 
-.placeholder {
-	background-color: #121212;
+	&_dark {
+		.field__input {
+			border: 1px solid #eee;
+		}
+		.field__value {
+			color: #fbfafc;
+		}
+	}
 }
 
 .error {
@@ -78,15 +85,6 @@
 }
 
 .dark {
-	.field {
-		input {
-			border: 1px solid #fafbfc;
-		}
-		&__value {
-			color: #fafbfc;
-		}
-	}
-
 	.error {
 		color: red;
 		margin: 8px 0 0 0;

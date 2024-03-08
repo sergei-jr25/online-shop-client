@@ -12,7 +12,7 @@ import { useForm } from 'react-hook-form'
 import styles from './Auth.module.scss'
 
 const Auth: FC = () => {
-	const [type, setType] = useState<'register' | 'login'>('login')
+	const [type, setType] = useState<'register' | 'login'>('register')
 	const { theme } = useMode()
 	const { replace, push } = useRouter()
 

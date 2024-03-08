@@ -7,7 +7,6 @@ import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
 
-import { queryParamsInit } from '@/shared/query-params'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useEffect } from 'react'
 import SortSelect from '../../shared/components/SortSelect/SortSelect'
@@ -26,8 +25,11 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 		isChangePrice,
 		isTouchFilter
 	} = useFilters()
-	const { data = [], isFetching } =
-		apiBoilerParts.usePaginateAndFilterQuery(queryParamsInit)
+	const {
+		data = [],
+		isFetching,
+		refetch
+	} = apiBoilerParts.usePaginateAndFilterQuery(queryParams)
 	const {
 		resetFiltersBoilerParts,
 		setChangePrice,
@@ -58,11 +60,14 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 	}, [isShow])
 
 	const resetFilters = () => {
-		resetQueryParams()
 		resetFiltersBoilerParts()
 		setChangePrice({ flag: false })
 		setTouchFilter({ flag: false })
 		setIsRessitng({ flag: true })
+		resetQueryParams()
+
+		// uploadNewParams('offset', '2')
+		// refetch()
 	}
 
 	const applyQueryParams = () => {
@@ -126,7 +131,7 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 				theme === 'dark' ? styles.catalog_dark : ''
 			}`}
 		>
-			<div className={`${styles.catalog__container}`}>
+			<div className={`container ${styles.catalog__container}`}>
 				<h1 className={styles.catalog__title}>Каталог товаров</h1>
 
 				<div className={styles.catalog__header}>

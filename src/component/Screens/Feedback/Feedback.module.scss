@@ -13,11 +13,7 @@
 		color: #2d2d2d;
 		font-weight: 400;
 	}
-	input {
-		border: 1px solid #d4d4d4;
-		border-radius: 4px;
-		background-color: transparent;
-	}
+
 	&__button {
 		padding: 8px 32px;
 		font-size: 18px;
@@ -37,5 +33,13 @@
 		gap: 24px;
 		border-top: 1px solid #e1e1e1;
 		border-bottom: 1px solid #e1e1e1;
+	}
+
+	&_dark {
+		background-color: #121212;
+
+		.feedback__title {
+			color: #fafbfc;
+		}
 	}
 }

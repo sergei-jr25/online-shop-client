@@ -64,7 +64,7 @@ h6 {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-	-webkit-text-fill-color: #fff;
+	-webkit-text-fill-color: inherit;
 	-webkit-box-shadow: 0 0 0px 40rem #232323 inset;
 }
 input,

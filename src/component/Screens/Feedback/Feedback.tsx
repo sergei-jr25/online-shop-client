@@ -6,17 +6,28 @@ import { useForm } from 'react-hook-form'
 import Button from '@/component/ui/button/Button'
 import Field from '@/component/ui/form-elements/fields/Field'
 import TextArea from '@/component/ui/form-elements/textArea/textArea'
+import Skeleton from '@/component/ui/spinner/Spinner'
+import { useMode } from '@/hook/useMode'
 import styles from './Feedback.module.scss'
 
-const Feedback: FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {
+const Feedback: FC<{ onSubmit: (data: any) => void; loading: boolean }> = ({
+	onSubmit,
+	loading
+}) => {
 	const {
 		handleSubmit,
 		formState: { errors },
 		register
 	} = useForm({ mode: 'onChange' })
 
+	const { theme } = useMode()
+
 	return (
-		<div className={styles.feedback}>
+		<div
+			className={`${styles.feedback} ${
+				theme === 'dark' ? styles.feedback_dark : ''
+			}`}
+		>
 			<h3 className={styles.feedback__title}>Форма обратной связи</h3>
 			<form className={styles.feedback__form} onSubmit={handleSubmit(onSubmit)}>
 				<Field
@@ -25,7 +36,7 @@ const Feedback: FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {
 					})}
 					error={errors.name}
 					type='name'
-					placeholder='Select'
+					placeholder=''
 					value='Имя*'
 				/>
 				<Field
@@ -55,7 +66,7 @@ const Feedback: FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {
 					})}
 					error={errors.email}
 					type='email'
-					placeholder='Select'
+					placeholder=''
 					value='Email *'
 				/>
 				<TextArea
@@ -67,9 +78,13 @@ const Feedback: FC<{ onSubmit: (data: any) => void }> = ({ onSubmit }) => {
 					error={errors.message}
 					type='message'
 					placeholder='Введите ваше сообщение'
+				
 				/>
 
-				<Button className={styles.feedback__button}>Отправить сообщение</Button>
+				<Button className={styles.feedback__button}>
+					{' '}
+					{loading ? <Skeleton height='10px' /> : ' Отправить сообщение'}{' '}
+				</Button>
 			</form>
 		</div>
 	)

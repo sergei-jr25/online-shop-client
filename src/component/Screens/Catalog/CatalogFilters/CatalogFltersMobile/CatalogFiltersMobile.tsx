@@ -72,7 +72,13 @@ const CatalogFiltersMobile: FC<ICatalogFilterMobile> = ({
 	return (
 		<div className={styles.mobile}>
 			<CatalogFiltersMobileTop
-				closeFilter={isOpenBoiler ? handleToggleBoiler : closeFilter}
+				closeFilter={
+					isOpenBoiler
+						? handleToggleBoiler
+						: isOpenParts
+						? handleToggleParts
+						: closeFilter
+				}
 				title={
 					isOpenBoiler
 						? 'Производитель котлов'

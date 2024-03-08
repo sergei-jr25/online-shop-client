@@ -27,7 +27,7 @@ const LayoutWrapper: FC<PropsWithChildren> = async ({ children }) => {
 	return (
 		<div>
 			<Header initData={data[0]} />
-			<div className='container'>
+			<div>
 				<Breadcrumbs />
 				<ProgressBar />
 				{children}

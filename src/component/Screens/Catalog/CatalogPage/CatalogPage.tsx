@@ -37,6 +37,8 @@ const CatalogPage: FC<ICatalogPage> = ({
 	)
 	const pageCount = Math.ceil(boilerCount / 20)
 
+	console.log(boilerCount)
+
 	const {
 		setBoilerQueryParams,
 		setPartsQueryParams,
@@ -163,8 +165,6 @@ const CatalogPage: FC<ICatalogPage> = ({
 							pageClassName={styles.paginate__item}
 							nextClassName={styles.paginate__next}
 							forcePage={+queryParams.offset}
-
-							// nextPageRel={null}
 						/>
 					)}
 				</div>

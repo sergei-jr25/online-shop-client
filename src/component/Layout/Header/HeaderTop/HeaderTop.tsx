@@ -50,12 +50,13 @@ const HeaderTop: FC = () => {
 					>
 						<ProfileSvg />
 					</div>
+
 					<div
 						className={cn(styles.profile__content, {
 							[styles.profile__content_show]: isShow
 						})}
 					>
-						<ProfileDynamic refP={ref} />
+						<ProfileDynamic refP={ref} setIsShow={setIsShow} />
 					</div>
 				</div>
 				<div className={styles.header__actions}>

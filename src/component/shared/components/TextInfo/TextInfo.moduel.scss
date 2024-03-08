@@ -1,0 +1,19 @@
+.textInfo {
+	display: grid;
+	gap: 16px;
+	padding: 24px;
+	background-color: #fff;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.11);
+	align-self: start;
+	line-height: 27/ 18 * 100%;
+
+	a {
+		font-weight: 600;
+		color: #000;
+	}
+
+	p {
+		font-size: 18px;
+		color: #4e4c4c;
+	}
+}

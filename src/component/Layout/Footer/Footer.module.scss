@@ -55,6 +55,7 @@
 
 		@media (max-width: 992px) {
 			margin: 0 0 30px;
+			gap: 20px;
 		}
 	}
 	&__item {
@@ -70,6 +71,9 @@
 		}
 
 		span {
+		}
+		@media (max-width: 768px) {
+			font-size: 18px;
 		}
 	}
 

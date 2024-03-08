@@ -30,6 +30,12 @@
 			fill: #2d2d2d;
 			padding-top: 5px;
 		}
+
+		&_open {
+			svg {
+				transform: rotate(90deg);
+			}
+		}
 	}
 
 	&__button {

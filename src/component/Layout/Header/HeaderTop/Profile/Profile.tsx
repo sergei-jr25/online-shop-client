@@ -5,9 +5,21 @@ import { useRouter } from 'next/navigation'
 import { FC, LegacyRef } from 'react'
 import styles from './Profile.module.scss'
 
-const Profile: FC<{ refP: LegacyRef<HTMLDivElement> }> = ({ refP }) => {
+const Profile: FC<{
+	refP: LegacyRef<HTMLDivElement>
+	setIsShow: (flag: boolean) => void
+}> = ({ refP, setIsShow }) => {
 	const { user } = useAuth()
 	const { logout } = useActions()
+
+	const hadnleLogout = () => {
+		setIsShow(false)
+		logout()
+	}
+	const hadnleLogin = () => {
+		setIsShow(false)
+		push('/auth')
+	}
 
 	const { push } = useRouter()
 	return (
@@ -21,16 +33,13 @@ const Profile: FC<{ refP: LegacyRef<HTMLDivElement> }> = ({ refP }) => {
 				)}
 				{user ? (
 					<li className={styles.profile__item}>
-						<button className={styles.profile__button} onClick={() => logout()}>
+						<button className={styles.profile__button} onClick={hadnleLogout}>
 							Выйти <ExitSvg />
 						</button>
 					</li>
 				) : (
 					<li className={styles.profile__item}>
-						<button
-							className={styles.profile__button}
-							onClick={() => push('/auth')}
-						>
+						<button className={styles.profile__button} onClick={hadnleLogin}>
 							Войти <ExitSvg />
 						</button>
 					</li>
