@@ -81,8 +81,7 @@ const Feedback: FC<{ onSubmit: (data: any) => void; loading?: boolean }> = ({
 				/>
 
 				<Button className={styles.feedback__button}>
-					{' '}
-					{loading ? <Skeleton height='10px' /> : ' Отправить сообщение'}{' '}
+					{loading ? <Skeleton height='10px' /> : ' Отправить сообщение'}
 				</Button>
 			</form>
 		</div>
