@@ -1,6 +1,7 @@
 'use client'
 
 import Feedback from '@/component/Screens/Feedback/Feedback'
+import { useMode } from '@/hook/useMode'
 import emailjs from '@emailjs/browser'
 import { FC, useState } from 'react'
 import styles from './Contacts.module.scss'
@@ -19,9 +20,14 @@ const Contacts: FC = () => {
 				console.log(e)
 			})
 	}
+	const { theme } = useMode()
 
 	return (
-		<div className={styles.contacts}>
+		<div
+			className={`${styles.contacts} ${
+				theme === 'dark' ? styles.contacts_dark : ''
+			}`}
+		>
 			<div className={`container ${styles.contacts__container}`}>
 				<h2 className={`subtitle ${styles.contacts__title}`}>Контакты</h2>
 				<div className={styles.contacts__wrapper}>

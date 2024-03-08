@@ -42,48 +42,48 @@
 	&__toggler {
 	}
 
-	&_dark {
-		background-color: #fafbfc;
+	// &_dark {
+	// 	// background-color: #fafbfc;
 
-		.menu {
-			&__nav {
-				@media (max-width: 992px) {
-					background-color: #fafbfc;
-				}
-			}
-			&__link {
-				color: #2d2d2d;
-				@media (any-hover: hover) {
-					&:hover {
-						&::before {
-							content: '';
-							background-color: #2d2d2d;
-						}
-					}
-				}
-			}
-		}
-		.phone {
-			&__action {
-				color: #2d2d2d;
-			}
-			svg {
-				fill: #2d2d2d;
-			}
-		}
-		.profile {
-			svg {
-				fill: #2d2d2d;
-			}
-		}
-		.icon_menu {
-			span,
-			&::before,
-			&::after {
-				background-color: #2d2d2d;
-			}
-		}
-	}
+	// 	// .menu {
+	// 	// 	&__nav {
+	// 	// 		@media (max-width: 992px) {
+	// 	// 			background-color: #fafbfc;
+	// 	// 		}
+	// 	// 	}
+	// 	// 	&__link {
+	// 	// 		color: #2d2d2d;
+	// 	// 		@media (any-hover: hover) {
+	// 	// 			&:hover {
+	// 	// 				&::before {
+	// 	// 					content: '';
+	// 	// 					background-color: #2d2d2d;
+	// 	// 				}
+	// 	// 			}
+	// 	// 		}
+	// 	// 	}
+	// 	// }
+	// 	.phone {
+	// 		&__action {
+	// 			color: #2d2d2d;
+	// 		}
+	// 		svg {
+	// 			fill: #2d2d2d;
+	// 		}
+	// 	}
+	// 	.profile {
+	// 		svg {
+	// 			fill: #2d2d2d;
+	// 		}
+	// 	}
+	// 	.icon_menu {
+	// 		span,
+	// 		&::before,
+	// 		&::after {
+	// 			background-color: #2d2d2d;
+	// 		}
+	// 	}
+	// }
 }
 .menu {
 	&__nav {
@@ -173,8 +173,8 @@
 		svg {
 			transition: fill 0.3s;
 			fill: #fafbfc;
-			height: 27px;
-			width: 25px;
+			height: 30px;
+			width: 30px;
 		}
 
 		@media (any-hover: hover) {

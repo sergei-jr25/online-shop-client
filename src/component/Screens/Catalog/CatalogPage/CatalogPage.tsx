@@ -8,7 +8,6 @@ import {
 } from '@/component/ui/spinner/Spinner'
 import { useMode } from '@/hook/useMode'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
-import { setCreateQUery } from '@/utils/setCreateQuery'
 
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
 import { useActions } from '@/hook/useDispatch'
@@ -113,27 +112,7 @@ const CatalogPage: FC<ICatalogPage> = ({
 		}
 	}
 
-	const handleChangePagination = async ({ selected }: { selected: number }) => {
-		if (selected > pageCount) {
-			setCurrentPage(0)
-			setInitOffset()
-			return
-		}
-
-		push(
-			`${pathName}?${setCreateQUery(
-				'offset',
-				String(selected),
-				searchParams.toString()
-			)} `
-		)
-		setCurrentPage(selected)
-		setInitOffset(selected)
-	}
-
 	const changePageCount = (idx: number) => {
-		console.log()
-
 		uploadNewParams('offset', idx)
 	}
 
@@ -155,25 +134,10 @@ const CatalogPage: FC<ICatalogPage> = ({
 					{isFetching ? (
 						<Skeleton />
 					) : (
-						// <ReactPaginate
-						// 	breakLabel='...'
-						// 	nextLabel={false}
-						// 	pageLinkClassName='paginate__link'
-						// 	containerClassName='paginate__container'
-						// 	activeClassName='paginate__active'
-						// 	onPageChange={handleChangePagination}
-						// 	pageRangeDisplayed={7}
-						// 	pageCount={pageCount}
-						// 	previousLabel={false}
-						// 	renderOnZeroPageCount={null}
-						// 	pageClassName='paginate__item'
-						// 	nextClassName='paginate__next'
-						// 	forcePage={+queryParams.offset}
-						// />
 						<div className={styles.pagination}>
-							{' '}
 							{Array.from({ length: pageCount }).map((el, idx) => (
 								<button
+									key={idx}
 									className={`${styles.pagination__item} ${
 										+queryParams.offset === idx
 											? styles.pagination__item_active

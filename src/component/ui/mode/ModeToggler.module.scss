@@ -22,8 +22,8 @@
 .toggler {
 	cursor: pointer;
 	svg {
-		width: 35px;
-		height: 35px;
+		width: 30px;
+		height: 30px;
 		fill: #fff;
 		transition: fill 0.3s ease 0s;
 		@media (any-hover: hover) {
@@ -34,8 +34,8 @@
 	}
 
 	&_dark {
-		svg {
-			fill: #121212;
-		}
+		// svg {
+		// 	fill: #121212;
+		// }
 	}
 }

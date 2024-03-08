@@ -33,7 +33,6 @@ const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
 			className={`${styles.dashboard} ${theme === 'dark' ? styles.dark : ''}`}
 		>
 			<div className={`container ${styles.dashboard__container}`}>
-				<div></div>
 				{shouldCartAction && (
 					<div className={styles.dashboard__info}>
 						<CartAction handleClick={actionCartClose} />

@@ -2,7 +2,7 @@ import { getStoreLocal } from '@/utils/local-storage'
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	theme: getStoreLocal('mode')
+	theme: getStoreLocal('mode') || 'light'
 }
 
 const modeSLice = createSlice({

@@ -48,4 +48,10 @@
 	&__value {
 		font-weight: 600;
 	}
+
+	&_dark {
+		.contacts__content {
+			background-color: #232323;
+		}
+	}
 }

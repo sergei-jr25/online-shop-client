@@ -7,15 +7,15 @@
 	&__content {
 		display: grid;
 		gap: 16px;
-
-		line-height: 27/ 18 * 100%;
-		color: #4e4c4c;
+		background-color: #4e4c4c;
+		line-height: 27px / 18px * 100%;
+		color: #fbfafc;
 
 		@media (min-width: 768px) {
 			position: relative;
 			z-index: 2;
 			padding: 48px;
-			background-color: #fff;
+			// background-color: #fff;
 			box-shadow: -1px 4px 30px rgba(0, 0, 0, 0.16);
 			align-self: start;
 			width: 1253px/1436px * 100%;
