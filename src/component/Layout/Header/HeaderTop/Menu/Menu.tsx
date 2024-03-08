@@ -28,7 +28,7 @@ const Menu: FC = () => {
 					<ul className={styles.menu__list}>
 						<li className={styles.menu__item}>
 							<Link className={styles.menu__link} href={'/catalog'}>
-								Доставка товаров
+								Каталог товаров
 							</Link>
 						</li>
 						<li>

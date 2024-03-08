@@ -10,7 +10,7 @@ import Skeleton from '@/component/ui/spinner/Spinner'
 import { useMode } from '@/hook/useMode'
 import styles from './Feedback.module.scss'
 
-const Feedback: FC<{ onSubmit: (data: any) => void; loading: boolean }> = ({
+const Feedback: FC<{ onSubmit: (data: any) => void; loading?: boolean }> = ({
 	onSubmit,
 	loading
 }) => {
@@ -78,7 +78,6 @@ const Feedback: FC<{ onSubmit: (data: any) => void; loading: boolean }> = ({
 					error={errors.message}
 					type='message'
 					placeholder='Введите ваше сообщение'
-				
 				/>
 
 				<Button className={styles.feedback__button}>
