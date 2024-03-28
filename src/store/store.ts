@@ -5,8 +5,7 @@ import { rootReducer } from './rootReducer'
 export const store = configureStore({
 	reducer: rootReducer,
 	middleware: getDefaultMiddleware => {
-		return getDefaultMiddleware()
-			.concat(api.middleware)
+		return getDefaultMiddleware().concat(api.middleware)
 	}
 })
 // Infer the `RootState` and `AppDispatch` types from the store itself

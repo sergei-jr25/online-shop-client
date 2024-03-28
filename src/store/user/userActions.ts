@@ -30,10 +30,9 @@ export const register = createAsyncThunk<IAuthResponse, IAuthFields>(
 )
 export const login = createAsyncThunk<IAuthResponse, IAuthFields>(
 	'auth/login',
-	async ({ email, password, username }, thunkApi) => {
+	async ({ password, username }, thunkApi) => {
 		try {
 			const { data } = await instance.post('/auth/login', {
-				email,
 				password,
 				username
 			})

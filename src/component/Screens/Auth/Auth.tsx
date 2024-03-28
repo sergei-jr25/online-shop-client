@@ -28,17 +28,14 @@ const Auth: FC = () => {
 	const { login, register: registerAction } = useActions()
 
 	useEffect(() => {
-		if (user) {
-			replace('/dashboard')
-			return
-		}
+		if (user) push('/')
 	}, [user])
 
 	const onSubmit = (data: any) => {
 		if (type === 'register') registerAction(data)
 		else login(data)
 
-		// reset()
+		reset()
 	}
 
 	return (

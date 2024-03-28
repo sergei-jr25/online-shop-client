@@ -9,13 +9,12 @@ import { reducer as ModeReducer } from './mode/mode.slice'
 import { reducer as userReducer } from './user/user.slice'
 
 export const rootReducer = {
+	[api.reducerPath]: api.reducer,
 	user: userReducer,
 	mode: ModeReducer,
-	// catalog: catalogReducer,
 	filters: filtersReducer,
 	cart: cartReducer,
 	boilerManufacturer: boilerManufacturerREducer,
 	location: locationReducer,
-	[api.reducerPath]: api.reducer,
 	toastr: toastReducer
 }

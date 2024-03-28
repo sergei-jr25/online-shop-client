@@ -13,7 +13,7 @@ const Search: FC<{ initData: IBoilerPartsData[] }> = ({ initData }) => {
 	const { debaunced } = useDebunce(searchTerm, 500)
 
 	const { data: boilers = [] as IBoilerPartsData[], isFetching } =
-		apiBoilerParts.useGetSearchQuery(debaunced)
+		apiBoilerParts.useGetSearchQuery(debaunced, { skip: !!!searchTerm })
 
 	const dataValue = boilers.length ? boilers : initData || []
 

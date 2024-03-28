@@ -1,4 +1,3 @@
-import { useAuth } from '@/hook/useAuth'
 import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
@@ -8,7 +7,6 @@ import { FC } from 'react'
 import { ItemCartDynamic } from './ItemCart'
 import styles from './ProductItem.module.scss'
 const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
-	const { user } = useAuth()
 	const { addToCart } = useActions()
 
 	const { theme } = useMode()
@@ -45,12 +43,11 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 			<div className={styles.catalogItem__article}>{product.vendorCode}</div>
 			<div className={styles.catalogItem__footer}>
 				<div className={styles.catalogItem__price}>{product.price} ₽</div>
-				{user && (
-					<ItemCartDynamic
-						handleCrateComment={handleCrateComment}
-						productId={product.id}
-					/>
-				)}
+
+				<ItemCartDynamic
+					handleCrateComment={handleCrateComment}
+					productId={product.id}
+				/>
 			</div>
 		</section>
 	)

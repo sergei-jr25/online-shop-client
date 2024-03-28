@@ -1,8 +1,9 @@
 import ExitSvg from '@/component/ui/IconsSvg/ExitSvg'
 import { useAuth } from '@/hook/useAuth'
 import { useActions } from '@/hook/useDispatch'
-import { useRouter } from 'next/navigation'
-import { FC, LegacyRef } from 'react'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
+import { FC, LegacyRef, useEffect } from 'react'
 import styles from './Profile.module.scss'
 
 const Profile: FC<{
@@ -11,6 +12,9 @@ const Profile: FC<{
 }> = ({ refP, setIsShow }) => {
 	const { user } = useAuth()
 	const { logout } = useActions()
+	const pathName = usePathname()
+
+	console.log('pathName', pathName)
 
 	const hadnleLogout = () => {
 		setIsShow(false)
@@ -20,6 +24,9 @@ const Profile: FC<{
 		setIsShow(false)
 		push('/auth')
 	}
+	useEffect(() => {
+		setIsShow(false)
+	}, [pathName])
 
 	const { push } = useRouter()
 	return (
@@ -39,9 +46,9 @@ const Profile: FC<{
 					</li>
 				) : (
 					<li className={styles.profile__item}>
-						<button className={styles.profile__button} onClick={hadnleLogin}>
+						<Link className={styles.profile__button} href='/auth'>
 							Войти <ExitSvg />
-						</button>
+						</Link>
 					</li>
 				)}
 			</ul>

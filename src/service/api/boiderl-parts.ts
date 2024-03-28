@@ -21,10 +21,6 @@ export const apiBoilerParts = api.injectEndpoints({
 		}),
 		getSearch: builder.query<IBoilerPartsData[], string | undefined>({
 			query: (searchTerm: string | undefined) => {
-				if (!searchTerm) {
-					// Если поисковый запрос пустой, возвращаем пустой массив
-					throw new Error('Search term is empty')
-				}
 				return {
 					url: '/boiler-parts/search',
 					params: { searchTerm }

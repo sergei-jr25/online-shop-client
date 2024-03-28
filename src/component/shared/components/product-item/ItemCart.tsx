@@ -1,4 +1,5 @@
 import CartIconSvg from '@/component/ui/IconsSvg/catalog-icons/CartIconSvg'
+import { useAuth } from '@/hook/useAuth'
 import { useCart } from '@/hook/useCart'
 import cn from 'clsx'
 import dynamic from 'next/dynamic'
@@ -12,8 +13,13 @@ interface IItemCart {
 
 const ItemCart: FC<IItemCart> = ({ handleCrateComment, productId }) => {
 	const { items } = useCart()
+	const { user } = useAuth()
 
 	const isInCart = items.some(cart => +cart.id === +productId)
+
+	if (!user) {
+		return null
+	}
 
 	return (
 		<div

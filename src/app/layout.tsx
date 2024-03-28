@@ -1,5 +1,6 @@
 import LayoutWrapper from '@/component/Layout/LayoutWrapper'
 import { MainProviders } from '@/provider/MainProvider'
+import NextProgress from '@/provider/NextProgress'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
@@ -19,7 +20,10 @@ export default function RootLayout({
 		<html lang='en'>
 			<body className={inter.className}>
 				<MainProviders>
-					<LayoutWrapper>{children}</LayoutWrapper>
+					<LayoutWrapper>
+						<NextProgress />
+						{children}
+					</LayoutWrapper>
 				</MainProviders>
 			</body>
 		</html>

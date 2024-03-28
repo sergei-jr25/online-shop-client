@@ -21,7 +21,10 @@ const DashboardPage = async () => {
 
 	return (
 		<div>
-			<Dashboard bestsellers={bestsellers || []} news={news || []} />
+			<Dashboard
+				bestsellers={bestsellers.slice(0, 30) || []}
+				news={news.slice(0, 30) || []}
+			/>
 		</div>
 	)
 }

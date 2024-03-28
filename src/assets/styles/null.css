@@ -26,6 +26,7 @@ input,
 button,
 textarea {
 	font-size: inherit;
+	background-color: transparent;
 }
 
 button {
@@ -65,7 +66,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
 	-webkit-text-fill-color: inherit;
-	-webkit-box-shadow: 0 0 0px 40rem #232323 inset;
+	-webkit-box-shadow: 0 0 0px 40rem #101014ef inset;
 }
 input,
 textarea {
@@ -75,4 +76,9 @@ textarea {
 	&:focus {
 		outline: none;
 	}
+}
+
+input:focus {
+	border: none;
+	outline: none;
 }

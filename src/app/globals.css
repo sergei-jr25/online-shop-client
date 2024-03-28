@@ -1,8 +1,8 @@
-@import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 @import '../assets/styles/null.css';
 @import '../assets/styles/next-progress.css';
 @import './common.css';
-
+@import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+/* @import 'react-redux-toastr/src/styles/index'; */
 /* @import './functions.scss'; */
 
 * {
