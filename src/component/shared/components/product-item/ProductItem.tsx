@@ -31,7 +31,13 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 				className={styles.catalogItem__image}
 				href={`/product/${product.name}`}
 			>
-				<Image src={product.images} fill alt={product.name} loading='lazy' />
+				<Image
+					src={product.images}
+					fill
+					alt={product.name}
+					loading='lazy'
+					onLoad={() => console.log('Изображение загружено')}
+				/>
 			</Link>
 			<h4 className={styles.catalogItem__title}>
 				<Link href={`/product/${product.name}`}>{product.name}</Link>

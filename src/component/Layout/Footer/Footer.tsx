@@ -5,7 +5,6 @@ import { paymentsImages, socialImages } from '@/utils/imagesPaths/footer'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { toastr } from 'react-redux-toastr'
 import EmailSvg from '../../ui/IconsSvg/header-icons/EmailSvg'
 import LocationSvg from '../../ui/IconsSvg/header-icons/LocationSvg'
 import PhoneSvg from '../../ui/IconsSvg/header-icons/PhoneSvg'
@@ -27,15 +26,7 @@ const Footer: FC = () => {
 						{query ? (
 							<div className={styles.footer__block}>
 								<div className={styles.footer__title}>Интернет магазин</div>
-								<h1>
-									{' '}
-									<button
-										style={{ color: 'red' }}
-										onClick={() => toastr.success('Click', 'to toastr succses')}
-									>
-										Click to toastr
-									</button>
-								</h1>
+
 								<ul className={styles.footer__list}>
 									<li className={styles.footer__item}>Каталог</li>
 									<li className={styles.footer__item}>Доставка и оплата</li>

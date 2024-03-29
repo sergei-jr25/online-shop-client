@@ -5,7 +5,6 @@ import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useState } from 'react'
-import { toastr } from 'react-redux-toastr'
 import About from './About/About'
 import Bestsellers from './Bestsellers/Bestsellers'
 import Brands from './Brands/Brands'
@@ -39,9 +38,7 @@ const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
 						<CartAction handleClick={actionCartClose} />
 					</div>
 				)}
-				<button onClick={() => toastr.success('Click', 'to toastr succses')}>
-					Click to toastr
-				</button>
+
 				<h1 className={`title ${styles.dashboard__title}`}>
 					Детали для газовых котлов
 				</h1>
