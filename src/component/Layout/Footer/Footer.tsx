@@ -38,8 +38,12 @@ const Footer: FC = () => {
 								titleClass={styles.accordion__title}
 							>
 								<ul className={styles.footer__list}>
-									<li className={styles.footer__item}>Каталог</li>
-									<li className={styles.footer__item}>Доставка и оплата</li>
+									<li className={styles.footer__item}>
+										<Link href={'/catalog'}>Каталог</Link>
+									</li>
+									<li className={styles.footer__item}>
+										<Link href={'/order'}>Доставка и оплата</Link>
+									</li>
 								</ul>
 							</AccordionMy>
 						)}
@@ -47,10 +51,15 @@ const Footer: FC = () => {
 							<div className={styles.footer__block}>
 								<div className={styles.footer__title}> Компания</div>
 								<ul className={styles.footer__list}>
-									<li className={styles.footer__item}>О компании</li>
-									<li className={styles.footer__item}>Обратная связь</li>
-									<li className={styles.footer__item}>Оптовым покупателям</li>
-									<li className={styles.footer__item}>Контакты</li>
+									<li className={styles.footer__item}>
+										<Link href={'/about-us'}>О компании</Link>
+									</li>
+									<li className={styles.footer__item}>
+										<Link href={'/wholesalebuyers'}>Оптовым покупателям</Link>
+									</li>
+									<li className={styles.footer__item}>
+										<Link href={'/contacts'}>Контакты</Link>
+									</li>
 								</ul>
 								{bigMobile && (
 									<div className={styles.footer__content}>
@@ -78,10 +87,15 @@ const Footer: FC = () => {
 								titleClass={styles.accordion__title}
 							>
 								<ul className={styles.footer__list}>
-									<li className={styles.footer__item}>О компании</li>
-									<li className={styles.footer__item}>Обратная связь</li>
-									<li className={styles.footer__item}>Оптовым покупателям</li>
-									<li className={styles.footer__item}>Контакты</li>
+									<li className={styles.footer__item}>
+										<Link href={'/about-us'}>О компании</Link>
+									</li>
+									<li className={styles.footer__item}>
+										<Link href={'/wholesalebuyers'}>Оптовым покупателям</Link>
+									</li>
+									<li className={styles.footer__item}>
+										<Link href={'/contacts'}>Контакты</Link>
+									</li>
 								</ul>
 							</AccordionMy>
 						)}

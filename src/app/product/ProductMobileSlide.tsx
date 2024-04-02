@@ -16,7 +16,6 @@ const ProductMobileSlide: FC<IProductMobileSlide> = ({ items, src, item }) => {
 			{items.map(item => (
 				<SwiperSlide>
 					<div key={item}>
-						{' '}
 						<Image src={src} width={600} height={400} alt='' loading='lazy' />
 					</div>
 				</SwiperSlide>

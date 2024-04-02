@@ -2,6 +2,7 @@
 @import '../assets/styles/next-progress.css';
 @import './common.css';
 @import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+@import 'swiper/css';
 /* @import 'react-redux-toastr/src/styles/index'; */
 /* @import './functions.scss'; */
 
@@ -81,4 +82,8 @@ body.dark_mode {
 	max-width: 1466px;
 	margin: 0 auto;
 	padding: 0 15px;
+}
+
+.swiper-slide {
+	height: 100% !important;
 }

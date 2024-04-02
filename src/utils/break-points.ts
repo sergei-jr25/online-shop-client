@@ -1,4 +1,5 @@
 export const breakpoints = {
+ 
 	556: {
 		slidesPerView: 2
 	},

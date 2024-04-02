@@ -20,6 +20,9 @@
 			align-self: start;
 			width: 1253px/1436px * 100%;
 		}
+		@media (max-width: 768px) {
+			padding: 15px;
+		}
 
 		@media (max-width: 767px) {
 			margin-bottom: 32px;

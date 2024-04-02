@@ -1,4 +1,5 @@
 import { IBoilerPartsData } from '@/shared/type/user.interface'
+import { breakpoints } from '@/utils/break-points'
 import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import ProductItem from '../../shared/components/product-item/ProductItem'
@@ -16,22 +17,11 @@ const Slider: FC<ISlider> = ({ items, title }) => {
 			<Swiper
 				// install Swiper modules
 				spaceBetween={16}
-				slidesPerView={4}
 				navigation
+				breakpoints={breakpoints}
 			>
 				{items.map((item, idx) => (
 					<SwiperSlide key={item.id}>
-						{/* <div className={styles.slider__item}>
-							<Link
-								href={`/product/${item.id}`}
-								className={styles.slider__image}
-							>
-								<img src={item.images} alt={item.name} />
-							</Link>
-							<div className={styles.slider__name}>{item.name}</div>
-							<div className={styles.slider__article}>{item.vendorCode}</div>
-							<div className={styles.slider__price}>{item.price}Р</div>
-						</div> */}
 						<ProductItem product={item} />
 					</SwiperSlide>
 				))}
