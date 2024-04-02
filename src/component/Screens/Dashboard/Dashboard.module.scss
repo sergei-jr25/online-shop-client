@@ -31,6 +31,18 @@
 		margin: 0 0 48px 0;
 	}
 
+	&__text {
+		p {
+			color: #232323;
+			line-height: 27px;
+		}
+		&_dark {
+			p {
+				color: #cdcbcb;
+			}
+		}
+	}
+
 	&__dark {
 	}
 }

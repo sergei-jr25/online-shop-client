@@ -1,28 +1,13 @@
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
+import { useSlide } from '@/component/ui/Slider/useSlide'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from '../Dashboard.module.scss'
 
 const New: FC<{ news: IBoilerPartsData[] }> = ({ news }) => {
-	useEffect(() => {
-		const dashboardSliders = document.querySelectorAll('.dashboard__slider')
-		dashboardSliders.forEach(dashboardSlider => {
-			const slides = dashboardSlider.querySelectorAll('.swiper-slide')
-
-			let maxHeight = 0
-
-			slides.forEach(slide => {
-				const height = (slide as HTMLElement).offsetHeight
-				maxHeight = Math.max(maxHeight, height)
-			})
-
-			slides.forEach(slide => {
-				;(slide as HTMLElement).style.height = `${maxHeight}px`
-			})
-		})
-	}, [news])
+	const slide = useSlide(news)
 
 	return (
 		<div className={styles.dashboard__block}>

@@ -1,3 +1,4 @@
+import { breakpoints } from '@/utils/break-points'
 import { brands } from '@/utils/imagesPaths/bransImage'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
@@ -27,24 +28,6 @@ const Brands: FC = () => {
 			window.removeEventListener('resize', handleResize)
 		}
 	}, [])
-
-	const breakpoints = {
-		0: {
-			slidesPerView: 2
-		},
-		556: {
-			slidesPerView: 2
-		},
-		767: {
-			slidesPerView: 4
-		},
-		992: {
-			slidesPerView: 6
-		},
-		1466: {
-			slidesPerView: 8
-		}
-	}
 
 	return (
 		<div className={`${styles.brands}`}>

@@ -14,12 +14,7 @@ const Slider: FC<ISlider> = ({ items, title }) => {
 	return (
 		<div className={styles.slider}>
 			<h3 className={styles.slider__title}>{title}</h3>
-			<Swiper
-				// install Swiper modules
-				spaceBetween={16}
-				navigation
-				breakpoints={breakpoints}
-			>
+			<Swiper spaceBetween={16} navigation breakpoints={breakpoints}>
 				{items.map((item, idx) => (
 					<SwiperSlide key={item.id}>
 						<ProductItem product={item} />

@@ -7,9 +7,9 @@
 	transition: box-shadow 0.3s;
 	border-radius: 4px;
 	height: 100%;
-	@media (max-width: 768px) {
-		padding: 30px;
-		margin: 0 -15px;
+	@media (max-width: 767px) {
+		padding: 15px;
+		// margin: 0 -15px;
 	}
 
 	&:hover {

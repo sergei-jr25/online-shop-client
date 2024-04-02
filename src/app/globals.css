@@ -84,6 +84,8 @@ body.dark_mode {
 	padding: 0 15px;
 }
 
-.swiper-slide {
-	height: 100% !important;
+@media (max-width: 556px) {
+	.swiper-slide {
+		height: 100% !important;
+	}
 }

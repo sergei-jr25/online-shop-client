@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export const useSlide = (length: number) => {
+export const useSlider = (length: number) => {
 	const [currentIndex, setCurrentIndex] = useState<number>(0)
 	const [sideIn, setSideIn] = useState<boolean>(false)
 

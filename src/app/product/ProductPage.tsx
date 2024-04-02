@@ -1,5 +1,6 @@
 'use client'
 import Slider from '@/component/ui/Slider/Slider'
+import { useSlide } from '@/component/ui/Slider/useSlide'
 import { useCart } from '@/hook/useCart'
 import { useActions } from '@/hook/useDispatch'
 import { useFilters } from '@/hook/useFilters'
@@ -22,6 +23,7 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 	const { addToCart, removeToCart } = useActions()
 
 	const { data = [] } = apiBoilerParts.usePaginateAndFilterQuery(queryParams)
+	const slide = useSlide(data[0] || [])
 
 	const handleAddToCart = () => {
 		addToCart({
