@@ -1,28 +1,34 @@
 import Button from '@/component/ui/button/Button'
 import CartItemPopupProps from '@/component/ui/cart/CartItem'
-import { useCart } from '@/hook/useCart'
-import { useActions } from '@/hook/useDispatch'
+import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
+import { api } from '@/service/api/api'
+import { ICart } from '@/shared/type/cart.interface'
+import { calculateTotalPrice } from '@/utils/calculateTotalPrice'
 import cn from 'clsx'
 import { usePathname, useRouter } from 'next/navigation'
-import { FC, useEffect } from 'react'
+import { FC } from 'react'
 import CartSvg from '../../../../ui/IconsSvg/header-icons/CartSvg'
 import styles from './Cart.module.scss'
 
 const Cart: FC = () => {
-	const { removeToCart, setTotalPrice } = useActions()
-	const { items, isCartOpen, totalPrice } = useCart()
 	const { isShow, ref, setIsShow } = useOutside(false)
 	const { theme } = useMode()
 	const pathName = usePathname()
 	const { push } = useRouter()
+	const { user } = useAuth()
+
+	const {
+		data = [] as ICart[],
+		isFetching,
+		isError
+	} = api.useGetCartProductsQuery(user?.id, {
+		skip: !user
+	})
 
 	const pathNameOrder = pathName === '/order'
 
-	const handlerRemoveToCart = (id: string) => {
-		removeToCart({ productId: id })
-	}
 	const changePageOrder = () => {
 		push('/order')
 		setIsShow(false)
@@ -31,9 +37,7 @@ const Cart: FC = () => {
 		setIsShow(!isShow)
 	}
 
-	useEffect(() => {
-		setTotalPrice()
-	}, [items])
+	const totalPrice = calculateTotalPrice(data)
 
 	return (
 		<div className={cn(styles.cart, { [styles.dark]: theme === 'dark' })}>
@@ -44,8 +48,8 @@ const Cart: FC = () => {
 			>
 				<CartSvg />
 				<span>Корзина</span>
-				{!!items.length && (
-					<div className={styles.cart__quantity}>{items.length}</div>
+				{!!data.length && (
+					<div className={styles.cart__quantity}>{data.length}</div>
 				)}
 			</button>
 			<div>
@@ -54,10 +58,14 @@ const Cart: FC = () => {
 						[styles.cart__body_show]: isShow
 					})}
 				>
-					{items.length ? (
+					{data.length ? (
 						<ul className={styles.cart__list}>
-							{items.map(item => (
-								<CartItemPopupProps key={item.id} item={item} />
+							{data.map(item => (
+								<CartItemPopupProps
+									key={item.id}
+									item={item}
+									isFetching={isFetching}
+								/>
 							))}
 						</ul>
 					) : (
@@ -70,7 +78,7 @@ const Cart: FC = () => {
 							</div>
 						</div>
 					)}
-					{!!items.length && (
+					{!!data.length && (
 						<Button className={styles.cart__button} onClick={changePageOrder}>
 							Перейти в корзину
 						</Button>

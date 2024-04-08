@@ -43,17 +43,17 @@ export const api = createApi({
 				body: { totalPrice }
 			})
 		}),
-		updateCount: builder.mutation<number, { partId: number; count: number }>({
-			query: ({ partId, count }) => ({
+		updateCount: builder.mutation<number, any>({
+			query: ({ partId, type }) => ({
 				url: `/shopping-cart/count/${partId}`,
 				method: 'PUT',
-				body: { count }
-			})
-			// invalidatesTags: ['Cart']
+				body: { type }
+			}),
+			invalidatesTags: ['Cart']
 		}),
 		remove: builder.mutation<ICart, number>({
-			query: id => ({
-				url: `/shopping-cart/remove/${id}`,
+			query: partID => ({
+				url: `/shopping-cart/remove/${partID}`,
 				method: 'DELETE'
 			}),
 			invalidatesTags: ['Cart']

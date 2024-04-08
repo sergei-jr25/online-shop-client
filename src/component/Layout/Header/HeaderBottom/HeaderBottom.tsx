@@ -1,15 +1,17 @@
 'use client'
 
-import Search from '@/component/ui/header/Search'
+import Skeleton from '@/component/ui/spinner/Spinner'
 import { useMode } from '@/hook/useMode'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'
-import dynamic from 'next/dynamic'
-import { FC } from 'react'
+import { FC, LazyExoticComponent, Suspense, lazy } from 'react'
+import Cart from './Cart/Cart'
 import styles from './HeaderBottom.module.scss'
 import Logo from './Logo'
 
-const CartDynamic = dynamic(() => import('./Cart/Cart'), { ssr: false })
+const LazySearch: LazyExoticComponent<FC<{ initData: IBoilerPartsData[] }>> =
+	lazy(() => import('@/component/ui/header/Search'))
+
 const HeaderBottom: FC<{ initData: IBoilerPartsData[] }> = ({ initData }) => {
 	const { theme } = useMode()
 
@@ -22,12 +24,14 @@ const HeaderBottom: FC<{ initData: IBoilerPartsData[] }> = ({ initData }) => {
 		>
 			<div className={`container ${styles.container}`}>
 				<Logo />
-				{/* <Search /> */}
+
 				<div className={styles.select}>
-					<Search initData={initData} />
+					<Suspense fallback={<Skeleton width='100%' height='50px' />}>
+						<LazySearch initData={initData} />
+					</Suspense>
+					{/* <Search initData={initData} /> */}
 				</div>
-				<CartDynamic />
-				{/* <Cart /> */}
+				<Cart />
 			</div>
 		</div>
 	)

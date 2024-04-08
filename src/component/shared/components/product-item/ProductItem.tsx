@@ -1,25 +1,22 @@
-import { useActions } from '@/hook/useDispatch'
+import CartIconSvg from '@/component/ui/IconsSvg/catalog-icons/CartIconSvg'
+import Skeleton from '@/component/ui/spinner/Spinner'
+import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
+import { api } from '@/service/api/api'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
+import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { ItemCartDynamic } from './ItemCart'
 import styles from './ProductItem.module.scss'
+
 const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
-	const { addToCart } = useActions()
+	const [addToShop] = api.useCreateShopCartMutation()
+	const { user } = useAuth()
+	const { data = [], isFetching } = api.useGetCartProductsQuery(user?.id)
 
 	const { theme } = useMode()
-	const handleCrateComment = () => {
-		addToCart({
-			id: product.id,
-			count: 1,
-			name: product.name,
-			price: product.price,
-			image: product.images,
-			totalPrice: product.price
-		})
-	}
+	const isInCart = data.some(cart => +cart.partId === +product.id)
 
 	return (
 		<section
@@ -49,11 +46,26 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 			<div className={styles.catalogItem__article}>{product.vendorCode}</div>
 			<div className={styles.catalogItem__footer}>
 				<div className={styles.catalogItem__price}>{product.price} ₽</div>
-
-				<ItemCartDynamic
-					handleCrateComment={handleCrateComment}
-					productId={product.id}
-				/>
+				{user && (
+					<div
+						className={cn(styles.catalogItem__action, {
+							[styles.catalogItem__action_add]: isInCart
+						})}
+					>
+						{isFetching ? (
+							<Skeleton height='40px' width='40px' />
+						) : (
+							<button
+								onClick={() =>
+									addToShop({ username: user?.username, partId: +product.id })
+								}
+								disabled={isInCart}
+							>
+								<CartIconSvg />
+							</button>
+						)}
+					</div>
+				)}
 			</div>
 		</section>
 	)
