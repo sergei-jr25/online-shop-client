@@ -2,7 +2,6 @@
 
 import CheckSvg from '@/component/ui/IconsSvg/CheckSvg'
 import EditSvg from '@/component/ui/IconsSvg/EditSvg'
-import CartItemPopup from '@/component/ui/cart/CartItem'
 import { useAuth } from '@/hook/useAuth'
 
 import CartSvg from '@/component/ui/IconsSvg/header-icons/CartSvg'
@@ -13,6 +12,7 @@ import { calculateTotalPrice } from '@/utils/calculateTotalPrice'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { FC, useState } from 'react'
+import OrderItems from './OrderItems'
 import styles from './OrderPage.module.scss'
 
 const OrderItemsDynamic = dynamic(() => import('./OrderItems'), { ssr: false })
@@ -77,7 +77,7 @@ const OrderPage: FC = () => {
 						{isEdit && (
 							<div className={styles.order__body}>
 								<div className={styles.order__items}>
-									<OrderItemsDynamic data={data} />
+									<OrderItems data={data} isFetching={isFetching} />
 								</div>
 								<div className={styles.order__sum}>
 									<div className={styles.order__info}>
@@ -102,17 +102,7 @@ const OrderPage: FC = () => {
 							<div className={styles.order__total}>Итого</div>
 						</div>
 						<div className={styles.order__block}>
-							<ul className={styles.order__list}>
-								{data.length ? (
-									data.map(item => (
-										<li className={styles.order__item} key={item.id}>
-											<CartItemPopup item={item} isFetching={isFetching} />
-										</li>
-									))
-								) : (
-									<li>Товаров нет</li>
-								)}
-							</ul>
+							<OrderItems data={data} isFetching={isFetching} />
 						</div>
 						<div className={styles.order__block}>
 							<div className={styles.order__value}>На сумму</div>
