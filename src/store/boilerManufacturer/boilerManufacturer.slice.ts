@@ -19,45 +19,23 @@ export const boilerManufacturer = createSlice({
 				payload
 			}: PayloadAction<{ item: ICkeckFilters; type: 'boiler' | 'parts' }>
 		) => {
-			if (payload.type === 'boiler') {
-				state.boilerManufacturer.map(item => {
-					if (item.id === payload.item.id) {
-						return { ...item, checked: !item.checked }
-					}
-				})
-			} else if (payload.type === 'parts') {
-				state.manufacturerParts.map(item => {
-					if (item.id === payload.item.id) {
-						return { ...item, checked: !item.checked }
-					}
-				})
+			const { item, type } = payload
+
+			const targetList =
+				type === 'boiler' ? state.boilerManufacturer : state.manufacturerParts
+			const findIdex = targetList.findIndex(el => el.id === item.id)
+
+			if (findIdex !== -1) {
+				targetList[findIdex].checked = !targetList[findIdex].checked
 			}
 		},
-		boilerToggleChecked: (state, { payload }: PayloadAction<ICkeckFilters>) => {
-			state.boilerManufacturer.filter(item => {
-				if (item.id === payload.id) {
-					return [...state.boilerManufacturer, (item.checked = !item.checked)]
-				}
-			})
-			// state.boilerManufacturer.filter(item => {
-			// 	if (item.id === payload.id) {
-			// 		return { ...item, checked: true }
-			// 	}
-			// })
-		},
 
-		partsToggleChecked: (state, { payload }: PayloadAction<ICkeckFilters>) => {
-			state.manufacturerParts.filter(item => {
-				if (item.id === payload.id) {
-					return [...state.manufacturerParts, (item.checked = !item.checked)]
-				}
-			})
-		},
 		anyCheckboxChecked: state => {
 			state.isAnyCheckboxChecked = !state.boilerManufacturer.some(
 				item => item.checked
 			)
 		},
+
 		resetCheckbox: state => {
 			state.isAnyCheckboxChecked = true
 		},
@@ -78,10 +56,15 @@ export const boilerManufacturer = createSlice({
 				}))
 			}
 		},
+
 		removeBoiler: state => {
 			state.boilerManufacturer.map(item => (item.checked = false))
 		},
 		removeParts: state => {
+			state.manufacturerParts.map(item => (item.checked = false))
+		},
+		resetFiltersBoilerParts: state => {
+			state.boilerManufacturer.map(item => (item.checked = false))
 			state.manufacturerParts.map(item => (item.checked = false))
 		},
 		boilerChecked: state => {
@@ -92,33 +75,27 @@ export const boilerManufacturer = createSlice({
 		manufacturerChecked: state => {
 			state.boilerManufacturer.filter(item => item.checked)
 		},
-		resetFiltersBoilerParts: state => {
-			state.boilerManufacturer.map(item => (item.checked = false))
-			state.manufacturerParts.map(item => (item.checked = false))
-		},
+
 		setBoilerQueryParams: (
 			state,
 			{ payload }: PayloadAction<{ items: string[] }>
 		) => {
-			state.boilerManufacturer.map(item =>
-				payload.items.find(title => {
-					if (title === item.title) {
-						return [state.boilerManufacturer, (item.checked = true)]
-					}
-				})
-			)
+			state.boilerManufacturer.forEach(item => {
+				if (payload.items.includes(item.title)) {
+					item.checked = true
+				}
+			})
 		},
+
 		setPartsQueryParams: (
 			state,
 			{ payload }: PayloadAction<{ items: string[] }>
 		) => {
-			state.boilerManufacturer.map(item =>
-				payload.items.find(title => {
-					if (title === item.title) {
-						return [state.manufacturerParts, (item.checked = true)]
-					}
-				})
-			)
+			state.manufacturerParts.forEach(item => {
+				if (payload.items.includes(item.title)) {
+					item.checked = true
+				}
+			})
 		}
 	}
 })

@@ -11,9 +11,12 @@ import { FC } from 'react'
 import styles from './ProductItem.module.scss'
 
 const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
-	const [addToShop] = api.useCreateShopCartMutation()
 	const { user } = useAuth()
-	const { data = [], isFetching } = api.useGetCartProductsQuery(user?.id)
+
+	const [addToShop] = api.useCreateShopCartMutation()
+	const { data = [], isFetching } = api.useGetCartProductsQuery(user?.id, {
+		skip: !user
+	})
 
 	const { theme } = useMode()
 	const isInCart = data.some(cart => +cart.partId === +product.id)
