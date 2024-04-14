@@ -15,8 +15,6 @@ const CartAction: FC<ICartAction> = ({ handleClick }) => {
 	const { push } = useRouter()
 	const { items, totalPrice } = useCart()
 
-	console.log(theme)
-
 	return (
 		<div
 			className={`${styles.cart} ${theme === 'dark' ? styles.cart_dark : ''}`}

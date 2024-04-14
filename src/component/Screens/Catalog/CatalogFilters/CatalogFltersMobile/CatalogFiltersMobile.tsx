@@ -40,8 +40,6 @@ const CatalogFiltersMobile: FC<ICatalogFilterMobile> = ({
 	const isDidabledButtonBoiler = isOpenBoiler && isDisabledBoiler
 	const isDidabledButtonParts = isOpenParts && isDisabledParts
 
-	console.log(!isDidabledButtonBoiler, !isDidabledButtonParts)
-
 	const resetFiltersAndCheckbox = () => {
 		resetCheckbox()
 		resetFilters()

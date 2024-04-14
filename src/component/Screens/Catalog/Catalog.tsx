@@ -7,6 +7,7 @@ import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
 
+import { MAXPRICE, MINPRICE } from '@/shared/consts/prive-value'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useEffect } from 'react'
 import SortSelect from '../../shared/components/SortSelect/SortSelect'
@@ -65,64 +66,64 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 		setTouchFilter({ flag: false })
 		setIsRessitng({ flag: true })
 		resetQueryParams()
-
-		// uploadNewParams('offset', '2')
-		// refetch()
 	}
 
 	const applyQueryParams = () => {
-		// const encoded = encodeURIComponent()
-		setTimeout(() => {
-			const queryPriceFrom = Math.ceil(
-				JSON.parse(localStorage.getItem('range-price')!)[0]
-			)
-			const queryPriceTo = Math.ceil(
-				JSON.parse(localStorage.getItem('range-price')!)[1]
-			)
+		const rangePriceJson = localStorage.getItem('range-price')
+		const rangePriceArray = rangePriceJson ? JSON.parse(rangePriceJson) : null
 
-			const boiler = boilerManufacturer
-				.filter(item => item.checked)
-				.map(item => item.title)
+		const queryPriceFrom = Math.ceil(
+			(rangePriceArray && rangePriceArray[0]) ?? MINPRICE
+		)
+		const queryPriceTo = Math.ceil(
+			(rangePriceArray && rangePriceArray[1]) ?? MAXPRICE
+		)
 
-			const manufacturer = manufacturerParts
-				.filter(item => item.checked)
-				.map(item => item.title)
+		console.log('queryPriceFrom', queryPriceFrom)
+		console.log('queryPriceTo', queryPriceTo)
 
-			const queryBoiler = JSON.stringify(boiler)
-			const queryManufacturer = encodeURIComponent(JSON.stringify(manufacturer))
+		const boiler = boilerManufacturer
+			.filter(item => item.checked)
+			.map(item => item.title)
 
-			if (boiler.length && manufacturer.length && isChangePrice) {
-				uploadNewParams('priceFrom', queryPriceFrom)
-				uploadNewParams('priceTo', queryPriceTo)
-				uploadNewParams('boilerManufacturer', queryBoiler)
-				uploadNewParams('manufacturerParts', queryManufacturer)
-			}
+		const manufacturer = manufacturerParts
+			.filter(item => item.checked)
+			.map(item => item.title)
 
-			if (boiler.length && isChangePrice) {
-				uploadNewParams('priceFrom', queryPriceFrom)
-				uploadNewParams('priceTo', queryPriceTo)
-				uploadNewParams('boilerManufacturer', queryBoiler)
+		const queryBoiler = JSON.stringify(boiler)
+		const queryManufacturer = encodeURIComponent(JSON.stringify(manufacturer))
 
-				return
-			}
-			if (manufacturer.length && isChangePrice) {
-				uploadNewParams('manufacturerParts', queryManufacturer)
-				uploadNewParams('priceFrom', Number(queryPriceFrom))
-				uploadNewParams('priceTo', Number(queryPriceTo))
-				return
-			}
+		if (boiler.length && manufacturer.length && isChangePrice) {
+			uploadNewParams('priceFrom', queryPriceFrom)
+			uploadNewParams('priceTo', queryPriceTo)
+			uploadNewParams('boilerManufacturer', queryBoiler)
+			uploadNewParams('manufacturerParts', queryManufacturer)
+		}
 
-			if (boiler.length) {
-				uploadNewParams('boilerManufacturer', queryBoiler)
-			}
-			if (manufacturer.length) {
-				uploadNewParams('manufacturerParts', queryManufacturer)
-			}
-			if (queryPriceFrom && queryPriceTo && isChangePrice) {
-				uploadNewParams('priceFrom', Number(queryPriceFrom))
-				uploadNewParams('priceTo', Number(queryPriceTo))
-			}
-		}, 200)
+		if (boiler.length && isChangePrice) {
+			uploadNewParams('priceFrom', queryPriceFrom)
+			uploadNewParams('priceTo', queryPriceTo)
+			uploadNewParams('boilerManufacturer', queryBoiler)
+
+			return
+		}
+		if (manufacturer.length && isChangePrice) {
+			uploadNewParams('manufacturerParts', queryManufacturer)
+			uploadNewParams('priceFrom', Number(queryPriceFrom))
+			uploadNewParams('priceTo', Number(queryPriceTo))
+			return
+		}
+
+		if (boiler.length) {
+			uploadNewParams('boilerManufacturer', queryBoiler)
+		}
+		if (manufacturer.length) {
+			uploadNewParams('manufacturerParts', queryManufacturer)
+		}
+		if (queryPriceFrom && queryPriceTo && isChangePrice) {
+			uploadNewParams('priceFrom', Number(queryPriceFrom))
+			uploadNewParams('priceTo', Number(queryPriceTo))
+		}
 	}
 
 	return (
