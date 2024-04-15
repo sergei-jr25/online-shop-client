@@ -22,8 +22,7 @@ const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
 	const [shouldCartAction, setShouldCartAction] = useState(true)
 
 	const actionCartClose = () => {
-		// setShouldCartAction(false)
-		console.log('asd')
+		setShouldCartAction(false)
 	}
 
 	return (
