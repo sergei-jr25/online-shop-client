@@ -1,5 +1,3 @@
-import Button from '@/component/ui/button/Button'
-import CartItemPopupProps from '@/component/ui/cart/CartItem'
 import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
@@ -53,7 +51,7 @@ const Cart: FC = () => {
 				)}
 			</button>
 			<div>
-				<div
+				{/* <div
 					className={cn(styles.cart__body, {
 						[styles.cart__body_show]: isShow
 					})}
@@ -83,7 +81,7 @@ const Cart: FC = () => {
 							Перейти в корзину
 						</Button>
 					)}
-				</div>
+				</div> */}
 			</div>
 		</div>
 	)
