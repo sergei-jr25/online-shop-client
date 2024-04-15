@@ -1,4 +1,5 @@
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
+import { useSlide } from '@/component/ui/Slider/useSlide'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
 import { FC } from 'react'
@@ -6,7 +7,7 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import styles from '../Dashboard.module.scss'
 
 const New: FC<{ news: IBoilerPartsData[] }> = ({ news }) => {
-	// const slide = useSlide(news)
+	const slide = useSlide(news)
 
 	return (
 		<div className={styles.dashboard__block}>

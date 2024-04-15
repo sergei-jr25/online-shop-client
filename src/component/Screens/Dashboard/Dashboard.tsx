@@ -7,7 +7,6 @@ import { FC, useState } from 'react'
 import About from './About/About'
 import Bestsellers from './Bestsellers/Bestsellers'
 import Brands from './Brands/Brands'
-import CartAction from './CartAction/CartAction'
 import styles from './Dashboard.module.scss'
 import New from './New/New'
 
@@ -30,11 +29,11 @@ const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
 			className={`${styles.dashboard} ${theme === 'dark' ? styles.dark : ''}`}
 		>
 			<div className={`container ${styles.dashboard__container}`}>
-				{shouldCartAction && (
+				{/* {shouldCartAction && (
 					<div className={styles.dashboard__info}>
 						<CartAction handleClick={actionCartClose} />
 					</div>
-				)}
+				)} */}
 
 				<h1 className={`title ${styles.dashboard__title}`}>
 					Детали для газовых котлов
