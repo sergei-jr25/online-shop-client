@@ -56,7 +56,7 @@ const Brands: FC = () => {
 				{brands.map((item, idx) => (
 					<SwiperSlide className={styles.brands__slide} key={idx}>
 						<div className={styles.brands__image}>
-							<Image src={item} fill alt='' loading='lazy' />
+							<Image src={item} alt='brand' />
 						</div>
 					</SwiperSlide>
 				))}

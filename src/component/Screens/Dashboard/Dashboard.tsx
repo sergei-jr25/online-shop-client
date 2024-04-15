@@ -1,7 +1,6 @@
 'use client'
 import 'swiper/css'
 
-import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useState } from 'react'
@@ -18,8 +17,6 @@ interface IDashboard {
 }
 
 const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
-	const { user } = useAuth()
-
 	const { theme } = useMode()
 
 	const [shouldCartAction, setShouldCartAction] = useState(true)

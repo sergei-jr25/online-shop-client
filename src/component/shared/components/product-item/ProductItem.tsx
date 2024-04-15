@@ -10,7 +10,12 @@ import Link from 'next/link'
 import { FC } from 'react'
 import styles from './ProductItem.module.scss'
 
-const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
+interface IProductItem {
+	product: IBoilerPartsData
+	lazy?: boolean
+}
+
+const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 	const { user } = useAuth()
 
 	const [addToShop] = api.useCreateShopCartMutation()
@@ -35,8 +40,7 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 					src={product.images}
 					fill
 					alt={product.name}
-					loading='lazy'
-					onLoad={() => console.log('Изображение загружено')}
+					loading={lazy ? 'lazy' : 'eager'}
 				/>
 			</Link>
 			<h4 className={styles.catalogItem__title}>
