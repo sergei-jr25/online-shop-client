@@ -60,6 +60,9 @@ const CatalogPage: FC<ICatalogPage> = ({
 		const queryPriceFrom = searchParams.get('priceFrom')
 		const queryPriceTo = searchParams.get('priceTo')
 
+		console.log('boilerQuery', boilerQuery)
+		console.log('manufacturerQuery', manufacturerQuery)
+
 		if (
 			boilerQuery?.length &&
 			manufacturerQuery?.length &&
