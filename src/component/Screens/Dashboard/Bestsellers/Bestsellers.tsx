@@ -1,5 +1,4 @@
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
-import { useSlide } from '@/component/ui/Slider/useSlide'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
 import { FC } from 'react'
@@ -9,8 +8,6 @@ import styles from '../Dashboard.module.scss'
 const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 	bestsellers
 }) => {
-	const slide = useSlide(bestsellers)
-
 	return (
 		<div className={styles.dashboard__block}>
 			<div>
@@ -26,6 +23,7 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 					pagination={{ clickable: false }}
 					scrollbar={{ draggable: true }}
 					className='dashboard__slider'
+					autoHeight={true}
 				>
 					{!!bestsellers.length &&
 						bestsellers.map((item, idx) => (

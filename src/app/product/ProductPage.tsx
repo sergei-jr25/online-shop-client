@@ -1,6 +1,5 @@
 'use client'
 import Slider from '@/component/ui/Slider/Slider'
-import { useSlide } from '@/component/ui/Slider/useSlide'
 import { useFilters } from '@/hook/useFilters'
 import useMediaQuery from '@/hook/useMediaQuery'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
@@ -19,8 +18,6 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 	const { queryParams } = useFilters()
 
 	const { data = [] } = apiBoilerParts.usePaginateAndFilterQuery(queryParams)
-
-	const slide = useSlide(data[0] || [])
 
 	const handleChangeTabOne = () => {
 		setIsTabOne(true)
