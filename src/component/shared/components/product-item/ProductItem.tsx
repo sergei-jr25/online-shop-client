@@ -38,7 +38,8 @@ const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 			>
 				<Image
 					src={product.images}
-					fill
+					width={250}
+					height={250}
 					alt={product.name}
 					loading={lazy ? 'lazy' : 'eager'}
 				/>
