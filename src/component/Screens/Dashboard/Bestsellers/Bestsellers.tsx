@@ -26,7 +26,7 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 					autoHeight={true}
 				>
 					{!!bestsellers.length &&
-						bestsellers.map((item, idx) => (
+						bestsellers.map(item => (
 							<SwiperSlide key={item.id}>
 								<ProductItem product={item} lazy={false} />
 							</SwiperSlide>
