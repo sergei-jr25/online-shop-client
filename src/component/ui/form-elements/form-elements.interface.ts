@@ -3,8 +3,7 @@ import { FieldError } from 'react-hook-form'
 
 export interface IFiledProps {
 	error: FieldError | any
-	// register: UseFormRegister<FieldValues>
-	placeholder?: string
+
 	type?: string
 	mode?: string
 	value?: string
