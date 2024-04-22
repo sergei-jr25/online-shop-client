@@ -66,9 +66,6 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 		setTouchFilter({ flag: false })
 		setIsRessitng({ flag: true })
 		resetQueryParams()
-
-		// uploadNewParams('offset', '2')
-		// refetch()
 	}
 
 	const applyQueryParams = () => {
@@ -123,6 +120,11 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			uploadNewParams('manufacturerParts', queryManufacturer)
 		}
 		if (queryPriceFrom && queryPriceTo && isChangePrice) {
+			uploadNewParams('priceFrom', Number(queryPriceFrom))
+			uploadNewParams('priceTo', Number(queryPriceTo))
+		}
+		if (queryPriceTo && isChangePrice) {
+			console.log('queryPriceFrom && queryPriceTo')
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
 			uploadNewParams('priceTo', Number(queryPriceTo))
 		}

@@ -1,4 +1,6 @@
+'use client'
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
+import Skeleton from '@/component/ui/spinner/Spinner'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
 import { FC } from 'react'
@@ -16,7 +18,6 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 				</h2>
 
 				<Swiper
-					// install Swiper modules
 					spaceBetween={16}
 					breakpoints={breakpoints}
 					navigation={false}
@@ -25,12 +26,15 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 					className='dashboard__slider'
 					autoHeight={true}
 				>
-					{!!bestsellers.length &&
+					{!!bestsellers.length ? (
 						bestsellers.map(item => (
 							<SwiperSlide key={item.id}>
 								<ProductItem product={item} lazy={false} />
 							</SwiperSlide>
-						))}
+						))
+					) : (
+						<Skeleton height='250px' width='10' />
+					)}
 				</Swiper>
 			</div>
 		</div>

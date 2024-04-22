@@ -1,4 +1,5 @@
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
+import Skeleton from '@/component/ui/spinner/Spinner'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { breakpoints } from '@/utils/break-points'
 import { FC } from 'react'
@@ -20,12 +21,15 @@ const New: FC<{ news: IBoilerPartsData[] }> = ({ news }) => {
 					autoHeight={true}
 					className='dashboard__slider'
 				>
-					{!!news.length &&
+					{!!news.length ? (
 						news.map((item, idx) => (
 							<SwiperSlide key={item.id}>
 								<ProductItem product={item} />
 							</SwiperSlide>
-						))}
+						))
+					) : (
+						<Skeleton height='250px' width='100%' />
+					)}
 				</Swiper>
 			</div>
 		</div>

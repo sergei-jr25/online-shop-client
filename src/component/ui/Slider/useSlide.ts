@@ -2,12 +2,9 @@ import { useEffect } from 'react'
 
 export const useSlide = <T>(items: T[]) => {
 	useEffect(() => {
-		console.log('useSlidedashboardSliders')
-
 		const dashboardSliders = document.querySelectorAll('.swiper')
 		dashboardSliders.forEach(dashboardSlider => {
 			const slides = dashboardSlider.querySelectorAll('.swiper-slide')
-			console.log(slides)
 
 			let maxHeight = 0
 

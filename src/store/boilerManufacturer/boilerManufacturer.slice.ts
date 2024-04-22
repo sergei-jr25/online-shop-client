@@ -66,7 +66,7 @@ export const boilerManufacturer = createSlice({
 		resetFiltersBoilerParts: state => {
 			state.boilerManufacturer.map(item => (item.checked = false))
 			state.manufacturerParts.map(item => (item.checked = false))
-		},
+		}, // need delete
 		boilerChecked: state => {
 			state.boilerManufacturer.filter(item => {
 				item.checked && [state.boilerManufacturer, item.checked]
@@ -74,6 +74,20 @@ export const boilerManufacturer = createSlice({
 		},
 		manufacturerChecked: state => {
 			state.boilerManufacturer.filter(item => item.checked)
+		},
+		removeItem: (state, { payload }: PayloadAction<{ title: string }>) => {
+			const isSomeItemPart = state.manufacturerParts.findIndex(
+				item => item.title === payload.title
+			)
+			const isSomeItemBoiler = state.boilerManufacturer.findIndex(
+				item => item.title === payload.title
+			)
+			if (isSomeItemPart !== -1) {
+				state.manufacturerParts[isSomeItemPart].checked = false
+			}
+			if (isSomeItemBoiler !== -1) {
+				state.boilerManufacturer[isSomeItemBoiler].checked = false
+			}
 		},
 
 		setBoilerQueryParams: (

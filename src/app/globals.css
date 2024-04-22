@@ -96,3 +96,13 @@ body.dark_mode {
 
 @media (max-width: 556px) {
 }
+
+.opacity {
+	opacity: 0;
+	transition: opacity 0.3s ease 0s, overflow 0.3s;
+}
+
+.loading-img {
+	opacity: 1;
+	background-color: red;
+}

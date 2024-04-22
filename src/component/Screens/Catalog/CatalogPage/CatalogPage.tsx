@@ -52,16 +52,18 @@ const CatalogPage: FC<ICatalogPage> = ({
 	}, [])
 
 	const setQueryParams = () => {
-		const boilerQuery =
-			JSON.parse(searchParams.get('boilerManufacturer')!) || null
+		const boilerQueryStr = searchParams.get('boilerManufacturer')
+		const boilerQuery = boilerQueryStr
+			? JSON.parse(decodeURIComponent(boilerQueryStr))
+			: null
 
-		const manufacturerQuery =
-			JSON.parse(searchParams.get('manufacturerParts')!) || null
+		const manufacturerQueryStr = searchParams.get('manufacturerParts')
+		const manufacturerQuery = manufacturerQueryStr
+			? JSON.parse(decodeURIComponent(manufacturerQueryStr))
+			: null
+
 		const queryPriceFrom = searchParams.get('priceFrom')
 		const queryPriceTo = searchParams.get('priceTo')
-
-		console.log('boilerQuery', boilerQuery)
-		console.log('manufacturerQuery', manufacturerQuery)
 
 		if (
 			boilerQuery?.length &&

@@ -1,6 +1,8 @@
 import { useActions } from '@/hook/useDispatch'
 import { useFilters } from '@/hook/useFilters'
+import { useMode } from '@/hook/useMode'
 import { MAXPRICE, MINPRICE } from '@/shared/consts/prive-value'
+import { useSearchParams } from 'next/navigation'
 import { FC, useEffect, useState } from 'react'
 import { Range, getTrackBackground } from 'react-range'
 import styles from './RangeFilters.module.scss'
@@ -10,16 +12,31 @@ interface IRangeFilters {}
 const RangeFilters: FC<IRangeFilters> = () => {
 	const STEP = 0.1
 	const [rangePrice, setRangePrice] = useState<number[]>([MINPRICE, MAXPRICE])
+	const { theme } = useMode()
 
 	const { setChangePrice, setTouchFilter, setIsRessitng } = useActions()
 	const { isResettingFilter } = useFilters()
-
+	const searchParams = useSearchParams()!
 	const handelChangePrice = (values: number[]) => {
 		setRangePrice(values)
 		setTouchFilter({ flag: true })
 		setChangePrice({ flag: true })
 		localStorage.setItem('range-price', JSON.stringify(values))
 	}
+
+	useEffect(() => {
+		const queryPriceFrom = searchParams.get('priceFrom')
+		const queryPriceTo = searchParams.get('priceTo')
+
+		if (queryPriceFrom && queryPriceTo) {
+			setRangePrice([+queryPriceFrom, +queryPriceTo])
+		} else if (queryPriceFrom) {
+			setRangePrice([+queryPriceFrom, MAXPRICE])
+		} else if (queryPriceTo) {
+			setRangePrice([MINPRICE, +queryPriceTo])
+		} else {
+		}
+	}, [])
 
 	useEffect(() => {
 		if (isResettingFilter) {
@@ -30,7 +47,11 @@ const RangeFilters: FC<IRangeFilters> = () => {
 
 	return (
 		<>
-			<div className={styles.range}>
+			<div
+				className={`${styles.range} ${
+					theme === 'dark' ? styles.range_dark : ''
+				}`}
+			>
 				<label className={styles.range__label}>
 					<input
 						// type='numnber'

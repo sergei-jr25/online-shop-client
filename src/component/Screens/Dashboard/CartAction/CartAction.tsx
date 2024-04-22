@@ -1,23 +1,29 @@
+'use client'
+
 import CloseSvg from '@/component/ui/IconsSvg/header-icons/CloseSvg'
 import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
 import { api } from '@/service/api/api'
 import { calculateTotalPrice } from '@/utils/calculateTotalPrice'
 import { useRouter } from 'next/navigation'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './CartAction.module.scss'
 
-interface ICartAction {
-	handleClick: () => void
-}
-
-const CartAction: FC<ICartAction> = ({ handleClick }) => {
+const CartAction: FC = () => {
 	const { theme } = useMode()
 	const { push } = useRouter()
 	const { user } = useAuth()
 	const { data = [] } = api.useGetCartProductsQuery(user?.id, { skip: !user })
 
+	const [shouldCartAction, setShouldCartAction] = useState(true)
+
+	const actionCartClose = () => {
+		setShouldCartAction(false)
+	}
+
 	const totalPrice = calculateTotalPrice(data)
+
+	if (!shouldCartAction) return null
 
 	return (
 		<div
@@ -46,7 +52,7 @@ const CartAction: FC<ICartAction> = ({ handleClick }) => {
 					>
 						Оформить заказ
 					</button>
-					<button onClick={handleClick}>
+					<button onClick={actionCartClose}>
 						<CloseSvg />
 					</button>
 				</div>

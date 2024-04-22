@@ -27,6 +27,13 @@
 
 	&__draggable {
 	}
+
+	&_dark {
+		color: #fbfafc;
+		.range__input {
+			color: #fbfafc;
+		}
+	}
 }
 
 .draggable {

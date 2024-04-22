@@ -1,3 +1,5 @@
+import Skeleton from '@/component/ui/spinner/Spinner'
+import { useOnloadImage } from '@/hook/useOnloadImage'
 import { brands } from '@/utils/imagesPaths/bransImage'
 import Image from 'next/image'
 import { FC, useEffect, useState } from 'react'
@@ -9,6 +11,8 @@ import ArrowPrev from '../../../ui/Slider/Arrows/ArrowPrev'
 import styles from './Brands.module.scss'
 const Brands: FC = () => {
 	const [isNavigation, setIsNavigation] = useState(true)
+
+	const { isOnload, handleOnLoad } = useOnloadImage()
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -56,7 +60,13 @@ const Brands: FC = () => {
 				{brands.map((item, idx) => (
 					<SwiperSlide className={styles.brands__slide} key={idx}>
 						<div className={styles.brands__image}>
-							<Image src={item} alt='brand' />
+							{isOnload && <Skeleton width='100%' height='75px' />}
+							<Image
+								src={item}
+								alt='brand'
+								onLoadingComplete={handleOnLoad}
+								style={{ opacity: isOnload ? '0' : '1' }}
+							/>
 						</div>
 					</SwiperSlide>
 				))}

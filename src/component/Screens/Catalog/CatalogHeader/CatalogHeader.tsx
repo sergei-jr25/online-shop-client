@@ -7,16 +7,10 @@ import styles from './CatalogHeader.module.scss'
 import { ICatalogHeader } from './catalog-header.interface'
 
 const CatalogHeader: FC<ICatalogHeader> = ({ items, title }) => {
-	const { removeBoiler, removeParts, resetFiltersBoilerParts } = useActions()
+	const { removeItem } = useActions()
 	const { theme } = useMode()
 
 	const selectedItems = items?.filter(item => item.checked)
-
-	const handleChangeTouched = (id: string) => {
-		selectedItems?.filter(item => {
-			resetFiltersBoilerParts()
-		})
-	}
 
 	return (
 		<div
@@ -30,7 +24,7 @@ const CatalogHeader: FC<ICatalogHeader> = ({ items, title }) => {
 					{selectedItems?.map(item => (
 						<div key={item.id} className={styles.catalogHeader__item}>
 							{item.title}
-							<button onClick={() => handleChangeTouched(item.id)}>
+							<button onClick={() => removeItem({ title: item.title })}>
 								<DeleteChange />
 							</button>
 						</div>
