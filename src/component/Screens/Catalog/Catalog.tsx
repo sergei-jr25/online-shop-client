@@ -7,6 +7,8 @@ import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
 
+import Button from '@/component/ui/button/Button'
+import Loader from '@/component/ui/spinner/Loader'
 import { MAXPRICE, MINPRICE } from '@/shared/consts/prive-value'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useEffect } from 'react'
@@ -45,6 +47,7 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 	const { boilerManufacturer, manufacturerParts } = useBoilerManufact()
 	const allProducts = [...boilerManufacturer, ...manufacturerParts]
 	const isCheckedItem = allProducts.some(item => item.checked)
+
 	const isDisabled = !isTouchFilter && !isCheckedItem && !isChangePrice
 
 	const mobile = useMediaQuery('(max-width: 767px')
@@ -155,13 +158,13 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 
 					<div className={`${styles.catalog__actions} ${styles.actions}`}>
 						{!mobile ? (
-							<button
+							<Button
 								onClick={resetFilters}
 								className={styles.catalog__button}
 								disabled={isDisabled}
 							>
 								Сбросить фильтры
-							</button>
+							</Button>
 						) : (
 							<button
 								className={styles.catalog__filter}
@@ -181,24 +184,28 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 						</div>
 					</div>
 				</div>
-				<div className={styles.catalog__wrapper}>
-					<CatalogFilters
-						applyQueryParams={applyQueryParams}
-						// isFetching={isFetching}
-						isShow={isShow}
-						refFilter={refFilter}
-						setIsShow={setIsShow}
-						resetFilters={resetFilters}
-						isDisabled={isDisabled}
-						isCheckedItem={isCheckedItem}
-					/>
-					<CatalogPage
-						boilerCount={boilerCount}
-						boilerData={boilerData}
-						queryParams={queryParams}
-						isFetching={isFetching}
-					/>
-				</div>
+				{isFetching ? (
+					<Loader style={{ width: '100%', height: '300px' }} theme={theme} />
+				) : (
+					<div className={styles.catalog__wrapper}>
+						<CatalogFilters
+							applyQueryParams={applyQueryParams}
+							// isFetching={isFetching}
+							isShow={isShow}
+							refFilter={refFilter}
+							setIsShow={setIsShow}
+							resetFilters={resetFilters}
+							isDisabled={isDisabled}
+							isCheckedItem={isCheckedItem}
+						/>
+						<CatalogPage
+							boilerCount={boilerCount}
+							boilerData={boilerData}
+							queryParams={queryParams}
+							isFetching={isFetching}
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	)

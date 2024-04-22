@@ -64,13 +64,17 @@
 		}
 	}
 	&__button {
-		font-size: 14px;
-		font-weight: 500;
-		display: block;
 		color: #4e4c4c;
-		padding: 9px 16px;
+		font-size: 14px;
 		border: 1px solid #e0595d;
+		background-color: transparent;
 		border-radius: 40px;
+		@media (any-hover: hover) {
+			&:hover {
+				color: #fafbfc;
+				background-color: #e0595d;
+			}
+		}
 	}
 
 	&__filter {

@@ -82,7 +82,6 @@ const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 									addToShop({ username: user?.username, partId: +product.id })
 								}
 								disabled={isInCart}
-								data-testid='add-to-cart-product'
 							>
 								<CartIconSvg />
 							</button>

@@ -92,6 +92,11 @@
 
 		.catalogItem__title {
 			color: #fafbfc;
+			@media (any-hover: hover) {
+				&:hover {
+					color: #b8eb00;
+				}
+			}
 		}
 
 		.catalogItem__article {

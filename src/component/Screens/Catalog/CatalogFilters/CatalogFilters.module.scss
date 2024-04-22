@@ -206,13 +206,22 @@
 			color: #fafbfc;
 			background: #1c629e;
 			border-radius: 4px;
+			// @media (any-hover: hover) {
+			// 	&:hover {
+			// 		background-color: rgba(8, 62, 109, 0.227);
+			// 	}
+			// }
 		}
-
 		&_reset {
 			color: #1c629e;
 			border: 1px solid #1c629e;
 			border-radius: 4px;
 			background-color: #1c619e3a;
+			@media (any-hover: hover) {
+				&:hover {
+					color: #fafbfc;
+				}
+			}
 		}
 	}
 }
@@ -233,16 +242,17 @@
 		}
 		&__button {
 			&_show {
-				color: #fafbfc;
-				background: #1c629e;
-				border-radius: 4px;
 			}
 
 			&_reset {
-				color: #ededed;
-				border: 1px solid #ededed;
-
-				background-color: #4949493a;
+				color: #fafbfc;
+				border: 1px solid #fafbfc;
+				background-color: transparent;
+				@media (any-hover: hover) {
+					&:hover {
+						background-color: #222;
+					}
+				}
 			}
 		}
 	}

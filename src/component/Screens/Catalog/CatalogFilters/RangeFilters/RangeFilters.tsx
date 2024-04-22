@@ -34,8 +34,7 @@ const RangeFilters: FC<IRangeFilters> = () => {
 			setRangePrice([+queryPriceFrom, MAXPRICE])
 		} else if (queryPriceTo) {
 			setRangePrice([MINPRICE, +queryPriceTo])
-		} else {
-		}
+		}  
 	}, [])
 
 	useEffect(() => {

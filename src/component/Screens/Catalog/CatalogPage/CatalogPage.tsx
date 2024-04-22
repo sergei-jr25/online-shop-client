@@ -11,7 +11,8 @@ import { IBoilerPartsData } from '@/shared/type/user.interface'
 
 import ProductItem from '@/component/shared/components/product-item/ProductItem'
 import { useActions } from '@/hook/useDispatch'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { MAXPRICE, MINPRICE } from '@/shared/consts/prive-value'
+import { useSearchParams } from 'next/navigation'
 import styles from './CatalogPage.module.scss'
 import './CatalogPage.scss'
 import { ICatalogPage } from './catalog-page.interface'
@@ -23,8 +24,6 @@ const CatalogPage: FC<ICatalogPage> = ({
 	queryParams,
 	isFetching
 }) => {
-	const { push } = useRouter()
-	const pathName = usePathname()
 	const searchParams = useSearchParams()!
 	const { theme } = useMode()
 
@@ -74,26 +73,26 @@ const CatalogPage: FC<ICatalogPage> = ({
 			setBoilerQueryParams({ items: boilerQuery })
 			setPartsQueryParams({ items: manufacturerQuery })
 			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
-			setTouchFilter({ flag: false })
+			setTouchFilter({ flag: true })
 
 			return
 		}
 		if (boilerQuery?.length && manufacturerQuery?.length) {
 			setBoilerQueryParams({ items: boilerQuery })
 			setPartsQueryParams({ items: manufacturerQuery })
-			setTouchFilter({ flag: false })
+			setTouchFilter({ flag: true })
 
 			return
 		}
 		if (boilerQuery?.length) {
 			setBoilerQueryParams({ items: boilerQuery })
-			setTouchFilter({ flag: false })
+			setTouchFilter({ flag: true })
 
 			return
 		}
 		if (manufacturerQuery?.length) {
 			setPartsQueryParams({ items: manufacturerQuery })
-			setTouchFilter({ flag: false })
+			setTouchFilter({ flag: true })
 
 			return
 		}
@@ -101,19 +100,30 @@ const CatalogPage: FC<ICatalogPage> = ({
 		if (boilerQuery?.length && queryPriceFrom && queryPriceTo) {
 			setBoilerQueryParams({ items: boilerQuery })
 			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
-			setTouchFilter({ flag: false })
+			setTouchFilter({ flag: true })
 			return
 		}
 		if (manufacturerQuery?.length && queryPriceFrom && queryPriceTo) {
 			setPartsQueryParams({ items: manufacturerQuery })
 			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
-			setTouchFilter({ flag: false })
+			setTouchFilter({ flag: true })
 			return
 		}
 
 		if (queryPriceFrom && queryPriceTo) {
-			setTouchFilter({ flag: false })
 			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
+			setTouchFilter({ flag: true })
+			console.log('queryPriceFrom && queryPriceTo')
+
+			return
+		} else if (queryPriceFrom) {
+			setRangePrice({ values: [+queryPriceFrom, MAXPRICE] })
+			setTouchFilter({ flag: true })
+			console.log('queryPriceFrom')
+		} else if (queryPriceTo) {
+			setRangePrice({ values: [MINPRICE, +queryPriceTo] })
+			setTouchFilter({ flag: true })
+			console.log('queryPriceTo')
 		}
 	}
 
