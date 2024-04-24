@@ -5,12 +5,12 @@ import { IInitStateBoiler } from './boilerManufacturer.interface'
 
 const initialState: IInitStateBoiler = {
 	boilerManufacturer: boilerPartsData,
-	manufacturerParts: manufacturersPartsData,
+	partsManufacturer: manufacturersPartsData,
 	isAnyCheckboxChecked: true
 }
 
 export const boilerManufacturer = createSlice({
-	name: 'boilerManufacturerParts',
+	name: 'boilerpartsManufacturer',
 	initialState,
 	reducers: {
 		toggleChecked: (
@@ -22,7 +22,7 @@ export const boilerManufacturer = createSlice({
 			const { item, type } = payload
 
 			const targetList =
-				type === 'boiler' ? state.boilerManufacturer : state.manufacturerParts
+				type === 'boiler' ? state.boilerManufacturer : state.partsManufacturer
 			const findIdex = targetList.findIndex(el => el.id === item.id)
 
 			if (findIdex !== -1) {
@@ -50,7 +50,7 @@ export const boilerManufacturer = createSlice({
 					checked: true
 				}))
 			} else if (payload.type === 'parts') {
-				state.manufacturerParts = state.manufacturerParts.map(item => ({
+				state.partsManufacturer = state.partsManufacturer.map(item => ({
 					...item,
 					checked: true
 				}))
@@ -61,11 +61,11 @@ export const boilerManufacturer = createSlice({
 			state.boilerManufacturer.map(item => (item.checked = false))
 		},
 		removeParts: state => {
-			state.manufacturerParts.map(item => (item.checked = false))
+			state.partsManufacturer.map(item => (item.checked = false))
 		},
 		resetFiltersBoilerParts: state => {
 			state.boilerManufacturer.map(item => (item.checked = false))
-			state.manufacturerParts.map(item => (item.checked = false))
+			state.partsManufacturer.map(item => (item.checked = false))
 		}, // need delete
 		boilerChecked: state => {
 			state.boilerManufacturer.filter(item => {
@@ -76,14 +76,14 @@ export const boilerManufacturer = createSlice({
 			state.boilerManufacturer.filter(item => item.checked)
 		},
 		removeItem: (state, { payload }: PayloadAction<{ title: string }>) => {
-			const isSomeItemPart = state.manufacturerParts.findIndex(
+			const isSomeItemPart = state.partsManufacturer.findIndex(
 				item => item.title === payload.title
 			)
 			const isSomeItemBoiler = state.boilerManufacturer.findIndex(
 				item => item.title === payload.title
 			)
 			if (isSomeItemPart !== -1) {
-				state.manufacturerParts[isSomeItemPart].checked = false
+				state.partsManufacturer[isSomeItemPart].checked = false
 			}
 			if (isSomeItemBoiler !== -1) {
 				state.boilerManufacturer[isSomeItemBoiler].checked = false
@@ -105,7 +105,7 @@ export const boilerManufacturer = createSlice({
 			state,
 			{ payload }: PayloadAction<{ items: string[] }>
 		) => {
-			state.manufacturerParts.forEach(item => {
+			state.partsManufacturer.forEach(item => {
 				if (payload.items.includes(item.title)) {
 					item.checked = true
 				}

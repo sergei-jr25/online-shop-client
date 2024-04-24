@@ -6,7 +6,6 @@ const Loader: FC<{ style?: React.CSSProperties; theme?: 'dark' | 'light' }> = ({
 	theme = 'light'
 }) => {
 	const fill = theme === 'dark' ? '#fbfafc' : '#444444'
-	console.log(theme)
 
 	return (
 		<div className={styles.loader} style={{ ...style }}>

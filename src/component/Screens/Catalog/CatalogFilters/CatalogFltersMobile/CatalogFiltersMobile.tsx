@@ -33,10 +33,10 @@ const CatalogFiltersMobile: FC<ICatalogFilterMobile> = ({
 		resetFiltersBoilerParts
 	} = useActions()
 	const { isChangePrice, isTouchFilter } = useFilters()
-	const { boilerManufacturer, manufacturerParts } = useBoilerManufact()
+	const { boilerManufacturer, partsManufacturer } = useBoilerManufact()
 
 	const isDisabledBoiler = boilerManufacturer.some(item => item.checked)
-	const isDisabledParts = manufacturerParts.some(item => item.checked)
+	const isDisabledParts = partsManufacturer.some(item => item.checked)
 	const isDidabledButtonBoiler = isOpenBoiler && isDisabledBoiler
 	const isDidabledButtonParts = isOpenParts && isDisabledParts
 

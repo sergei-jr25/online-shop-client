@@ -7,7 +7,7 @@ describe('boilerManufacturer', () => {
 	it('boilerManufacturer initial State', () => {
 		const initialState = {
 			boilerManufacturer: boilerPartsData,
-			manufacturerParts: manufacturersPartsData,
+			partsManufacturer: manufacturersPartsData,
 			isAnyCheckboxChecked: true
 		}
 		const result = (state: IInitStateBoiler) => state
@@ -20,7 +20,7 @@ describe('boilerManufacturer', () => {
 				{ id: 1, checked: false },
 				{ id: 2, checked: true }
 			],
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 3, checked: false },
 				{ id: 4, checked: false }
 			]
@@ -31,7 +31,7 @@ describe('boilerManufacturer', () => {
 				{ id: 1, checked: false },
 				{ id: 2, checked: true }
 			],
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 3, checked: false },
 				{ id: 4, checked: false }
 			]
@@ -51,7 +51,7 @@ describe('boilerManufacturer', () => {
 				{ id: 1, checked: false },
 				{ id: 2, checked: false }
 			],
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 3, checked: false },
 				{ id: 4, checked: false }
 			]
@@ -62,7 +62,7 @@ describe('boilerManufacturer', () => {
 				{ id: 1, checked: true },
 				{ id: 2, checked: true }
 			],
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 3, checked: false },
 				{ id: 4, checked: false }
 			]
@@ -81,7 +81,7 @@ describe('boilerManufacturer', () => {
 				{ id: 1, checked: false },
 				{ id: 2, checked: false }
 			],
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 3, checked: true },
 				{ id: 4, checked: true }
 			]
@@ -122,7 +122,7 @@ describe('boilerManufacturer', () => {
 	})
 	it('should handle removeParts', () => {
 		const state = {
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 1, checked: true },
 				{ id: 2, checked: true },
 				{ id: 3, checked: true }
@@ -130,7 +130,7 @@ describe('boilerManufacturer', () => {
 		}
 
 		const expectParts = {
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 1, checked: false },
 				{ id: 2, checked: false },
 				{ id: 3, checked: false }
@@ -165,7 +165,7 @@ describe('boilerManufacturer', () => {
 	})
 	it('should handle setPartsQueryParams', () => {
 		const state = {
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 1, title: 'Parts-1', checked: false },
 				{ id: 2, title: 'Parts-2', checked: false },
 				{ id: 3, title: 'Parts-3', checked: false },
@@ -175,7 +175,7 @@ describe('boilerManufacturer', () => {
 		const itemsPayload = ['Parts-1', 'Parts-2']
 
 		const expectParts = {
-			manufacturerParts: [
+			partsManufacturer: [
 				{ id: 1, title: 'Parts-1', checked: true },
 				{ id: 2, title: 'Parts-2', checked: true },
 				{ id: 3, title: 'Parts-3', checked: false },

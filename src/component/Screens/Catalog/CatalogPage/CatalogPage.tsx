@@ -56,7 +56,7 @@ const CatalogPage: FC<ICatalogPage> = ({
 			? JSON.parse(decodeURIComponent(boilerQueryStr))
 			: null
 
-		const manufacturerQueryStr = searchParams.get('manufacturerParts')
+		const manufacturerQueryStr = searchParams.get('partsManufacturer')
 		const manufacturerQuery = manufacturerQueryStr
 			? JSON.parse(decodeURIComponent(manufacturerQueryStr))
 			: null
@@ -113,17 +113,14 @@ const CatalogPage: FC<ICatalogPage> = ({
 		if (queryPriceFrom && queryPriceTo) {
 			setRangePrice({ values: [+queryPriceFrom, +queryPriceTo] })
 			setTouchFilter({ flag: true })
-			console.log('queryPriceFrom && queryPriceTo')
 
 			return
 		} else if (queryPriceFrom) {
 			setRangePrice({ values: [+queryPriceFrom, MAXPRICE] })
 			setTouchFilter({ flag: true })
-			console.log('queryPriceFrom')
 		} else if (queryPriceTo) {
 			setRangePrice({ values: [MINPRICE, +queryPriceTo] })
 			setTouchFilter({ flag: true })
-			console.log('queryPriceTo')
 		}
 	}
 

@@ -44,8 +44,8 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 	const boilerData = (data[0] as IBoilerPartsData[]) || initialData
 	const boilerCount = (data[1] as number) || 0
 
-	const { boilerManufacturer, manufacturerParts } = useBoilerManufact()
-	const allProducts = [...boilerManufacturer, ...manufacturerParts]
+	const { boilerManufacturer, partsManufacturer } = useBoilerManufact()
+	const allProducts = [...boilerManufacturer, ...partsManufacturer]
 	const isCheckedItem = allProducts.some(item => item.checked)
 
 	const isDisabled = !isTouchFilter && !isCheckedItem && !isChangePrice
@@ -88,18 +88,18 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			.filter(item => item.checked)
 			.map(item => item.title)
 
-		const manufacturer = manufacturerParts
+		const manufacturer = partsManufacturer
 			.filter(item => item.checked)
 			.map(item => item.title)
 
 		const queryBoiler = JSON.stringify(boiler)
-		const queryManufacturer = encodeURIComponent(JSON.stringify(manufacturer))
+		const queryManufacturer = JSON.stringify(manufacturer)
 
 		if (boiler.length && manufacturer.length && isChangePrice) {
 			uploadNewParams('priceFrom', queryPriceFrom)
 			uploadNewParams('priceTo', queryPriceTo)
 			uploadNewParams('boilerManufacturer', queryBoiler)
-			uploadNewParams('manufacturerParts', queryManufacturer)
+			uploadNewParams('partsManufacturer', queryManufacturer)
 		}
 
 		if (boiler.length && isChangePrice) {
@@ -110,7 +110,7 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			return
 		}
 		if (manufacturer.length && isChangePrice) {
-			uploadNewParams('manufacturerParts', queryManufacturer)
+			uploadNewParams('partsManufacturer', queryManufacturer)
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
 			uploadNewParams('priceTo', Number(queryPriceTo))
 			return
@@ -120,7 +120,9 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			uploadNewParams('boilerManufacturer', queryBoiler)
 		}
 		if (manufacturer.length) {
-			uploadNewParams('manufacturerParts', queryManufacturer)
+			console.log('partsManufacturer', queryManufacturer)
+
+			uploadNewParams('partsManufacturer', queryManufacturer)
 		}
 		if (queryPriceFrom && queryPriceTo && isChangePrice) {
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
@@ -151,7 +153,7 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 							/>
 							<CatalogHeader
 								title='Производитель запчастей:'
-								items={manufacturerParts}
+								items={partsManufacturer}
 							/>
 						</>
 					)}
@@ -190,7 +192,6 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 					<div className={styles.catalog__wrapper}>
 						<CatalogFilters
 							applyQueryParams={applyQueryParams}
-							// isFetching={isFetching}
 							isShow={isShow}
 							refFilter={refFilter}
 							setIsShow={setIsShow}

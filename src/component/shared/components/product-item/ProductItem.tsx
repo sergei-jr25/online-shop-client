@@ -52,7 +52,7 @@ const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 					alt={product.name}
 					width={250}
 					height={250}
-					loading={lazy ? 'lazy' : 'eager'}
+					// loading={lazy ? 'lazy' : 'eager'}
 					onLoadingComplete={handleOnLoad}
 					style={{ opacity: isOnload ? '0' : '1' }}
 				/>
