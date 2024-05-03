@@ -1,6 +1,7 @@
 'use client'
 
 import Accordion from '@/component/shared/components/Acordion/Accordion'
+import Button from '@/component/ui/button/Button'
 import { useFilters } from '@/hook/useFilters'
 import { FC } from 'react'
 import CatalogFilterItem from '../CatalogFilterItem/CatalogFilterItem'
@@ -68,20 +69,20 @@ const CatalogFiltersDesktop: FC<ICatalogFilterDesktop> = ({
 				</Accordion>
 			</div>
 			<div className={styles.accordion__buttons}>
-				<button
+				<Button
 					className={`${styles.accordion__button} ${styles.accordion__button_show}`}
 					disabled={isDisabled}
 					onClick={applyQueryParams}
 				>
 					Показать
-				</button>
-				<button
+				</Button>
+				<Button
 					className={`${styles.accordion__button} ${styles.accordion__button_reset}`}
 					disabled={isDisabled}
 					onClick={resetFilters}
 				>
 					Сбросить
-				</button>
+				</Button>
 			</div>
 		</div>
 	)

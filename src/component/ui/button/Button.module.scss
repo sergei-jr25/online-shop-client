@@ -1,8 +1,11 @@
 .button {
-	padding: 8px 32px;
+	padding: 12px 32px;
 	font-size: 14px;
 	color: #fafbfc;
+	border-radius: 10px;
+
 	background-color: #1c629e;
+
 	transition: background-color 0.3s ease 0s;
 	@media (any-hover: hover) {
 		&:hover {

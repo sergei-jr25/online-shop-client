@@ -36,7 +36,12 @@
 	}
 
 	&_dark {
-		background-color: #121212;
+		background: rgb(26, 26, 26);
+		background: linear-gradient(
+			135deg,
+			rgba(26, 26, 26, 1) 4%,
+			rgba(24, 21, 21, 1) 95%
+		);
 
 		.feedback__title {
 			color: #fafbfc;

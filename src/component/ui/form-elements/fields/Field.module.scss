@@ -7,16 +7,30 @@
 		color: #121212;
 		margin: 15px 0px 0px 0px;
 		display: inline-block;
+		margin: 0px 0px 10px 0px;
 	}
 
 	&__input {
 		width: 100%;
 		padding: 10px;
 		color: #fafbfc;
-		background-color: #323232;
+		background-color: #444444;
+		border-radius: 5px;
 
+		font-size: 16px;
+		transition: transform 0.3s ease 0s;
 		::placeholder {
-			color: #ffff;
+			color: #999999;
+		}
+
+		&:focus {
+			outline: 1px solid #ccc;
+		}
+
+		@media (any-hover: hover) {
+			&:hover {
+				transform: scale(1.01);
+			}
 		}
 	}
 
@@ -71,7 +85,6 @@
 
 	&_dark {
 		.field__input {
-			border: 1px solid #eee;
 		}
 		.field__value {
 			color: #fbfafc;
@@ -82,11 +95,4 @@
 .error {
 	color: red;
 	margin: 8px 0 0 0;
-}
-
-.dark {
-	.error {
-		color: red;
-		margin: 8px 0 0 0;
-	}
 }

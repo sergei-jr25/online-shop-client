@@ -8,8 +8,27 @@
 	}
 	&__container {
 	}
+	&__wrapper {
+		background: rgb(26, 26, 26);
+
+		padding: 20px;
+		border-radius: 10px;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		transition: 0.6s;
+		transform-style: preserve-3d;
+
+		&_register {
+			animation-name: slideinWrapper2;
+			animation-duration: 0.6s;
+		}
+		&_login {
+			animation-name: slideinWrapper1;
+			animation-duration: 0.6s;
+		}
+	}
 
 	&__head {
+		color: #fbfafc;
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -17,14 +36,14 @@
 		margin-bottom: 60px;
 
 		span {
-			color: #121212;
 			font-weight: 600;
 		}
 	}
 
 	&__title {
 		position: relative;
-		color: #121212;
+
+		font-size: 24px;
 
 		font-size: 24px;
 		font-weight: 600;
@@ -35,7 +54,7 @@
 			height: 2px;
 			bottom: -2px;
 			left: 0;
-			background-color: #121212;
+			background-color: #fbfafc;
 			transition: width 0.3s ease 0s;
 		}
 
@@ -47,7 +66,7 @@
 				height: 2px;
 				bottom: -2px;
 				left: 0;
-				background-color: #121212;
+				background-color: #fbfafc;
 			}
 		}
 
@@ -71,18 +90,42 @@
 		}
 	}
 
+	&__field {
+		width: 100%;
+
+		&::placeholder {
+			color: #999999; /* Серый цвет placeholder */
+		}
+	}
+
 	&__button {
 		width: 100%;
-		padding: 10px 20px;
-		text-align: center;
-		background-color: rgb(163, 3, 3);
-		font-weight: 600;
-		border-radius: 4px;
-		color: #fafbfc;
-		margin: 0px auto;
+		background-color: #007bff;
+		color: #fbfafc;
+		border-radius: 5px;
+		@media (any-hover: hover) {
+			&:hover {
+				background-color: #0056b3;
+			}
+		}
+	}
 
-		&:hover {
-			background-color: rgb(122, 25, 25);
+	@keyframes slideinWrapper1 {
+		0% {
+			transform: rotateY(180deg) skew(5deg, 5deg);
+		}
+
+		100% {
+			transform: rotateY(0) skew(0, 0);
+		}
+	}
+	@keyframes slideinWrapper2 {
+		0% {
+			transform: rotateY(180deg) skew(5deg, 5deg);
+		}
+
+		100% {
+			transform: rotateY(0) skew(0, 0);
 		}
 	}
 }
@@ -102,19 +145,29 @@
 
 		&__buttons {
 		}
-		&__button {
-			color: #fafbfc;
-
-			&:hover {
-				background-color: rgb(122, 25, 25);
-			}
-			&_register {
-				background-color: rgb(83, 2, 2);
-
-				&:hover {
-					background-color: rgb(43, 1, 1);
-				}
-			}
-		}
 	}
+}
+.flipContainer {
+	perspective: 1000px;
+}
+
+.flipper {
+	transition: 0.6s;
+	transform-style: preserve-3d;
+}
+
+.front,
+.back {
+	width: 200px;
+	height: 200px;
+	position: absolute;
+	backface-visibility: hidden;
+}
+
+.back {
+	transform: rotateY(180deg);
+}
+
+.flipped .flipper {
+	transform: rotateY(180deg);
 }

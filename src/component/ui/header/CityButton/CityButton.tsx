@@ -2,7 +2,6 @@ import { errorCath } from '@/api/api.helper'
 import { useActions } from '@/hook/useDispatch'
 import { useLocation } from '@/hook/useLocation'
 import { useMode } from '@/hook/useMode'
-import cn from 'clsx'
 import { FC } from 'react'
 import LocationSvg from '../../IconsSvg/header-icons/LocationSvg'
 import Skeleton from '../../spinner/Spinner'
@@ -26,7 +25,6 @@ const CityButton: FC = () => {
 				getLocation({ latitude, longitude })
 			} catch (error) {
 				console.log(error)
-
 				errorCath(error)
 			}
 		}
@@ -39,7 +37,8 @@ const CityButton: FC = () => {
 	return (
 		<div
 			onClick={getCity}
-			className={cn(styles.city, { [styles.city_dark]: theme === 'dark' })}
+			// className={cn(styles.city, { [styles.city_dark]: theme === 'dark' })}
+			className={styles.city}
 		>
 			<LocationSvg />
 

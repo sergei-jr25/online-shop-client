@@ -35,7 +35,7 @@ const Feedback: FC<{ onSubmit: (data: any) => void; loading?: boolean }> = ({
 						required: 'Name is required'
 					})}
 					error={errors.name}
-					type='name'
+					type='text'
 					placeholder=''
 					value='Имя*'
 				/>

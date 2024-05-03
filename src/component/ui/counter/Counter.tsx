@@ -1,5 +1,6 @@
 import cn from 'clsx'
 import { FC, ReactNode } from 'react'
+import Skeleton from '../spinner/Spinner'
 import styles from './Counter.module.scss' // Подключаем файл со стилями
 
 interface ICounter {
@@ -7,8 +8,15 @@ interface ICounter {
 	increment: () => void
 	children?: ReactNode
 	theme?: string
+	isFetching?: boolean
 }
-const Counter: FC<ICounter> = ({ decrement, increment, children, theme }) => {
+const Counter: FC<ICounter> = ({
+	decrement,
+	increment,
+	children,
+	theme,
+	isFetching
+}) => {
 	return (
 		<div
 			className={cn(styles.counter__item, {
@@ -16,13 +24,21 @@ const Counter: FC<ICounter> = ({ decrement, increment, children, theme }) => {
 			})}
 		>
 			<div className={styles.counter__container}>
-				<button className={styles.counter__button} onClick={decrement}>
-					-
-				</button>
+				{isFetching ? (
+					<Skeleton width='20px' height='30px' />
+				) : (
+					<button className={styles.counter__button} onClick={decrement}>
+						-
+					</button>
+				)}
 				{children}
-				<button className={styles.counter__button} onClick={increment}>
-					+
-				</button>
+				{isFetching ? (
+					<Skeleton width='20px' height='30px' />
+				) : (
+					<button className={styles.counter__button} onClick={increment}>
+						+
+					</button>
+				)}
 			</div>
 		</div>
 	)

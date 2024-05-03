@@ -1,8 +1,5 @@
 'use client'
 import Slider from '@/component/ui/Slider/Slider'
-import { useSlide } from '@/component/ui/Slider/useSlide'
-import { useCart } from '@/hook/useCart'
-import { useActions } from '@/hook/useDispatch'
 import { useFilters } from '@/hook/useFilters'
 import useMediaQuery from '@/hook/useMediaQuery'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
@@ -19,25 +16,8 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 	const mobile = useMediaQuery('(max-width: 776px)')
 
 	const { queryParams } = useFilters()
-	const { items } = useCart()
-	const { addToCart, removeToCart } = useActions()
 
 	const { data = [] } = apiBoilerParts.usePaginateAndFilterQuery(queryParams)
-	const slide = useSlide(data[0] || [])
-
-	const handleAddToCart = () => {
-		addToCart({
-			id: item.id,
-			count: 1,
-			name: item.name,
-			price: item.price,
-			image: item.images,
-			totalPrice: item.price
-		})
-	}
-	const handleRemoveToCart = () => {
-		removeToCart({ productId: item.id })
-	}
 
 	const handleChangeTabOne = () => {
 		setIsTabOne(true)
@@ -54,7 +34,7 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 		setIsTaTwo(!isTabTwo)
 	}
 
-	const isInCart = items?.some(cart => +cart.id === +item.id)
+	const isInCart = data[0]?.some(cart => cart.id === item.id)
 
 	return (
 		<div className={styles.product}>
@@ -81,12 +61,9 @@ const ProductPage: FC<{ item: IBoilerPartsData }> = ({ item }) => {
 						{!mobile && (
 							<>
 								<ProductInfo
-									isInCart={isInCart}
 									isInStock={item.inStock}
 									item={item}
 									mobile={mobile}
-									handleRemoveToCart={handleRemoveToCart}
-									handleAddToCart={handleAddToCart}
 								/>
 								<div
 									className={cn(styles.tab, { [styles.tab_mobile]: mobile })}

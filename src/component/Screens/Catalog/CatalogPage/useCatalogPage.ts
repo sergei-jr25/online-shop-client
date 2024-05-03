@@ -23,8 +23,6 @@ export const useCatalogPage = () => {
 		searchParams.forEach((value, key) => {
 			updateQueryParams({ key: key as keyof IQueryParams, value })
 		})
-
-		// updateQueryParams({ key: 'offset', value: '0' })
 	}
 
 	const uploadNewParams = (key: keyof IQueryParams, value: string | number) => {

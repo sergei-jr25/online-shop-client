@@ -8,7 +8,7 @@ export interface IQueryParams {
 	limit?: string | number
 	first?: string | number
 	boilerManufacturer?: string | number
-	manufacturerParts?: string | number
+	partsManufacturer?: string | number
 	priceFrom?: string | number
 	priceTo?: string | number
 	expensive?: string | undefined | number

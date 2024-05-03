@@ -1,26 +1,42 @@
+'use client'
+
 import CloseSvg from '@/component/ui/IconsSvg/header-icons/CloseSvg'
-import { useCart } from '@/hook/useCart'
+import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
+import { api } from '@/service/api/api'
+import { calculateTotalPrice } from '@/utils/calculateTotalPrice'
 import { useRouter } from 'next/navigation'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './CartAction.module.scss'
-import { CartActionsItemsDynamic } from './CartActionsQuantity'
 
-interface ICartAction {
-	handleClick: () => void
-}
-
-const CartAction: FC<ICartAction> = ({ handleClick }) => {
+const CartAction: FC = () => {
 	const { theme } = useMode()
 	const { push } = useRouter()
-	const { items, totalPrice } = useCart()
+	const { user } = useAuth()
+	const { data = [] } = api.useGetCartProductsQuery(user?.id, { skip: !user })
 
+<<<<<<< HEAD
+=======
+	const [shouldCartAction, setShouldCartAction] = useState(true)
+
+	const actionCartClose = () => {
+		setShouldCartAction(false)
+	}
+
+	const totalPrice = calculateTotalPrice(data)
+
+	if (!shouldCartAction) return null
+
+>>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 	return (
 		<div
 			className={`${styles.cart} ${theme === 'dark' ? styles.cart_dark : ''}`}
 		>
 			<div className={styles.cart__content}>
-				<CartActionsItemsDynamic length={items.length} />
+				<div className={styles.cart__value}>
+					В корзине {data.length} товаров
+				</div>
+
 				<div className={styles.cart__value}>
 					на сумму <strong>{totalPrice} ₽</strong>{' '}
 				</div>
@@ -39,7 +55,7 @@ const CartAction: FC<ICartAction> = ({ handleClick }) => {
 					>
 						Оформить заказ
 					</button>
-					<button onClick={handleClick}>
+					<button onClick={actionCartClose}>
 						<CloseSvg />
 					</button>
 				</div>

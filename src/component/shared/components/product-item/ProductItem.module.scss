@@ -18,7 +18,7 @@
 
 	&__image {
 		position: relative;
-		padding: 0 0 184/ 225 * 100% 0;
+		height: 301px;
 
 		img {
 			position: absolute;
@@ -78,26 +78,13 @@
 		background-color: #ffcf62;
 		border-radius: 4px;
 		cursor: pointer;
-
-		@media (any-hover: hover) {
-			opacity: 0;
-			overflow: hidden;
-			transition: opacity 0.5s, overflow 0.5s;
-		}
+		transition: background-color 0.3s ease 0s;
 
 		&_add {
 			background-color: rgb(12, 184, 12);
 		}
 	}
 
-	@media (any-hover: hover) {
-		&:hover {
-			.catalogItem__action {
-				opacity: 1;
-				overflow: visible;
-			}
-		}
-	}
 	&_dark {
 		background-color: #242323;
 
@@ -105,6 +92,11 @@
 
 		.catalogItem__title {
 			color: #fafbfc;
+			@media (any-hover: hover) {
+				&:hover {
+					color: #b8eb00;
+				}
+			}
 		}
 
 		.catalogItem__article {

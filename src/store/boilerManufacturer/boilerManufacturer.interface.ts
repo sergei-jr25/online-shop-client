@@ -2,6 +2,6 @@ import { ICkeckFilters } from '@/shared/type/common'
 
 export interface IInitStateBoiler {
 	boilerManufacturer: ICkeckFilters[]
-	manufacturerParts: ICkeckFilters[]
+	partsManufacturer: ICkeckFilters[]
 	isAnyCheckboxChecked: boolean
 }

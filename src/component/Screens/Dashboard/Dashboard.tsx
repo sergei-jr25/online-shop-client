@@ -1,10 +1,6 @@
 'use client'
-import 'swiper/css'
-
-import { useAuth } from '@/hook/useAuth'
-import { useMode } from '@/hook/useMode'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
-import { FC, useState } from 'react'
+import { FC } from 'react'
 import About from './About/About'
 import Bestsellers from './Bestsellers/Bestsellers'
 import Brands from './Brands/Brands'
@@ -18,26 +14,12 @@ interface IDashboard {
 }
 
 const Dashboard: FC<IDashboard> = ({ bestsellers, news }) => {
-	const { user } = useAuth()
-
-	const { theme } = useMode()
-
-	const [shouldCartAction, setShouldCartAction] = useState(true)
-
-	const actionCartClose = () => {
-		setShouldCartAction(false)
-	}
-
 	return (
-		<div
-			className={`${styles.dashboard} ${theme === 'dark' ? styles.dark : ''}`}
-		>
+		<div className={styles.dashboard}>
 			<div className={`container ${styles.dashboard__container}`}>
-				{shouldCartAction && (
-					<div className={styles.dashboard__info}>
-						<CartAction handleClick={actionCartClose} />
-					</div>
-				)}
+				<div className={styles.dashboard__info}>
+					<CartAction />
+				</div>
 
 				<h1 className={`title ${styles.dashboard__title}`}>
 					Детали для газовых котлов
