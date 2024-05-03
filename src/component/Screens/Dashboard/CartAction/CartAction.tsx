@@ -15,8 +15,6 @@ const CartAction: FC = () => {
 	const { user } = useAuth()
 	const { data = [] } = api.useGetCartProductsQuery(user?.id, { skip: !user })
 
-<<<<<<< HEAD
-=======
 	const [shouldCartAction, setShouldCartAction] = useState(true)
 
 	const actionCartClose = () => {
@@ -27,7 +25,6 @@ const CartAction: FC = () => {
 
 	if (!shouldCartAction) return null
 
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 	return (
 		<div
 			className={`${styles.cart} ${theme === 'dark' ? styles.cart_dark : ''}`}

@@ -7,11 +7,8 @@ import { useMode } from '@/hook/useMode'
 import { useOutside } from '@/hook/useOutside'
 import { apiBoilerParts } from '@/service/api/boiderl-parts'
 
-<<<<<<< HEAD
-=======
 import Button from '@/component/ui/button/Button'
 import Loader from '@/component/ui/spinner/Loader'
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 import { MAXPRICE, MINPRICE } from '@/shared/consts/prive-value'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
 import { FC, useEffect } from 'react'
@@ -75,7 +72,6 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 	}
 
 	const applyQueryParams = () => {
-<<<<<<< HEAD
 		const rangePriceJson = localStorage.getItem('range-price')
 		const rangePriceArray = rangePriceJson ? JSON.parse(rangePriceJson) : null
 
@@ -86,50 +82,25 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			(rangePriceArray && rangePriceArray[1]) ?? MAXPRICE
 		)
 
-		console.log('queryPriceFrom', queryPriceFrom)
-		console.log('queryPriceTo', queryPriceTo)
-=======
 		// const encoded = encodeURIComponent()
-
-		const rangePriceJson = localStorage.getItem('range-price')
-		const rangePriceArray = rangePriceJson ? JSON.parse(rangePriceJson) : null
-
-		const queryPriceFrom = Math.ceil(
-			(rangePriceArray && rangePriceArray[0]) ?? MINPRICE
-		)
-		const queryPriceTo = Math.ceil(
-			(rangePriceArray && rangePriceArray[1]) ?? MAXPRICE
-		)
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 
 		const boiler = boilerManufacturer
 			.filter(item => item.checked)
 			.map(item => item.title)
 
-<<<<<<< HEAD
-		const manufacturer = manufacturerParts
-=======
 		const manufacturer = partsManufacturer
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 			.filter(item => item.checked)
 			.map(item => item.title)
 
 		const queryBoiler = JSON.stringify(boiler)
-<<<<<<< HEAD
-		const queryManufacturer = encodeURIComponent(JSON.stringify(manufacturer))
-=======
 		const queryManufacturer = JSON.stringify(manufacturer)
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 
 		if (boiler.length && manufacturer.length && isChangePrice) {
 			uploadNewParams('priceFrom', queryPriceFrom)
 			uploadNewParams('priceTo', queryPriceTo)
 			uploadNewParams('boilerManufacturer', queryBoiler)
-<<<<<<< HEAD
-			uploadNewParams('manufacturerParts', queryManufacturer)
-=======
 			uploadNewParams('partsManufacturer', queryManufacturer)
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
+			uploadNewParams('partsManufacturer', queryManufacturer)
 		}
 
 		if (boiler.length && isChangePrice) {
@@ -140,11 +111,8 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			return
 		}
 		if (manufacturer.length && isChangePrice) {
-<<<<<<< HEAD
-			uploadNewParams('manufacturerParts', queryManufacturer)
-=======
 			uploadNewParams('partsManufacturer', queryManufacturer)
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
+			uploadNewParams('partsManufacturer', queryManufacturer)
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
 			uploadNewParams('priceTo', Number(queryPriceTo))
 			return
@@ -154,26 +122,22 @@ const Catalog: FC<{ initialData: IBoilerPartsData[] }> = ({ initialData }) => {
 			uploadNewParams('boilerManufacturer', queryBoiler)
 		}
 		if (manufacturer.length) {
-<<<<<<< HEAD
-			uploadNewParams('manufacturerParts', queryManufacturer)
-=======
+			uploadNewParams('partsManufacturer', queryManufacturer)
+
 			console.log('partsManufacturer', queryManufacturer)
 
 			uploadNewParams('partsManufacturer', queryManufacturer)
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 		}
 		if (queryPriceFrom && queryPriceTo && isChangePrice) {
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
 			uploadNewParams('priceTo', Number(queryPriceTo))
 		}
-<<<<<<< HEAD
-=======
+
 		if (queryPriceTo && isChangePrice) {
 			console.log('queryPriceFrom && queryPriceTo')
 			uploadNewParams('priceFrom', Number(queryPriceFrom))
 			uploadNewParams('priceTo', Number(queryPriceTo))
 		}
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 	}
 
 	return (

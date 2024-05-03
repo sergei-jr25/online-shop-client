@@ -40,9 +40,7 @@ const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 				className={styles.catalogItem__image}
 				href={`/product/${product.name}`}
 			>
-<<<<<<< HEAD
 				<Image src={product.images} fill alt={product.name} loading='lazy' />
-=======
 				{isOnload && (
 					<Skeleton
 						width='100%'
@@ -59,7 +57,6 @@ const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 					onLoadingComplete={handleOnLoad}
 					style={{ opacity: isOnload ? '0' : '1' }}
 				/>
->>>>>>> fe2856f7a86644c6aa7eb372a58f2916d594fcfd
 			</Link>
 			<h4 className={styles.catalogItem__title}>
 				<Link href={`/product/${product.name}`}>{product.name}</Link>
