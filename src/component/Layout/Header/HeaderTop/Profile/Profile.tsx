@@ -14,8 +14,6 @@ const Profile: FC<{
 	const { logout } = useActions()
 	const pathName = usePathname()
 
-	console.log('pathName', pathName)
-
 	const hadnleLogout = () => {
 		setIsShow(false)
 		logout()

@@ -15,13 +15,12 @@ const CatalogFilterItem: FC<ICatalogFilterItem> = ({
 
 	isChangePrice
 }) => {
-	const { partsToggleChecked, boilerToggleChecked, setTouchFilter } =
-		useActions()
+	const { toggleChecked, setTouchFilter } = useActions()
 	const { isAnyCheckboxChecked } = useBoilerManufact()
 
 	const handleCheckboxChange = () => {
-		boilerToggleChecked(item)
-		partsToggleChecked(item)
+		toggleChecked({ item: item, type: 'boiler' })
+		toggleChecked({ item: item, type: 'parts' })
 		setTouchFilter({ flag: false })
 
 		if (!isAnyCheckboxChecked) {

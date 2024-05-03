@@ -23,7 +23,7 @@ const CatalogFilters: FC<ICatalogFilter> = ({
 	isCheckedItem
 }) => {
 	const mobile = useMediaQuery('(max-width: 776px)')
-	const { manufacturerParts, boilerManufacturer, isAnyCheckboxChecked } =
+	const { partsManufacturer, boilerManufacturer, isAnyCheckboxChecked } =
 		useBoilerManufact()
 	const { isChangePrice, isTouchFilter } = useFilters()
 
@@ -46,7 +46,7 @@ const CatalogFilters: FC<ICatalogFilter> = ({
 								setIsShow={setIsShow}
 								mobile={mobile}
 								boilersChecked={boilerManufacturer}
-								partsChecked={manufacturerParts}
+								partsChecked={partsManufacturer}
 								setAllChecked={handleAllChecked}
 								applyQueryParams={applyQueryParams}
 								resetFilters={resetFilters}
@@ -63,7 +63,7 @@ const CatalogFilters: FC<ICatalogFilter> = ({
 			) : (
 				<CatalogFiltersDesktop
 					boilersChecked={boilerManufacturer}
-					partsChecked={manufacturerParts}
+					partsChecked={partsManufacturer}
 					setAllChecked={handleAllChecked}
 					applyQueryParams={applyQueryParams}
 					resetFilters={resetFilters}

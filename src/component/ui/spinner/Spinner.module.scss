@@ -17,7 +17,7 @@ $skeleton-animation-duration: 1.5s;
 	width: $skeleton-width;
 	height: $skeleton-height;
 	background-color: $skeleton-color;
-	animation: shimmer $skeleton-animation-duration infinite linear;
+	animation: shimmer 2s infinite linear;
 }
 
 .shape {
@@ -32,4 +32,24 @@ $skeleton-animation-duration: 1.5s;
 	background-repeat: no-repeat;
 	background-size: 200% auto;
 	animation: shimmer $skeleton-animation-duration infinite linear;
+}
+
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	svg {
+		// fill: #555;
+		animation: loader $skeleton-animation-duration infinite linear;
+	}
+}
+
+@keyframes loader {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }

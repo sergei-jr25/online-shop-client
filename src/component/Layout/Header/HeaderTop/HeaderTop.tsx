@@ -23,8 +23,6 @@ const HeaderTop: FC = () => {
 	const showToggleHandler = () => setIsShow(!isShow)
 	const tablet = useMediaQuery('(max-width: 992px)')
 
-	console.log(theme)
-
 	return (
 		<div
 			className={cn(styles.header, {

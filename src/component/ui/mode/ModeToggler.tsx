@@ -21,17 +21,21 @@ const ModeToggler: FC = () => {
 		document.body.classList.add(theme === 'dark' ? 'dark__mode' : 'body')
 	}, [theme])
 	return (
-		<div className={cn(styles.mode, { [styles.toggle]: theme === 'light' })}>
-			<label>
-				{/* <div className={styles.check}></div> */}
+		<div
+			className={cn(styles.mode, {
+				[styles.mode_dark]: theme === 'dark',
+				[styles.mode_light]: theme === 'light'
+			})}
+		>
+			<label className={styles.mode__label}>
 				<input
 					type='checkbox'
 					checked={theme === 'dark'}
-					className={styles.input}
+					className={styles.mode__input}
 					onChange={handleToggleMode}
 				/>
 				<div
-					className={`${styles.toggler} ${
+					className={`${styles.mode__toggler} ${
 						theme === 'dark' ? styles.toggler_dark : ''
 					}`}
 				>

@@ -9,7 +9,7 @@ import styles from './Field.module.scss'
 
 const Field = forwardRef<HTMLInputElement, IFiled>(
 	(
-		{ error, placeholder, type = 'text', mode, value, defaultChecked, ...rest },
+		{ error, type = 'text', value, mode, defaultChecked, className, ...rest },
 		ref
 	) => {
 		const [previewUrl, setPreviewUrl] = useState<string | undefined>(undefined)
@@ -31,6 +31,8 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 						type === 'checkbox' ? styles.field__label_checkbox : ''
 					}`}
 				>
+					<span className={styles.field__value}>{value}</span>
+
 					{type === 'file' ? (
 						<>
 							<input
@@ -38,6 +40,7 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 								{...rest}
 								ref={ref}
 								onChange={hadnleFileChane}
+								className={` ${className}`}
 							/>
 							{previewUrl && (
 								<Image src={previewUrl} width={50} height={50} alt={''} />
@@ -45,16 +48,13 @@ const Field = forwardRef<HTMLInputElement, IFiled>(
 						</>
 					) : (
 						<input
-							className={styles.field__input}
 							{...rest}
 							ref={ref}
-							placeholder={placeholder}
 							type={type}
 							defaultChecked={defaultChecked}
+							className={`${styles.field__input} ${className}`}
 						/>
 					)}
-
-					<span className={styles.field__value}>{value}</span>
 				</label>
 				{error && <div className={styles.error}>{error.message}</div>}
 			</div>

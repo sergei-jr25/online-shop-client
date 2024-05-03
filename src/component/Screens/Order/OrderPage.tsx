@@ -6,26 +6,27 @@ import { useAuth } from '@/hook/useAuth'
 
 import CartSvg from '@/component/ui/IconsSvg/header-icons/CartSvg'
 import Checkbox from '@/component/ui/checkbox/Checkbox'
-import { useCart } from '@/hook/useCart'
-import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
+import { api } from '@/service/api/api'
+import { calculateTotalPrice } from '@/utils/calculateTotalPrice'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
-import { FC, useEffect, useState } from 'react'
+import { FC, useState } from 'react'
+import OrderItems from './OrderItems'
 import styles from './OrderPage.module.scss'
-import { OrderPageQuantityDynamic } from './OrderPageQuantity'
 
 const OrderItemsDynamic = dynamic(() => import('./OrderItems'), { ssr: false })
 
 const OrderPage: FC = () => {
 	const { user } = useAuth()
-	const { items, totalPrice: summTotalPrice } = useCart()
+	const { data = [], isFetching } = api.useGetCartProductsQuery(user?.id, {
+		skip: !user
+	})
 	const { theme } = useMode()
 	const { push } = useRouter()
 	const [isEdit, SetIsEdit] = useState(true)
 	const [isAgreement, setIsAgreement] = useState(false)
 	const [isLoading, setIsLoading] = useState(false)
-	const { setTotalPrice, countQuantity } = useActions()
 
 	const handleEditFalse = () => {
 		SetIsEdit(false)
@@ -42,14 +43,9 @@ const OrderPage: FC = () => {
 		if (!user) push('/auth')
 		setIsLoading(true)
 	}
-	console.log(user)
+	const totalPrice = calculateTotalPrice(data)
 
-	useEffect(() => {
-		setTotalPrice()
-		countQuantity()
-	}, [items])
-
-	const isDisabled = !items.length || !isAgreement || isEdit
+	const isDisabled = !data.length || !isAgreement || isEdit
 
 	return (
 		<div
@@ -81,19 +77,19 @@ const OrderPage: FC = () => {
 						{isEdit && (
 							<div className={styles.order__body}>
 								<div className={styles.order__items}>
-									<OrderItemsDynamic data={items} />
+									<OrderItems data={data} isFetching={isFetching} />
 								</div>
 								<div className={styles.order__sum}>
 									<div className={styles.order__info}>
 										<div className={styles.order__text}>Сумма заказа:</div>
 										<div className={styles.order__totalPrice}>
-											{summTotalPrice} ₽
+											{totalPrice} ₽
 										</div>
 									</div>
 									<button
 										className={styles.order__button}
 										onClick={handleEditFalse}
-										disabled={!items.length}
+										disabled={!data.length}
 									>
 										Продолжить
 									</button>
@@ -106,12 +102,11 @@ const OrderPage: FC = () => {
 							<div className={styles.order__total}>Итого</div>
 						</div>
 						<div className={styles.order__block}>
-							<OrderPageQuantityDynamic length={items.length} />
-							<div className={styles.order__price}>{summTotalPrice} ₽</div>
+							<OrderItems data={data} isFetching={isFetching} />
 						</div>
 						<div className={styles.order__block}>
 							<div className={styles.order__value}>На сумму</div>
-							<h3 className={styles.order__price}>{summTotalPrice} ₽</h3>
+							<h3 className={styles.order__price}>{totalPrice} ₽</h3>
 						</div>
 						<button
 							className={`${styles.order__submit} ${

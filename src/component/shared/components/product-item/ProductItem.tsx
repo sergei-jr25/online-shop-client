@@ -1,25 +1,34 @@
-import { useActions } from '@/hook/useDispatch'
+'use client'
+
+import CartIconSvg from '@/component/ui/IconsSvg/catalog-icons/CartIconSvg'
+import Skeleton from '@/component/ui/spinner/Spinner'
+import { useAuth } from '@/hook/useAuth'
 import { useMode } from '@/hook/useMode'
+import { useOnloadImage } from '@/hook/useOnloadImage'
+import { api } from '@/service/api/api'
 import { IBoilerPartsData } from '@/shared/type/user.interface'
+import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
 import { FC } from 'react'
-import { ItemCartDynamic } from './ItemCart'
 import styles from './ProductItem.module.scss'
-const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
-	const { addToCart } = useActions()
+
+interface IProductItem {
+	product: IBoilerPartsData
+	lazy?: boolean
+}
+
+const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
+	const { user } = useAuth()
+
+	const [addToShop] = api.useCreateShopCartMutation()
+	const { data = [], isFetching } = api.useGetCartProductsQuery(user?.id, {
+		skip: !user
+	})
+	const { isOnload, handleOnLoad } = useOnloadImage()
 
 	const { theme } = useMode()
-	const handleCrateComment = () => {
-		addToCart({
-			id: product.id,
-			count: 1,
-			name: product.name,
-			price: product.price,
-			image: product.images,
-			totalPrice: product.price
-		})
-	}
+	const isInCart = data.some(cart => +cart.partId === +product.id)
 
 	return (
 		<section
@@ -31,12 +40,21 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 				className={styles.catalogItem__image}
 				href={`/product/${product.name}`}
 			>
+				{isOnload && (
+					<Skeleton
+						width='100%'
+						height='100%'
+						style={{ position: 'absolute' }}
+					/>
+				)}
 				<Image
 					src={product.images}
-					fill
 					alt={product.name}
-					loading='lazy'
-					onLoad={() => console.log('Изображение загружено')}
+					width={250}
+					height={250}
+					// loading={lazy ? 'lazy' : 'eager'}
+					onLoadingComplete={handleOnLoad}
+					style={{ opacity: isOnload ? '0' : '1' }}
 				/>
 			</Link>
 			<h4 className={styles.catalogItem__title}>
@@ -49,11 +67,27 @@ const ProductItem: FC<{ product: IBoilerPartsData }> = ({ product }) => {
 			<div className={styles.catalogItem__article}>{product.vendorCode}</div>
 			<div className={styles.catalogItem__footer}>
 				<div className={styles.catalogItem__price}>{product.price} ₽</div>
-
-				<ItemCartDynamic
-					handleCrateComment={handleCrateComment}
-					productId={product.id}
-				/>
+				{user && (
+					<div
+						className={cn(styles.catalogItem__action, {
+							[styles.catalogItem__action_add]: isInCart
+						})}
+						data-testid='action-product'
+					>
+						{isFetching ? (
+							<Skeleton height='40px' width='40px' />
+						) : (
+							<button
+								onClick={() =>
+									addToShop({ username: user?.username, partId: +product.id })
+								}
+								disabled={isInCart}
+							>
+								<CartIconSvg />
+							</button>
+						)}
+					</div>
+				)}
 			</div>
 		</section>
 	)

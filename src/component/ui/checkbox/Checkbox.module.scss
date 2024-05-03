@@ -61,7 +61,11 @@
 			&::before {
 				border: 2px solid #fbfafc;
 			}
-			&:after {
+
+			@media (any-hover: hover) {
+				&:hover {
+					color: #b8eb00;
+				}
 			}
 		}
 	}

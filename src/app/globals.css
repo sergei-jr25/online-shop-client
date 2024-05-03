@@ -1,5 +1,6 @@
 @import '../assets/styles/null.css';
 @import '../assets/styles/next-progress.css';
+@import '../assets/styles/form-element.css';
 @import './common.css';
 @import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 @import 'swiper/css';
@@ -25,7 +26,7 @@ body {
 }
 .dark__mode {
 	color: #fafbfc;
-	background-color: #000;
+
 	transition: background-color 0.3s;
 }
 li {
@@ -43,7 +44,12 @@ a {
 }
 
 body.dark_mode {
-	border-color: #2222;
+	background: rgb(26, 26, 26);
+	background: linear-gradient(
+		135deg,
+		rgba(26, 26, 26, 1) 4%,
+		rgba(24, 21, 21, 1) 95%
+	);
 }
 
 .overflow_hidden {
@@ -84,8 +90,19 @@ body.dark_mode {
 	padding: 0 15px;
 }
 
+.swiper-slide {
+	height: 100% !important;
+}
+
 @media (max-width: 556px) {
-	.swiper-slide {
-		height: 100% !important;
-	}
+}
+
+.opacity {
+	opacity: 0;
+	transition: opacity 0.3s ease 0s, overflow 0.3s;
+}
+
+.loading-img {
+	opacity: 1;
+	background-color: red;
 }

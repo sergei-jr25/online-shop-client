@@ -13,7 +13,6 @@ const Breadcrumbs = () => {
 
 	// Split the current pathname into segments
 	const segments = pathname.split('/').filter(segment => segment !== '')
-	console.log(segments)
 
 	// Generate breadcrumb paths dynamically
 	const breadcrumbPaths = segments
