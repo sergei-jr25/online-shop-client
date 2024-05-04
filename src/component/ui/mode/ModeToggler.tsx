@@ -9,10 +9,6 @@ import LightSvg from '../IconsSvg/LightSvg'
 import NightSvg from '../IconsSvg/NightSvg'
 import styles from './ModeToggler.module.scss'
 
-const ModeTogglerDynamic = dynamic(() => import('./ModeToggler'), {
-	ssr: false
-})
-
 const ModeToggler: FC = () => {
 	const { theme } = useMode()
 	const { toggleTheme } = useActions()
@@ -25,6 +21,9 @@ const ModeToggler: FC = () => {
 	useEffect(() => {
 		document.body.classList.add(theme === 'dark' ? 'dark__mode' : 'body')
 	}, [theme])
+
+	console.log('theme Mode', theme)
+
 	return (
 		<div
 			className={cn(styles.mode, {
@@ -50,5 +49,8 @@ const ModeToggler: FC = () => {
 		</div>
 	)
 }
-// export default ModeToggler
-export default ModeTogglerDynamic
+export default ModeToggler
+
+export const ModeTogglerDynamic = dynamic(() => import('./ModeToggler'), {
+	ssr: false
+})

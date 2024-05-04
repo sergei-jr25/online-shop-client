@@ -10,16 +10,16 @@ import { IBoilerPartsData } from '@/shared/type/user.interface'
 import cn from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import styles from './ProductItem.module.scss'
 
 interface IProductItem {
 	product: IBoilerPartsData
-	lazy?: boolean
 }
 
-const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
+const ProductItem: FC<IProductItem> = ({ product }) => {
 	const { user } = useAuth()
+	const [state, setState] = useState(null)
 
 	const [addToShop] = api.useCreateShopCartMutation()
 	const { data = [], isFetching } = api.useGetCartProductsQuery(user?.id, {
@@ -29,6 +29,8 @@ const ProductItem: FC<IProductItem> = ({ lazy = true, product }) => {
 
 	const { theme } = useMode()
 	const isInCart = data.some(cart => +cart.partId === +product.id)
+
+	console.log(theme, 'theme')
 
 	return (
 		<section

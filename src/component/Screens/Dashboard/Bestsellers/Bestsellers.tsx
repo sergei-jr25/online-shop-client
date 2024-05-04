@@ -29,7 +29,7 @@ const Bestsellers: FC<{ bestsellers: IBoilerPartsData[] }> = ({
 					{!!bestsellers.length ? (
 						bestsellers.map(item => (
 							<SwiperSlide key={item.id}>
-								<ProductItem product={item} lazy={false} />
+								<ProductItem product={item} />
 							</SwiperSlide>
 						))
 					) : (
