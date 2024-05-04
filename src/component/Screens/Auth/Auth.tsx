@@ -2,6 +2,7 @@
 
 import Button from '@/component/ui/button/Button'
 import Field from '@/component/ui/form-elements/fields/Field'
+import Loader from '@/component/ui/spinner/Loader'
 import { useAuth } from '@/hook/useAuth'
 import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
@@ -28,6 +29,7 @@ const Auth: FC = () => {
 
 	const { user, isLoading } = useAuth()
 	const { login, register: registerAction } = useActions()
+	console.log('isLoading', isLoading)
 
 	useEffect(() => {
 		if (user) push('/')
@@ -80,55 +82,59 @@ const Auth: FC = () => {
 								Регистрация
 							</button>
 						</div>
-						<form
-							className={styles.auth__form}
-							onSubmit={handleSubmit(onSubmit)}
-						>
-							{type === 'register' && (
-								<Field
-									{...register('email', {
-										required: 'Email is require',
+						{isLoading ? (
+							<Loader theme={theme} />
+						) : (
+							<form
+								className={styles.auth__form}
+								onSubmit={handleSubmit(onSubmit)}
+							>
+								{type === 'register' && (
+									<Field
+										{...register('email', {
+											required: 'Email is require',
 
-										pattern: {
-											value: validateEmail,
-											message: 'Некорректный email'
-										}
+											pattern: {
+												value: validateEmail,
+												message: 'Некорректный email'
+											}
+										})}
+										error={errors.email}
+										type='email'
+										placeholder='Email'
+										mode={theme}
+										className={styles.auth__field}
+									/>
+								)}
+								<Field
+									{...register('username', {
+										required: 'Username is require'
 									})}
-									error={errors.email}
-									type='email'
-									placeholder='Email'
+									error={errors.username}
+									placeholder='Username'
+									type='text'
 									mode={theme}
 									className={styles.auth__field}
 								/>
-							)}
-							<Field
-								{...register('username', {
-									required: 'Username is require'
-								})}
-								error={errors.username}
-								placeholder='Username'
-								type='text'
-								mode={theme}
-								className={styles.auth__field}
-							/>
 
-							<Field
-								{...register('password', {
-									required: 'Password is require',
-									minLength: {
-										value: 6,
-										message: 'Минимальный пароль, не менее 6 символов'
-									}
-								})}
-								error={errors.password}
-								type='password'
-								placeholder='Password'
-								mode={theme}
-								className={styles.auth__field}
-							/>
+								<Field
+									{...register('password', {
+										required: 'Password is require',
+										minLength: {
+											value: 6,
+											message: 'Минимальный пароль, не менее 6 символов'
+										}
+									})}
+									error={errors.password}
+									type='password'
+									placeholder='Password'
+									mode={theme}
+									className={styles.auth__field}
+								/>
 
-							<Button className={styles.auth__button}>Отправить</Button>
-						</form>
+								<Button className={styles.auth__button}>Отправить</Button>
+							</form>
+						)}
 					</div>
 				</div>
 			</div>

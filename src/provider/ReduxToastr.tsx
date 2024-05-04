@@ -4,14 +4,12 @@ import ReduxToastr from 'react-redux-toastr'
 const ReduxToastrComponent = () => {
 	return (
 		<ReduxToastr
-			timeOut={700}
+			timeOut={4000}
 			newestOnTop={false}
-			preventDuplicates
-			position='top-right'
+			position='top-left'
 			transitionIn='fadeIn'
 			transitionOut='fadeOut'
 			progressBar
-			closeOnToastrClick
 		/>
 	)
 }

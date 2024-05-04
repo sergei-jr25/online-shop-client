@@ -3,10 +3,15 @@
 import { useActions } from '@/hook/useDispatch'
 import { useMode } from '@/hook/useMode'
 import cn from 'clsx'
+import dynamic from 'next/dynamic'
 import { FC, useEffect } from 'react'
 import LightSvg from '../IconsSvg/LightSvg'
 import NightSvg from '../IconsSvg/NightSvg'
 import styles from './ModeToggler.module.scss'
+
+const ModeTogglerDynamic = dynamic(() => import('./ModeToggler'), {
+	ssr: false
+})
 
 const ModeToggler: FC = () => {
 	const { theme } = useMode()
@@ -45,4 +50,5 @@ const ModeToggler: FC = () => {
 		</div>
 	)
 }
-export default ModeToggler
+// export default ModeToggler
+export default ModeTogglerDynamic
