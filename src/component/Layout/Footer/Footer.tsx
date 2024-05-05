@@ -201,8 +201,8 @@ const Footer: FC = () => {
 							<div className={styles.footer__content}>
 								<div className={styles.footer__subtitle}>Мы в соцсети:</div>
 								<div className={styles.footer__payments}>
-									{socialImages.map(item => (
-										<Image src={item} width={32} height={32} alt='socials' />
+									{socialImages.map((item, idx) => (
+										<Image key={idx} src={item} width={32} height={32} alt='socials' />
 									))}
 								</div>
 							</div>

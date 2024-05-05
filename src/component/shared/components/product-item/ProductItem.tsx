@@ -30,8 +30,6 @@ const ProductItem: FC<IProductItem> = ({ product }) => {
 	const { theme } = useMode()
 	const isInCart = data.some(cart => +cart.partId === +product.id)
 
-	console.log(theme, 'theme')
-
 	return (
 		<section
 			className={`${styles.catalogItem} ${
@@ -42,7 +40,6 @@ const ProductItem: FC<IProductItem> = ({ product }) => {
 				className={styles.catalogItem__image}
 				href={`/product/${product.name}`}
 			>
-				<Image src={product.images} fill alt={product.name} loading='lazy' />
 				{isOnload && (
 					<Skeleton
 						width='100%'

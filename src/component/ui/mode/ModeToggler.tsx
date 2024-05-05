@@ -22,8 +22,6 @@ const ModeToggler: FC = () => {
 		document.body.classList.add(theme === 'dark' ? 'dark__mode' : 'body')
 	}, [theme])
 
-	console.log('theme Mode', theme)
-
 	return (
 		<div
 			className={cn(styles.mode, {
